@@ -1,0 +1,10 @@
+.file-input {
+  display: none;
+}
+
+.upload-btn {
+  border: none;
+  border-radius: 5px;
+  font-size: 22px;
+  padding-top: 4px;
+}

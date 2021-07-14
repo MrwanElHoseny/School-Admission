@@ -1,0 +1,19 @@
+.background {
+  /* background: url("../../assets/bg-2.jpg") bottom; */
+  background-color: white;
+  position: relative;
+
+  max-width: 100%;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 1200px;
+
+  /* margin: -5px -5px -5px -5px; */
+}
+
+/* * {
+  background: #000 !important;
+  color: #0f0 !important;
+  outline: solid #f00 1px !important;
+} */

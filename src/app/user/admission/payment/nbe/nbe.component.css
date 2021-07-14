@@ -1,0 +1,7 @@
+.main-border {
+  width: 700px;
+  margin: auto;
+
+  border: 1px solid #000000;
+  border-radius: 20px;
+}

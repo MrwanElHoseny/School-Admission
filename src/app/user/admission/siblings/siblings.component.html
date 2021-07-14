@@ -1,0 +1,67 @@
+<div style="margin-top: 65px;">
+    <app-bar [progress]="5"></app-bar>
+</div>
+
+<form class="border m-5" (ngSubmit)="onSubmit(f)" #f="ngForm">
+
+    <div class="h2 text-center my-4" style="font-family: Arial, Helvetica, sans-serif; color: #1d3557;">
+        Siblings
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-2 offset-md-10 pl-5">
+            <button type="button" class="btn add-button" (click)="addSibling();">Add</button>
+        </div>
+    </div>
+    <table class="table table-striped table-hover mr-5 ml-5 mb-5 mt-3"
+        style="position: relative; left: 2.5%; width: 1250px;">
+        <thead class="">
+            <th scope="col" style="width: 5%;">#</th>
+            <th scope="col" style="width: 15%;">Relationship</th>
+            <th scope="col" style="width: 20%;">Full Name</th>
+            <th scope="col" style="width: 15%;">Age</th>
+            <th scope="col" style="width: 15%;">School Branch</th>
+            <th scope="col" style="width: 5%;"></th>
+        </thead>
+        <tbody #tableBody>
+            <tr *ngFor="let row of this.submission.SiblingsRows">
+                <ng-container [ngModelGroup]="'EmergencyContact'+row">
+                    <td>
+                        {{row}}
+                    </td>
+                    <td>
+                        <input class="form-control" type='text' name="Relationship"
+                            [(ngModel)]="this.submission.siblings[this.submission.SiblingsRows.indexOf(row)].Relationship"
+                            required>
+                    </td>
+                    <td>
+                        <input class="form-control" type='text' name="FullName"
+                            [(ngModel)]="this.submission.siblings[this.submission.SiblingsRows.indexOf(row)].FullName"
+                            required>
+                    </td>
+                    <td>
+                        <input class="form-control" type='number' name="Age"
+                            [(ngModel)]="this.submission.siblings[this.submission.SiblingsRows.indexOf(row)].Age"
+                            required>
+                    </td>
+                    <td>
+                        <input class="form-control" type='text' name="SchoolBranch"
+                            [(ngModel)]="this.submission.siblings[this.submission.SiblingsRows.indexOf(row)].SchoolBranch"
+                            required>
+                    </td>
+                    <td><button type="button" class="btn" (click)="deleteSibling(row)"><i class="material-icons"
+                                style="font-size: 20px;">delete</i></button></td>
+                </ng-container>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row mx-3 my-5">
+        <div class="col-md-4">
+            <button type="button" (click)="onBack()" class="btn btn-outline-primary">Back</button>
+        </div>
+        <div class="col-md-4 offset-md-4 ">
+            <button class="btn btn-primary" type="submit" style="position: absolute; right: 5%;"
+                [disabled]="!f.valid">Next</button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,16 @@
+.payment-logo {
+  width: 80%;
+  height: auto;
+
+  margin-top: 20px;
+}
+
+.label-img {
+  opacity: 0.6;
+  transition: 0.7s;
+}
+
+.label-img:hover,
+.checked-label {
+  opacity: 1;
+}

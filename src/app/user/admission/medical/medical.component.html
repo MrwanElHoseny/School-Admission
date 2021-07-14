@@ -1,0 +1,106 @@
+<div style="margin-top: 65px;">
+    <app-bar [progress]="6"></app-bar>
+</div>
+
+<form class="border m-5" (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div class="h2 text-center my-4" style="font-family: Arial, Helvetica, sans-serif; color: #1d3557;">
+        Medical
+    </div>
+
+    <div class="row mx-3 my-5">
+        <div class="col-md-3">
+            <label>Student wears glasses or contacts: </label>
+        </div>
+        <div class="col-md-1">
+            <div class="form-check">
+                <input type="radio" name="GlassesOrContacts" class="form-check-input" id="glassesYes" value="Yes"
+                    required [(ngModel)]="this.submission.medical.GlassesOrContacts">
+                <label for="glassesYes">Yes</label>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-check">
+                <input type="radio" name="GlassesOrContacts" value="No" class="form-check-input" id="glassesNo" required
+                    [(ngModel)]="this.submission.medical.GlassesOrContacts">
+                <label for="glassesNo">No</label>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row mx-3 my-5">
+        <div class="col-md-3">
+            <label>Student requires hearing aid(s):</label>
+        </div>
+
+        <div class="col-md-1">
+            <div class="form-check">
+                <input type="radio" name="HearingAids" class="form-check-input" id="aidsYes" value="Yes" required
+                    [(ngModel)]="this.submission.medical.HearingAids">
+                <label for="aidsYes">Yes</label>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-check">
+                <input type="radio" name="HearingAids" value="No" class="form-check-input" id="aidsNo" required
+                    [(ngModel)]="this.submission.medical.HearingAids">
+                <label for="aidsNo">No</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mx-3 mt-5 mb-2">
+        <div class="col-md-4">
+            <label for="conditions">Does the student have any medical condition(s): </label>
+        </div>
+    </div>
+    <div class="row mx-3 mt-0">
+        <div class="col-md-12">
+            <textarea name="MedicalCondition" id="conditions" cols="150" rows="4" required
+                [(ngModel)]="this.submission.medical.MedicalCondition" #medicalConditions="ngModel"></textarea>
+            <p style="color: brown; font-size: 15px;"
+                [hidden]=" !medicalConditions.touched || medicalConditions.valid ">*Answer required
+            </p>
+        </div>
+    </div>
+
+    <div class="row mx-3 mt-5 mb-2">
+        <div class="col-md-6">
+            <label for="needs">Does your child have any physical, emotional, psychological, social, or language
+                needs:</label>
+        </div>
+    </div>
+    <div class="row mx-3 mt-0">
+        <div class="col-md-12">
+            <textarea name="Needs" id="needs" cols="150" rows="4" required [(ngModel)]="this.submission.medical.Needs"
+                #need="ngModel"></textarea>
+            <p style="color: brown; font-size: 15px;" [hidden]=" !need.touched || need.valid ">*Answer required
+            </p>
+        </div>
+    </div>
+
+    <div class="row mx-3 mt-5 mb-2">
+        <div class="col-md-6">
+            <label for="assessed">Has the student ever been assessed by an educational psychologist or any other
+                specialist:</label>
+        </div>
+    </div>
+    <div class="row mx-3 mt-0 mb-5">
+        <div class="col-md-12">
+            <textarea name="AssessedByPsycologist" id="assessed" cols="150" rows="4" required
+                [(ngModel)]="this.submission.medical.AssessedByPsycologist" #assessed="ngModel"></textarea>
+            <p style="color: brown; font-size: 15px;" [hidden]=" !assessed.touched || assessed.valid ">*Answer required
+            </p>
+        </div>
+    </div>
+
+    <div class="row mx-3 my-5">
+        <div class="col-md-4">
+            <button type="button" (click)="onBack()" class="btn btn-outline-primary">Back</button>
+        </div>
+        <div class="col-md-4 offset-md-4 ">
+            <button class="btn btn-primary" type="submit" style="position: absolute; right: 5%;"
+                [disabled]="!f.valid">Next</button>
+        </div>
+    </div>
+</form>

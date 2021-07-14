@@ -1,0 +1,98 @@
+<div class="container-fluid px-5 py-2">
+    <ngb-carousel [pauseOnHover]="true">
+        <ng-template ngbSlide>
+            <div class="image-wrapper">
+                <img src="../../../assets/carousel2.jpg" alt="Random first slide">
+            </div>
+            <div class="carousel-caption">
+                <h3>Easy application</h3>
+                <p>Fill your student application now in a few minutes!</p>
+            </div>
+        </ng-template>
+        <ng-template ngbSlide>
+            <div class="image-wrapper">
+                <img src="../../../assets/carousel1.jfif" alt="Random second slide">
+            </div>
+            <div class="carousel-caption">
+                <h3>Online payment</h3>
+                <p>No need to go through the hastle of paying fees in person</p>
+            </div>
+        </ng-template>
+        <ng-template ngbSlide>
+            <div class="image-wrapper">
+                <img src="../../../assets/carousel3.jfif" alt="Random third slide">
+            </div>
+            <div class="carousel-caption">
+                <h3>Apply now</h3>
+                <p>and we'll contact you back with the results</p>
+            </div>
+        </ng-template>
+    </ngb-carousel>
+
+
+    <div class="container-fluid mt-5">
+        <div class="card text-left ">
+            <div class="card-body p-5">
+                <h4 class="card-title">How to apply</h4>
+                <p class="card-text">1. Complete the online application and upload the required documents to validate
+                    your application.</p>
+                <ul>
+                    <li>Child’s birth certificate.</li>
+                    <li>Copy of parents ID’s or passports (for non-Egyptians).</li>
+                    <li>In case your child is "transfer student" upload an official report for the past 2 school years.
+                    </li>
+                </ul>
+
+                <p class="card-text">2. Pay the admission fees with one of the available payment services.</p>
+                <ul>
+                    <li>Pay with Fawry and upload receipt.</li>
+                    <li>Transfer admission fees to one of our bank accounts and upload receipt.</li>
+                    <li>Pay directly with credit card.</li>
+                </ul>
+
+                <p class="card-text">3. Our admission office will contact parents shortly after receiving the online
+                    application in order to set a date and
+                    time for
+                    interview assessments.
+                    Parents should deliver these required documents in the day of assessments:</p>
+                <ul>
+                    <li>6 passport size photos</li>
+                    <li>2 original birth certificate</li>
+                    <li>Copy of both parents ID’s (Egyptians)</li>
+                    <li>Copy of the student’s and both parents passport (Non-Egyptians)</li>
+                    <li>Copy of vaccination record</li>
+                    <li>Official school report for the past 2 school years (in case of transfer student)</li>
+                </ul>
+
+                <p class="card-text">4. The students sit assessment tests which will be specified for each range of age.
+                </p>
+                <p class="card-text">5. An email of acceptance will be sent for the students who have passed the
+                    assessment test, also the students who have
+                    failed the
+                    assessment test will be advised to do a retest.</p>
+                <p class="card-text">6. For the students who have been accepted, parents will be notified with a
+                    registration fees that have to be paid
+                    within a week to
+                    finish the registration process.</p>
+
+                <h4 class="card-title">Admission Policy</h4>
+                <ul>
+                    <li>In case parents fill an application without paying the admission fees they will be notified
+                        within 2 day to pay the
+                        fees, if the
+                        parents didn’t pay the fees, the application will be ignored until they pay the admission fees.
+                    </li>
+                    <li>The admission fee is non-refundable.</li>
+                </ul>
+
+                <div class="row ml-5 mt-5">
+                    <div class="col-md-2 btn btn-primary" routerLink="/applicant/admission">Apply</div>
+                    <div class="col-md-2 offset-md-7 btn btn-outline-warning " routerLink="/applicant/signIn">Edit
+                        Application
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

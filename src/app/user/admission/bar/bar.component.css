@@ -1,0 +1,22 @@
+.circle-number {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  padding: 5px;
+
+  background: #fff;
+  border: 2px solid;
+  text-align: center;
+
+  font: 17px Arial, sans-serif;
+}
+
+.connector {
+  margin: 0px 0px 0px 0px;
+  position: absolute;
+  top: 50%;
+  left: 32%;
+  width: 100%;
+  border-color: black;
+  border-width: 2px;
+}

@@ -1,0 +1,125 @@
+{
+  "admissoinDetails" : {
+    "-MeVPJqaHUnFleBCITqS" : {
+      "academicYear" : "2021/2022",
+      "grade" : "9",
+      "newStudent" : "newStudent",
+      "secondLang" : "en",
+      "section" : "nationalEnglish",
+      "stage" : "Primary"
+    }
+  },
+  "creditPayment" : {
+    "-MeVcMdL9dG79oO3zOec" : {
+      "CVV" : 234,
+      "CardNumber" : 32134234,
+      "ExpiryDate" : "2021-03"
+    }
+  },
+  "emergency" : {
+    "-MeVUhTJyPbdmyOg4OIX" : {
+      "EmergencyContact1" : {
+        "FullName" : "sss",
+        "HomeNumber" : 22,
+        "Mobile" : 332222,
+        "Relationship" : "marwan"
+      },
+      "EmergencyContact2" : {
+        "FullName" : "masd",
+        "HomeNumber" : 123123,
+        "Mobile" : 222,
+        "Relationship" : "asdads"
+      },
+      "EmergencyContact3" : {
+        "FullName" : "asdads",
+        "HomeNumber" : 123123,
+        "Mobile" : 123,
+        "Relationship" : "adasd"
+      }
+    }
+  },
+  "medical" : {
+    "-MeVXBbDGZEViz3Zm5KW" : {
+      "AssessedByPsycologist" : "fdgdgfdh",
+      "GlassesOrContacts" : "Yes",
+      "HearingAids" : "No",
+      "MedicalCondition" : "hohhklhlkjl",
+      "Needs" : "lk;jlkjl;"
+    }
+  },
+  "parents" : {
+    "-MeVOOSQBcD_SVxPiS5M" : {
+      "familyStatus" : {
+        "Guardian" : "father",
+        "GuardianAddress" : "address xx",
+        "LanguageSpoken" : "arabic",
+        "MaritalStatus" : "married"
+      },
+      "fatherDetails" : {
+        "FatherCompany" : "ss",
+        "FatherDateOfBirth" : {
+          "day" : 16,
+          "month" : 7,
+          "year" : 2021
+        },
+        "FatherEmail" : "marwan0000@yahoo.com",
+        "FatherFirstName" : "Marwan",
+        "FatherIdNum" : 22,
+        "FatherIdType" : "national",
+        "FatherMobile" : 1003326280,
+        "FatherNationality" : "Egyptian",
+        "FatherOccupation" : "zzzss",
+        "FatherReligion" : "muslim",
+        "FatherSecondName" : "Hoseny",
+        "FatherThirdName" : "zz"
+      },
+      "motherDetails" : {
+        "MotherCompany" : "",
+        "MotherDateOfBirth" : {
+          "day" : 7,
+          "month" : 7,
+          "year" : 2021
+        },
+        "MotherEmail" : "marwan0000@yahoo.com",
+        "MotherFirstName" : "Marwan",
+        "MotherIdNum" : 111,
+        "MotherIdType" : "national",
+        "MotherMobile" : 1003326280,
+        "MotherNationality" : "ddd",
+        "MotherOccupation" : "dasdasd",
+        "MotherReligion" : "sadasd",
+        "MotherSecondName" : "Hoseny",
+        "MotherThirdName" : "xx"
+      }
+    }
+  },
+  "siblings" : {
+    "-MeVWHVIstKxzdl39OeH" : {
+      "EmergencyContact1" : {
+        "Age" : 12,
+        "FullName" : "asdf",
+        "Relationship" : "sfa",
+        "SchoolBranch" : "asfs"
+      }
+    }
+  },
+  "student" : {
+    "-MeVMQk4-xmysCpdi2hd" : {
+      "dob" : {
+        "day" : 19,
+        "month" : 8,
+        "year" : 1999
+      },
+      "firstName" : "marwan",
+      "gender" : "male",
+      "lastName" : "sayed",
+      "mobile" : 1003326280,
+      "motherLang" : "ar",
+      "nationality" : "Egyptian",
+      "pob" : "giza",
+      "religion" : "muslim",
+      "secondName" : "mohamed",
+      "thirdName" : "el hoseny"
+    }
+  }
+}

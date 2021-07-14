@@ -1,0 +1,33 @@
+.btn:focus,
+.btn:active {
+  outline: none !important;
+  box-shadow: none;
+}
+
+.collapse-title {
+  font-size: 20px;
+  padding: 5px 10px 7px 10px;
+  margin-bottom: 0%;
+}
+
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border-color: brown;
+}
+
+div.ng-invalid.ng-touched > .collapsed {
+  background-color: #ff8b4d;
+}
+.card-header {
+  opacity: 0.7;
+  transition: 0.5s;
+  background-color: #d6eaff;
+}
+.card-header:hover {
+  opacity: 1;
+}
+.card {
+  border: 2px black;
+  border-radius: 0%;
+}
