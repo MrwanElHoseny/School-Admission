@@ -25,7 +25,17 @@ import { AdmissoinDetailsComponent } from './user/admission/admissoin-details/ad
 import { CreditComponent } from './user/admission/payment/credit/credit.component';
 import { FawryComponent } from './user/admission/payment/fawry/fawry.component';
 import { NbeComponent } from './user/admission/payment/nbe/nbe.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { SignInComponent } from './admin/sign-in/sign-in.component';
+import { HomeComponent } from './admin/home/home.component';
+import { AdmissionManagementComponent } from './admin/admission-management/admission-management.component';
+import { ViewApplicantsComponent } from './admin/view-applicants/view-applicants.component';
+import { InterviewCriteriaComponent } from './admin/interview-criteria/interview-criteria.component';
+import { ApplicantsInterviewComponent } from './admin/applicants-interview/applicants-interview.component';
+import { OpenAdmissionComponent } from './admin/admission-management/open-admission/open-admission.component';
+import { EditAdmissionComponent } from './admin/admission-management/edit-admission/edit-admission.component';
+import { SetDocumentsComponent } from './admin/admission-management/set-documents/set-documents.component'
+
 
 
 
@@ -51,6 +61,15 @@ import { HttpClientModule } from '@angular/common/http'
     CreditComponent,
     FawryComponent,
     NbeComponent,
+    SignInComponent,
+    HomeComponent,
+    AdmissionManagementComponent,
+    ViewApplicantsComponent,
+    InterviewCriteriaComponent,
+    ApplicantsInterviewComponent,
+    OpenAdmissionComponent,
+    EditAdmissionComponent,
+    SetDocumentsComponent,
   ],
   imports: [
     BrowserModule,

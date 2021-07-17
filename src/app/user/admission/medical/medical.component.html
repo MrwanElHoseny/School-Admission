@@ -14,14 +14,14 @@
         <div class="col-md-1">
             <div class="form-check">
                 <input type="radio" name="GlassesOrContacts" class="form-check-input" id="glassesYes" value="Yes"
-                    required [(ngModel)]="this.submission.medical.GlassesOrContacts">
+                    required [(ngModel)]="this.submission.medical.Glass">
                 <label for="glassesYes">Yes</label>
             </div>
         </div>
         <div class="col-md-1">
             <div class="form-check">
                 <input type="radio" name="GlassesOrContacts" value="No" class="form-check-input" id="glassesNo" required
-                    [(ngModel)]="this.submission.medical.GlassesOrContacts">
+                    [(ngModel)]="this.submission.medical.Glass">
                 <label for="glassesNo">No</label>
             </div>
         </div>
@@ -36,14 +36,14 @@
         <div class="col-md-1">
             <div class="form-check">
                 <input type="radio" name="HearingAids" class="form-check-input" id="aidsYes" value="Yes" required
-                    [(ngModel)]="this.submission.medical.HearingAids">
+                    [(ngModel)]="this.submission.medical.Hearing">
                 <label for="aidsYes">Yes</label>
             </div>
         </div>
         <div class="col-md-1">
             <div class="form-check">
                 <input type="radio" name="HearingAids" value="No" class="form-check-input" id="aidsNo" required
-                    [(ngModel)]="this.submission.medical.HearingAids">
+                    [(ngModel)]="this.submission.medical.Hearing">
                 <label for="aidsNo">No</label>
             </div>
         </div>
@@ -57,7 +57,7 @@
     <div class="row mx-3 mt-0">
         <div class="col-md-12">
             <textarea name="MedicalCondition" id="conditions" cols="150" rows="4" required
-                [(ngModel)]="this.submission.medical.MedicalCondition" #medicalConditions="ngModel"></textarea>
+                [(ngModel)]="this.submission.medical.MedicalConditions" #medicalConditions="ngModel"></textarea>
             <p style="color: brown; font-size: 15px;"
                 [hidden]=" !medicalConditions.touched || medicalConditions.valid ">*Answer required
             </p>
@@ -72,8 +72,8 @@
     </div>
     <div class="row mx-3 mt-0">
         <div class="col-md-12">
-            <textarea name="Needs" id="needs" cols="150" rows="4" required [(ngModel)]="this.submission.medical.Needs"
-                #need="ngModel"></textarea>
+            <textarea name="Needs" id="needs" cols="150" rows="4" required
+                [(ngModel)]="this.submission.medical.PhysiologicalNeed" #need="ngModel"></textarea>
             <p style="color: brown; font-size: 15px;" [hidden]=" !need.touched || need.valid ">*Answer required
             </p>
         </div>
@@ -88,7 +88,7 @@
     <div class="row mx-3 mt-0 mb-5">
         <div class="col-md-12">
             <textarea name="AssessedByPsycologist" id="assessed" cols="150" rows="4" required
-                [(ngModel)]="this.submission.medical.AssessedByPsycologist" #assessed="ngModel"></textarea>
+                [(ngModel)]="this.submission.medical.PhysiologicalConditions" #assessed="ngModel"></textarea>
             <p style="color: brown; font-size: 15px;" [hidden]=" !assessed.touched || assessed.valid ">*Answer required
             </p>
         </div>

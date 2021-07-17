@@ -1,0 +1,13 @@
+.background {
+  /* background: url("../../assets/bg-2.jpg") bottom; */
+  background-color: white;
+  position: relative;
+
+  max-width: 100%;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 800px;
+
+  /* margin: -5px -5px -5px -5px; */
+}

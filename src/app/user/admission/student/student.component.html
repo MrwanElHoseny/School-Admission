@@ -9,19 +9,19 @@
         <div class="col-md-4">
             <label for="firstName">First Name:</label>
             <input type="text" name="firstName" class="form-control" id="firstName"
-                [(ngModel)]="this.submission.studentData.firstName" required #firstName="ngModel">
-            <p style="color: brown; font-size: 15px;" [hidden]=" !firstName.dirty || firstName.valid ">*Required</p>
+                [(ngModel)]="this.submission.studentData.FirstName" required #firstName="ngModel">
+            <p style="color: brown; font-size: 15px;" [hidden]=" !firstName.touched || firstName.valid ">*Required</p>
         </div>
         <div class="col-md-4">
             <label for="secondName">Second Name:</label>
             <input type="text" name="secondName" class="form-control" id="secondName"
-                [(ngModel)]="this.submission.studentData.secondName" required #secondName="ngModel">
+                [(ngModel)]="this.submission.studentData.SecondName" required #secondName="ngModel">
             <p style="color: brown; font-size: 15px;" [hidden]=" !secondName.touched || secondName.valid ">*Required</p>
         </div>
         <div class="col-md-4">
             <label for="thirdName">Third Name:</label>
-            <input type="text" name="thirdName" class="form-control" id="thirdName"
-                [(ngModel)]="this.submission.studentData.thirdName" required #thirdName="ngModel">
+            <input type="text" name="thirdName" class="form-control" id="thirdName" ngModel required
+                #thirdName="ngModel">
             <p style="color: brown; font-size: 15px;" [hidden]=" !thirdName.touched || thirdName.valid ">*Required</p>
         </div>
     </div>
@@ -29,20 +29,20 @@
         <div class="col-md-4">
             <label for="lastName">Last Name:</label>
             <input type="text" name="lastName" class="form-control" id="lastName"
-                [(ngModel)]="this.submission.studentData.lastName" required #lastName="ngModel">
+                [(ngModel)]="this.submission.studentData.LastName" required #lastName="ngModel">
             <p style="color: brown; font-size: 15px;" [hidden]=" !lastName.touched || lastName.valid ">*Required</p>
         </div>
         <div class="col-md-4">
             <label for="pob">Place of birth:</label>
-            <input type="text" name="pob" class="form-control" id="pob" [(ngModel)]="this.submission.studentData.pob"
-                required #pob="ngModel">
+            <input type="text" name="pob" class="form-control" id="pob"
+                [(ngModel)]="this.submission.studentData.PlaceOfBirth" required #pob="ngModel">
             <p style="color: brown; font-size: 15px;" [hidden]=" !pob.touched || pob.valid ">*Required</p>
         </div>
         <div class="col-md-4">
             <label for="dob">Date of birth:</label>
             <input type="text" name="dob" class="form-control" id="dob" ngbDatepicker
                 [minDate]="{year: 1950, month:1, day: 1}" #d="ngbDatepicker" (click)="d.toggle()"
-                [(ngModel)]="this.submission.studentData.dob" required #dob="ngModel">
+                [(ngModel)]="this.submission.studentDateOfBirth" required #dob="ngModel">
             <p style="color: brown; font-size: 15px;" [hidden]=" !dob.touched || dob.valid ">*Required</p>
 
         </div>
@@ -51,7 +51,7 @@
         <div class="col-md-4">
             <label for="motherTongue">Mother tongue:</label>
             <select class="form-control" name="motherLang" id="motherTongue"
-                [(ngModel)]="this.submission.studentData.motherLang" required #motherLang="ngModel">
+                [(ngModel)]="this.submission.studentData.SpokenLanguage" required #motherLang="ngModel">
                 <option value="af">Afrikaans</option>
                 <option value="sq">Albanian - shqip</option>
                 <option value="am">Amharic - አማርኛ</option>
@@ -200,14 +200,14 @@
         <div class="col-md-4">
             <label for="nationality">Nationality:</label>
             <input type="text" name="nationality" class="form-control" id="nationality"
-                [(ngModel)]="this.submission.studentData.nationality" required #nationality="ngModel">
+                [(ngModel)]="this.submission.studentData.Nationality" required #nationality="ngModel">
             <p style="color: brown; font-size: 15px;" [hidden]=" !nationality.touched || nationality.valid ">*Required
             </p>
         </div>
         <div class="col-md-4">
             <label for="religion">Religion:</label>
             <input type="text" name="religion" class="form-control" id="religion"
-                [(ngModel)]="this.submission.studentData.religion" required #religion="ngModel">
+                [(ngModel)]="this.submission.studentData.Religion" required #religion="ngModel">
             <p style="color: brown; font-size: 15px;" [hidden]=" !religion.touched || religion.valid ">*Required</p>
         </div>
     </div>
@@ -215,20 +215,20 @@
         <div class="col-md-4">
             <label for="mobile">Mobile number:</label>
             <input class="form-control" type="number" name="mobile" id="mobile" required #mobile="ngModel"
-                [(ngModel)]="this.submission.studentData.mobile">
+                [(ngModel)]="this.submission.studentData.Mobile">
             <p style="color: brown; font-size: 15px;" [hidden]=" !mobile.touched || mobile.valid ">*Required</p>
         </div>
         <div class="col-md-4 pt-4 pl-4 ml-4">
 
             <div class="form-check">
                 <input type="radio" class="form-check-input" id="male" name="gender" value="male"
-                    [(ngModel)]="this.submission.studentData.gender" required>
+                    [(ngModel)]="this.submission.studentData.Gender" required>
                 <label class="form-check-label" for="male">Male</label>
             </div>
 
             <div class="form-check">
                 <input type="radio" class="form-check-input" id="female" name="gender" value="female"
-                    [(ngModel)]="this.submission.studentData.gender" required>
+                    [(ngModel)]="this.submission.studentData.Gender" required>
                 <label class="form-check-label" for="female">Female</label>
             </div>
 

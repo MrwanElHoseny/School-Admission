@@ -10,7 +10,7 @@
         <div class="col-md-4">
             <label for="section">Section:</label>
             <select name="section" id="section" class="form-control"
-                [(ngModel)]="this.submission.admissionDetails.section" #section="ngModel" required>
+                [(ngModel)]="this.submission.admissionDetails.Section" #section="ngModel" required>
                 <option value="nationalEnglish" selected="selected">National English</option>
                 <option value="experimental">Experimental</option>
                 <option value="other">Other</option>
@@ -21,7 +21,7 @@
         <div class="col-md-4">
             <label for="stage">Stage:</label>
             <select name="stage" id="stage" class="form-control" required
-                [(ngModel)]="this.submission.admissionDetails.stage" #stage="ngModel">
+                [(ngModel)]="this.submission.admissionDetails.Stage" #stage="ngModel">
                 <option value="KG">KG</option>
                 <option value="Primary">Primary</option>
             </select>
@@ -31,7 +31,7 @@
         <div class="col-md-4">
             <label for="grade">Grade:</label>
             <select type="number" name="grade" id="grade" class="form-control"
-                [(ngModel)]="this.submission.admissionDetails.grade" #grade="ngModel" required>
+                [(ngModel)]="this.submission.admissionDetails.Grade" #grade="ngModel" required>
 
                 <option value=1>1</option>
                 <option value=2>2</option>
@@ -57,7 +57,7 @@
         <div class="col-md-4">
             <label for="academicYear">Academic year:</label>
             <select type="text" id="academicYear" name="academicYear" class="form-control"
-                [(ngModel)]="this.submission.admissionDetails.academicYear" #academicYear="ngModel" required>
+                [(ngModel)]="this.submission.admissionDetails.AcademicYear" #academicYear="ngModel" required>
                 <option value="2020/2021" selected="selected">2020/2021</option>
                 <option value="2021/2022">2021/2022</option>
                 <option value="2022/2023">2022/2023</option>
@@ -222,12 +222,12 @@
         <div class="col-md-4 pl-5">
             <div class="form-check">
                 <input type="radio" class="form-check-input" id="new" name="newStudent" value="newStudent"
-                    [(ngModel)]="this.submission.admissionDetails.newStudent" #newStudent="ngModel" required>
+                    [(ngModel)]="this.submission.admissionDetails.NewStudent" #newStudent="ngModel" required>
                 <label for="new">New student</label>
             </div>
             <div class="form-check">
                 <input type="radio" id="transfered" name="newStudent" value="transfered" class="form-check-input"
-                    [(ngModel)]="this.submission.admissionDetails.newStudent" #newStudent="ngModel" required>
+                    [(ngModel)]="this.submission.admissionDetails.NewStudent" #newStudent="ngModel" required>
                 <label for="transfered">Transfered</label>
             </div>
         </div>

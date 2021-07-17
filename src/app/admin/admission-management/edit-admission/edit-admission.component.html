@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <form class="border m-5 p-5" (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div class="h2 text-center my-4" style="font-family: Arial, Helvetica, sans-serif; color: #1d3557;">
+            Open Admission Period</div>
+        <div class="row mx-3 my-5">
+            <div class="col-md-4 offset-1">
+                <label for="extendedEndDate">Extended end date: </label>
+                <input type="text" name="ExtendedEndDate" id="extendedEndDate" class="form-control" ngModel required
+                    ngbDatepicker [minDate]="todayObj" #d="ngbDatepicker" (click)="d.toggle()"
+                    #extendedEndDate="ngModel">
+                <p style="color: brown; font-size: 15px;"
+                    [hidden]=" !extendedEndDate.touched || extendedEndDate.valid ">*Choose an
+                    end date
+                </p>
+            </div>
+            <div class="col-md-4 offset-2">
+                <label for="extendedEndTime">Extended end time</label>
+                <input type="time" name="ExtendedEndTime" class="form-control" id="extendedEndTime" ngModel required
+                    #extendedEndTime="ngModel">
+                <p style="color: brown; font-size: 15px;"
+                    [hidden]=" !extendedEndTime.touched || extendedEndTime.valid ">*Choose an end time
+                </p>
+            </div>
+        </div>
+
+        <br>
+        <div class="row mx-3 my-5">
+            <div class="col-md-4">
+                <button class="btn btn-outline-primary" type="button" (click)="onBack()">Cancel</button>
+            </div>
+            <div class="col-md-4 offset-md-4 ">
+                <button class="btn btn-primary" type="submit" style="position: absolute; right: 5%;"
+                    [disabled]="!f.valid">Extend</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,3 +1,12 @@
+import { SetDocumentsComponent } from './admin/admission-management/set-documents/set-documents.component';
+import { EditAdmissionComponent } from './admin/admission-management/edit-admission/edit-admission.component';
+import { OpenAdmissionComponent } from './admin/admission-management/open-admission/open-admission.component';
+import { ApplicantsInterviewComponent } from './admin/applicants-interview/applicants-interview.component';
+import { InterviewCriteriaComponent } from './admin/interview-criteria/interview-criteria.component';
+import { ViewApplicantsComponent } from './admin/view-applicants/view-applicants.component';
+import { AdmissionManagementComponent } from './admin/admission-management/admission-management.component';
+import { HomeComponent } from './admin/home/home.component';
+import { SignInComponent } from './admin/sign-in/sign-in.component';
 import { NbeComponent } from './user/admission/payment/nbe/nbe.component';
 import { FawryComponent } from './user/admission/payment/fawry/fawry.component';
 import { CreditComponent } from './user/admission/payment/credit/credit.component';
@@ -39,7 +48,19 @@ const routes: Routes = [
     ]
   },
 
-  { path: "admin", component: AdminComponent }
+  {
+    path: "admin", component: AdminComponent, children: [
+      { path: '', component: SignInComponent, pathMatch: 'full' },
+      { path: 'home', component: HomeComponent },
+      { path: 'admissionManagement', component: AdmissionManagementComponent },
+      { path: 'admissionManagement/openAdmission', component: OpenAdmissionComponent },
+      { path: 'admissionManagement/editAdmission', component: EditAdmissionComponent },
+      { path: 'admissionManagement/setDocuments', component: SetDocumentsComponent },
+      { path: 'viewApplicants', component: ViewApplicantsComponent },
+      { path: 'interviewCriteria', component: InterviewCriteriaComponent },
+      { path: 'applicantsInterview', component: ApplicantsInterviewComponent }
+    ]
+  }
 ];
 
 @NgModule({

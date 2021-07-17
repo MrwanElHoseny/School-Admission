@@ -47,16 +47,11 @@ export class SiblingsComponent implements OnInit {
 
   onSubmit(form: NgForm) {
 
-    this.http.post('https://admission-b38fe-default-rtdb.firebaseio.com/siblings.json', this.submission.siblings).subscribe(
-      response => {
-        console.log(response)
-      }
-    )
     this.router.navigate(['../', 'medical'], { relativeTo: this.route })
   }
 
   onBack() {
-    this.router.navigate(['../', 'Siblings'], { relativeTo: this.route })
+    this.router.navigate(['../', 'emergency'], { relativeTo: this.route })
   }
 
 }

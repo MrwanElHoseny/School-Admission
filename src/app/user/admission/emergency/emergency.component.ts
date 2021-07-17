@@ -30,7 +30,7 @@ export class EmergencyComponent implements OnInit {
     this.submission.emergency.push({
       FullName: '',
       HomeNumber: NaN,
-      Mobile: NaN,
+      MobileNumber: NaN,
       Relationship: ''
     })
   }

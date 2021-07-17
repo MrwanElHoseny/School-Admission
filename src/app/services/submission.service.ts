@@ -1,86 +1,106 @@
+import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
+@Injectable()
+
 export class submission {
+
+    constructor(private http: HttpClient, dateParser: NgbDateParserFormatter) {
+    }
+    studentDateOfBirth = {
+        day: NaN,
+        month: NaN,
+        year: NaN
+    }
+    StudentDateOfBirth = String(this.studentDateOfBirth.day) + '/' + String(this.studentDateOfBirth.month) + '/' + String(this.studentDateOfBirth);
+
+    fatherDateOfBirth = {
+        day: NaN,
+        month: NaN,
+        year: NaN
+    }
+    FatherDateOfBirth = String(this.fatherDateOfBirth.day) + '/' + String(this.fatherDateOfBirth.month) + '/' + String(this.fatherDateOfBirth);
+
+    motherDateOfBirth = {
+        day: NaN,
+        month: NaN,
+        year: NaN
+    }
+    MotherDateOfBirth = String(this.motherDateOfBirth.day) + '/' + String(this.motherDateOfBirth.month) + '/' + String(this.motherDateOfBirth);
+
     studentData = {
-        firstName: '',
-        secondName: '',
-        thirdName: '',
-        lastName: '',
-        gender: '',
-        mobile: NaN,
-        dob: {
-            day: NaN,
-            month: NaN,
-            year: NaN
-        },
-        pob: '',
-        motherLang: '',
-        nationality: '',
-        religion: ''
+        FirstName: '',
+        SecondName: '',
+        LastName: '',
+        Gender: '',
+        Mobile: NaN,
+        DateOfBirth: this.StudentDateOfBirth,
+        PlaceOfBirth: '',
+        SpokenLanguage: '',
+        Nationality: '',
+        Religion: ''
     }
 
-    parentsData = {
-        fatherDetails: {
-            FatherFirstName: '',
-            FatherSecondName: '',
-            FatherThirdName: '',
-            FatherDateOfBirth: {
-                day: NaN,
-                month: NaN,
-                year: NaN
-            },
-            FatherCompany: '',
-            FatherEmail: '',
-            FatherIdNum: NaN,
-            FatherIdType: '',
-            FatherMobile: NaN,
-            FatherNationality: '',
-            FatherOccupation: '',
-            FatherReligion: ''
+    familyStatus = {
+        Guardian: '',
+        GuardianAddress: '',
+        LanguageSpoken: '',
+        MaritalStatus: ''
+    }
 
+    parentsData = [
+        {
+            FirstName: '',
+            SecondName: '',
+            LastName: '',
+            DateOfBirth: this.FatherDateOfBirth,
+            CompanyName: '',
+            Email: '',
+            IdentificationNumber: NaN,
+            IdentificationType: '',
+            Mobile: NaN,
+            Nationality: '',
+            Occupation: '',
+            Religion: '',
+            Gender: 'Male'
         },
-        motherDetails: {
-            MotherFirstName: '',
-            MotherSecondName: '',
-            MotherThirdName: '',
-            MotherDateOfBirth: {
-                day: NaN,
-                month: NaN,
-                year: NaN
-            },
-            MotherCompany: '',
-            MotherEmail: '',
-            MotherIdNum: NaN,
-            MotherIdType: '',
-            MotherMobile: NaN,
-            MotherNationality: '',
-            MotherOccupation: '',
-            MotherReligion: ''
-        },
-        familyStatus: {
-            Guardian: '',
-            GuardianAddress: '',
-            LanguageSpoken: '',
-            MaritalStatus: ''
+        {
+            FirstName: '',
+            SecondName: '',
+            LastName: '',
+            DateOfBirth: this.MotherDateOfBirth,
+            CompanyName: '',
+            Email: '',
+            IdentificationNumber: NaN,
+            IdentificationType: '',
+            Mobile: NaN,
+            Nationality: '',
+            Occupation: '',
+            Religion: '',
+            Gender: 'Female'
         }
-    }
+
+    ]
 
     admissionDetails = {
-        academicYear: '',
-        grade: 1,
-        newStudent: '',
+        AcademicYear: '',
+        Grade: 1,
+        NewStudent: '',
         secondLang: '',
-        section: '',
-        stage: 'KG'
+        Section: '',
+        Stage: 'KG'
     }
 
     emergency: {
         FullName: string,
         HomeNumber: number,
-        Mobile: number,
+        MobileNumber: number,
         Relationship: string
     }[] = [{
         FullName: '',
         HomeNumber: NaN,
-        Mobile: NaN,
+        MobileNumber: NaN,
         Relationship: ''
     }]
 
@@ -99,11 +119,11 @@ export class submission {
     numOfSiblingsRows = 0;
 
     medical = {
-        AssessedByPsycologist: '',
-        GlassesOrContacts: '',
-        HearingAids: '',
-        MedicalCondition: '',
-        Needs: ''
+        PhysiologicalNeed: '',
+        Glass: '',
+        Hearing: '',
+        PhysiologicalConditions: '',
+        MedicalConditions: ''
     }
 
     formDocs: File[] = [];
@@ -116,4 +136,8 @@ export class submission {
         CardNumber: NaN
     }
 
+
+    submitStudent() {
+        this.http.post("https://localhost:44363/api/applicant", this.studentData)
+    }
 }

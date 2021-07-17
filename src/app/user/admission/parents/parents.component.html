@@ -26,7 +26,7 @@
                         <div class="col-md-4">
                             <label for="fatherFirstName">First Name:</label>
                             <input type="text" name="FatherFirstName" class="form-control" id="fatherFirstName"
-                                [(ngModel)]="this.submission.parentsData.fatherDetails.FatherFirstName" required
+                                [(ngModel)]="this.submission.parentsData[0].FirstName" required
                                 #fatherFirstName="ngModel">
                             <p style="color: brown; font-size: 15px;"
                                 [hidden]=" !fatherFirstName.touched || fatherFirstName.valid ">*Required</p>
@@ -34,7 +34,7 @@
                         <div class="col-md-4">
                             <label for="fatherSecondName">Second Name:</label>
                             <input type="text" name="FatherSecondName" class="form-control" id="fatherSecondName"
-                                [(ngModel)]="this.submission.parentsData.fatherDetails.FatherSecondName" required
+                                [(ngModel)]="this.submission.parentsData[0].SecondName" required
                                 #fatherSecondName="ngModel">
                             <p style="color: brown; font-size: 15px;"
                                 [hidden]=" !fatherSecondName.touched || fatherSecondName.valid ">*Required</p>
@@ -42,7 +42,7 @@
                         <div class="col-md-4">
                             <label for="fatherThirdName">Third Name:</label>
                             <input type="text" name="FatherThirdName" class="form-control" id="fatherThirdName"
-                                [(ngModel)]="this.submission.parentsData.fatherDetails.FatherThirdName" required
+                                [(ngModel)]="this.submission.parentsData[0].LastName" required
                                 #fatherThirdName="ngModel">
                             <p style="color: brown; font-size: 15px;"
                                 [hidden]=" !fatherThirdName.touched || fatherThirdName.valid ">*Required</p>
@@ -53,8 +53,8 @@
                         <div class="col-md-4">
                             <label for="fatherIdType">ID Type:</label>
                             <select name="FatherIdType" id="fatherIdType" class="form-control"
-                                [(ngModel)]="this.submission.parentsData.fatherDetails.FatherIdType"
-                                #fatherIdType="ngModel" required>
+                                [(ngModel)]="this.submission.parentsData[0].IdentificationType" #fatherIdType="ngModel"
+                                required>
                                 <option value="national">National ID</option>
                                 <option value="passport">Passport</option>
                             </select>
@@ -65,8 +65,8 @@
                         <div class="col-md-4">
                             <label for="fatherIdNum">ID Number:</label>
                             <input type="number" id="fatherIdNum" name="FatherIdNum" class="form-control"
-                                [(ngModel)]="this.submission.parentsData.fatherDetails.FatherIdNum"
-                                #fatherIdNum="ngModel" required>
+                                [(ngModel)]="this.submission.parentsData[0].IdentificationNumber" #fatherIdNum="ngModel"
+                                required>
                             <p style="color: brown; font-size: 15px;"
                                 [hidden]=" !fatherIdNum.touched || fatherIdNum.valid ">*Enter
                                 ID number</p>
@@ -76,8 +76,7 @@
                             <input type="text" name="FatherDateOfBirth" class="form-control" id="fatherDob"
                                 ngbDatepicker [minDate]="{year: 1950, month:1, day: 1}"
                                 #fatherDatePicker="ngbDatepicker" (click)="fatherDatePicker.toggle()"
-                                [(ngModel)]="this.submission.parentsData.fatherDetails.FatherDateOfBirth" required
-                                #fatherDob="ngModel">
+                                [(ngModel)]="this.submission.fatherDateOfBirth" required #fatherDob="ngModel">
                             <p style="color: brown; font-size: 15px;"
                                 [hidden]=" !fatherDob.touched || fatherDob.valid ">*Required
                             </p>
@@ -88,7 +87,7 @@
                         <div class="col-md-4">
                             <label for="fatherProfession">Profession:</label>
                             <input type="text" name="FatherOccupation" class="form-control" id="fatherProfession"
-                                [(ngModel)]="this.submission.parentsData.fatherDetails.FatherOccupation" required
+                                [(ngModel)]="this.submission.parentsData[0].Occupation" required
                                 #fatherProfession="ngModel">
                             <p style="color: brown; font-size: 15px;"
                                 [hidden]=" !fatherProfession.touched || fatherProfession.valid ">*Enter profession</p>
@@ -96,14 +95,13 @@
                         <div class="col-md-4">
                             <label for="fatherCompany">Company:</label>
                             <input type="text" name="FatherCompany" class="form-control" id="fatherCompany"
-                                [(ngModel)]="this.submission.parentsData.fatherDetails.FatherCompany">
+                                [(ngModel)]="this.submission.parentsData[0].CompanyName">
                             <p style=" font-size: 12px;">*Optional</p>
                         </div>
                         <div class="col-md-4">
                             <label for="fatherMobile">Mobile number:</label>
                             <input class="form-control" type="number" name="FatherMobile" id="fatherMobile"
-                                [(ngModel)]="this.submission.parentsData.fatherDetails.FatherMobile" required
-                                #fatherMobile="ngModel">
+                                [(ngModel)]="this.submission.parentsData[0].Mobile" required #fatherMobile="ngModel">
                             <p style="color: brown; font-size: 15px;"
                                 [hidden]=" !fatherMobile.touched || fatherMobile.valid ">
                                 *Enter mobile number</p>
@@ -114,8 +112,8 @@
                         <div class="col-md-4">
                             <label for="fatherEmail">Email:</label>
                             <input type="text" name="FatherEmail" id="fatherEmail" class="form-control"
-                                [(ngModel)]="this.submission.parentsData.fatherDetails.FatherEmail"
-                                #fatherEmail="ngModel" required email>
+                                [(ngModel)]="this.submission.parentsData[0].Email" #fatherEmail="ngModel" required
+                                email>
                             <p style="color: brown; font-size: 15px;"
                                 [hidden]=" !fatherEmail.touched || fatherEmail.valid ">
                                 *Enter a valid email</p>
@@ -123,7 +121,7 @@
                         <div class="col-md-4">
                             <label for="religion">Religion:</label>
                             <input type="text" name="FatherReligion" class="form-control" id="fatherReligion"
-                                [(ngModel)]="this.submission.parentsData.fatherDetails.FatherReligion" required
+                                [(ngModel)]="this.submission.parentsData[0].Religion" required
                                 #fatherReligion="ngModel">
                             <p style="color: brown; font-size: 15px;"
                                 [hidden]=" !fatherReligion.touched || fatherReligion.valid ">
@@ -132,7 +130,7 @@
                         <div class="col-md-4">
                             <label for="fatherNationality">Nationality:</label>
                             <input type="text" name="FatherNationality" class="form-control" id="fatherNationality"
-                                [(ngModel)]="this.submission.parentsData.fatherDetails.FatherNationality" required
+                                [(ngModel)]="this.submission.parentsData[0].Nationality" required
                                 #fatherNationality="ngModel">
                             <p style="color: brown; font-size: 15px;"
                                 [hidden]=" !fatherNationality.touched || fatherNationality.valid ">*Required
@@ -159,24 +157,21 @@
                         <div class="col-md-4">
                             <label for="firstName">First Name:</label>
                             <input type="text" name="MotherFirstName" class="form-control" id="firstName"
-                                [(ngModel)]="this.submission.parentsData.motherDetails.MotherFirstName" required
-                                #firstName="ngModel">
+                                [(ngModel)]="this.submission.parentsData[1].FirstName" required #firstName="ngModel">
                             <p style="color: brown; font-size: 15px;"
                                 [hidden]=" !firstName.touched || firstName.valid ">*Required</p>
                         </div>
                         <div class="col-md-4">
                             <label for="secondName">Second Name:</label>
                             <input type="text" name="MotherSecondName" class="form-control" id="secondName"
-                                [(ngModel)]="this.submission.parentsData.motherDetails.MotherSecondName" required
-                                #secondName="ngModel">
+                                [(ngModel)]="this.submission.parentsData[1].SecondName" required #secondName="ngModel">
                             <p style="color: brown; font-size: 15px;"
                                 [hidden]=" !secondName.touched || secondName.valid ">*Required</p>
                         </div>
                         <div class="col-md-4">
                             <label for="thirdName">Third Name:</label>
                             <input type="text" name="MotherThirdName" class="form-control" id="thirdName"
-                                [(ngModel)]="this.submission.parentsData.motherDetails.MotherThirdName" required
-                                #thirdName="ngModel">
+                                [(ngModel)]="this.submission.parentsData[1].LastName" required #thirdName="ngModel">
                             <p style="color: brown; font-size: 15px;"
                                 [hidden]=" !thirdName.touched || thirdName.valid ">*Required</p>
                         </div>
@@ -186,7 +181,7 @@
                         <div class="col-md-4">
                             <label for="idType">ID Type:</label>
                             <select name="MotherIdType" id="idType" class="form-control"
-                                [(ngModel)]="this.submission.parentsData.motherDetails.MotherIdType" #idType="ngModel"
+                                [(ngModel)]="this.submission.parentsData[1].IdentificationType" #idType="ngModel"
                                 required>
                                 <option value="national">National ID</option>
                                 <option value="passport">Passport</option>
@@ -197,7 +192,7 @@
                         <div class="col-md-4">
                             <label for="idNum">ID Number:</label>
                             <input type="number" id="idNum" name="MotherIdNum" class="form-control"
-                                [(ngModel)]="this.submission.parentsData.motherDetails.MotherIdNum" #idNum="ngModel"
+                                [(ngModel)]="this.submission.parentsData[1].IdentificationNumber" #idNum="ngModel"
                                 required>
                             <p style="color: brown; font-size: 15px;" [hidden]=" !idNum.touched || idNum.valid ">*Enter
                                 ID number</p>
@@ -206,8 +201,7 @@
                             <label for="motherDob">Date of birth:</label>
                             <input type="text" name="MotherDateOfBirth" class="form-control" id="motherDob"
                                 ngbDatepicker [minDate]="{year: 1950, month:1, day: 1}" #motherdob="ngbDatepicker"
-                                (click)="motherdob.toggle()"
-                                [(ngModel)]="this.submission.parentsData.motherDetails.MotherDateOfBirth" required
+                                (click)="motherdob.toggle()" [(ngModel)]="this.submission.motherDateOfBirth" required
                                 #motherDob="ngModel">
                             <p style="color: brown; font-size: 15px;"
                                 [hidden]=" !motherDob.touched || motherDob.valid ">*Required
@@ -219,8 +213,7 @@
                         <div class="col-md-4">
                             <label for="profession">Profession:</label>
                             <input type="text" name="MotherOccupation" class="form-control" id="profession"
-                                [(ngModel)]="this.submission.parentsData.motherDetails.MotherOccupation" required
-                                #profession="ngModel">
+                                [(ngModel)]="this.submission.parentsData[1].Occupation" required #profession="ngModel">
                             <p style="color: brown; font-size: 15px;"
                                 [hidden]=" !profession.touched || profession.valid ">*Enter profession
                             </p>
@@ -228,14 +221,13 @@
                         <div class="col-md-4">
                             <label for="company">Company:</label>
                             <input type="text" name="MotherCompany" class="form-control" id="company"
-                                [(ngModel)]="this.submission.parentsData.motherDetails.MotherCompany">
+                                [(ngModel)]="this.submission.parentsData[1].CompanyName">
                             <p style=" font-size: 12px;">*Optional</p>
                         </div>
                         <div class="col-md-4">
                             <label for="mobile">Mobile number:</label>
                             <input class="form-control" type="number" name="MotherMobile" id="mobile"
-                                [(ngModel)]="this.submission.parentsData.motherDetails.MotherMobile" required
-                                #mobile="ngModel">
+                                [(ngModel)]="this.submission.parentsData[1].Mobile" required #mobile="ngModel">
                             <p style="color: brown; font-size: 15px;" [hidden]=" !mobile.touched || mobile.valid ">
                                 *Enter mobile number</p>
                         </div>
@@ -245,23 +237,21 @@
                         <div class="col-md-4">
                             <label for="email">Email:</label>
                             <input type="text" name="MotherEmail" id="email" class="form-control"
-                                [(ngModel)]="this.submission.parentsData.motherDetails.MotherEmail" #email="ngModel"
-                                required email>
+                                [(ngModel)]="this.submission.parentsData[1].Email" #email="ngModel" required email>
                             <p style="color: brown; font-size: 15px;" [hidden]=" !email.touched || email.valid ">
                                 *Enter a valid email</p>
                         </div>
                         <div class="col-md-4">
                             <label for="religion">Religion:</label>
                             <input type="text" name="MotherReligion" class="form-control" id="religion"
-                                [(ngModel)]="this.submission.parentsData.motherDetails.MotherReligion" required
-                                #religion="ngModel">
+                                [(ngModel)]="this.submission.parentsData[1].Religion" required #religion="ngModel">
                             <p style="color: brown; font-size: 15px;" [hidden]=" !religion.touched || religion.valid ">
                                 *Required</p>
                         </div>
                         <div class="col-md-4">
                             <label for="nationality">Nationality:</label>
                             <input type="text" name="MotherNationality" class="form-control" id="nationality"
-                                [(ngModel)]="this.submission.parentsData.motherDetails.MotherNationality" required
+                                [(ngModel)]="this.submission.parentsData[1].Nationality" required
                                 #nationality="ngModel">
                             <p style="color: brown; font-size: 15px;"
                                 [hidden]=" !nationality.touched || nationality.valid ">*Required
@@ -291,7 +281,7 @@
 
                             <div class="form-check mr-2">
                                 <input type="radio" class="form-check-input" id="married" name="MaritalStatus"
-                                    value="married" [(ngModel)]="this.submission.parentsData.familyStatus.MaritalStatus"
+                                    value="married" [(ngModel)]="this.submission.familyStatus.MaritalStatus"
                                     #maritalStatus="ngModel" required>
                                 <label for="married">Married</label>
                             </div>
@@ -299,8 +289,7 @@
                         <div class="col-md-1">
                             <div class="form-check mr-2 pl-0">
                                 <input type="radio" class="form-check-input" id="seperated" name="MaritalStatus"
-                                    value="seperated"
-                                    [(ngModel)]="this.submission.parentsData.familyStatus.MaritalStatus"
+                                    value="seperated" [(ngModel)]="this.submission.familyStatus.MaritalStatus"
                                     #maritalStatus="ngModel" required>
                                 <label for="seperated">Seperated</label>
                             </div>
@@ -308,8 +297,7 @@
                         <div class="col-md-1">
                             <div class="form-check mr-2 pl-0">
                                 <input type="radio" name="MaritalStatus" class="form-check-input" id="divorced"
-                                    value="divorced"
-                                    [(ngModel)]="this.submission.parentsData.familyStatus.MaritalStatus"
+                                    value="divorced" [(ngModel)]="this.submission.familyStatus.MaritalStatus"
                                     #maritalStatus="ngModel" required>
                                 <label for="divorced">Divorced</label>
                             </div>
@@ -317,7 +305,7 @@
                         <div class="col-md-1">
                             <div class="form-check mr-2 pl-0">
                                 <input type="radio" name="MaritalStatus" class="form-check-input" id="other"
-                                    value="other" [(ngModel)]="this.submission.parentsData.familyStatus.MaritalStatus"
+                                    value="other" [(ngModel)]="this.submission.familyStatus.MaritalStatus"
                                     #maritalStatus="ngModel" required>
                                 <label for="other">Other</label>
                             </div>
@@ -333,24 +321,21 @@
                         <div class="col-md-1">
                             <div class="form-check">
                                 <input type="radio" name="Guardian" value="father" class="form-check-input" id="father"
-                                    [(ngModel)]="this.submission.parentsData.familyStatus.Guardian" #guardian="ngModel"
-                                    required>
+                                    [(ngModel)]="this.submission.familyStatus.Guardian" #guardian="ngModel" required>
                                 <label for="father">Father</label>
                             </div>
                         </div>
                         <div class="col-md-1">
                             <div class="form-check">
                                 <input type="radio" value="mother" name="Guardian" class="form-check-input" id="mother"
-                                    [(ngModel)]="this.submission.parentsData.familyStatus.Guardian" #guardian="ngModel"
-                                    required>
+                                    [(ngModel)]="this.submission.familyStatus.Guardian" #guardian="ngModel" required>
                                 <label for="mother">Mother</label>
                             </div>
                         </div>
                         <div class="col-md-1">
                             <div class="form-check">
                                 <input type="radio" value="other" name="Guardian" class="form-check-input" id="other"
-                                    [(ngModel)]="this.submission.parentsData.familyStatus.Guardian" #guardian="ngModel"
-                                    required>
+                                    [(ngModel)]="this.submission.familyStatus.Guardian" #guardian="ngModel" required>
                                 <label for="other">Other</label>
                             </div>
                         </div>
@@ -363,8 +348,8 @@
                         </div>
                         <div class="col-md-5 ">
                             <textarea name="LanguageSpoken" id="LangSpoken" cols="1" rows="1" class="form-control"
-                                [(ngModel)]="this.submission.parentsData.familyStatus.LanguageSpoken"
-                                #LanguagesSpoken="ngModel" required></textarea>
+                                [(ngModel)]="this.submission.familyStatus.LanguageSpoken" #LanguagesSpoken="ngModel"
+                                required></textarea>
                             <p style="color: brown; font-size: 15px;"
                                 [hidden]=" !LanguagesSpoken.touched || LanguagesSpoken.valid ">*Required
                             </p>
@@ -377,7 +362,7 @@
                         </div>
                         <div class="col-md-5">
                             <textarea name="GuardianAddress" id="GuardianAddress" cols="1" rows="1" class="form-control"
-                                required [(ngModel)]="this.submission.parentsData.familyStatus.GuardianAddress"
+                                required [(ngModel)]="this.submission.familyStatus.GuardianAddress"
                                 #GuardianAddress="ngModel"></textarea>
                             <p style="color: brown; font-size: 15px;"
                                 [hidden]=" !GuardianAddress.touched || GuardianAddress.valid ">*Required
