@@ -1,0 +1,23 @@
+.header {
+  background-color: #d6eaff;
+  height: 85px;
+}
+
+.logo {
+  padding: 0px 0px 0px 0px;
+  margin: 9px 0px 0px 0px;
+}
+
+.admin-logo {
+  position: absolute;
+  left: 110px;
+  color: #011f5b;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 700;
+}
+
+.user-name {
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+}

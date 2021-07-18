@@ -1,0 +1,92 @@
+<div class="container my-5 pl-5">
+    <div class="row mx-3 my-3">
+        <div class="col-md-4">
+            <h3>
+                Name:
+            </h3>
+            <p class="data">
+                {{this.submission.studentData.FirstName + ' '
+                + this.submission.studentData.SecondName + ' '
+                + this.submission.studentData.LastName}}
+            </p>
+        </div>
+        <div class="col-md-4 offset-4">
+            <h3>Applicant ID: </h3>
+            <p class="data">
+                {{this.route.snapshot.params['id']}}
+            </p>
+        </div>
+    </div>
+    <form class="border" (ngSubmit)="onSubmit(f)" #f="ngForm" style="padding-left: 20px; padding-top: 20px;">
+        <div class="row mx-3 my-3">
+            <div class="col-md-4">
+                <label for="interviewerName">Interviewer Name: </label>
+                <input type="text" name="InterviewerName" class="form-control" id="interviewerName" ngModel required
+                    #name="ngModel">
+                <p style="color: brown; font-size: 15px;" [hidden]=" !name.touched || name.valid ">*Required
+                </p>
+            </div>
+            <div class="col-md-2 offset-2">
+                <label for="score">Score: </label>
+                <input type="number" name="Score" class="form-control" id="score" ngModel required #score="ngModel">
+                <p style="color: brown; font-size: 15px;" [hidden]=" !score.touched || score.valid ">*Enter a score
+                </p>
+            </div>
+        </div>
+        <br>
+        <hr style="width: 800px; margin: auto;">
+        <br>
+        <div class="row mx-3 my-3">
+            <div class="col-md-3">
+                <label for="review">Overall review of the applicant: </label>
+
+            </div>
+        </div>
+        <div class="row mx-3 my-3">
+            <div class="col-md-12">
+                <div class="form-check">
+                    <input type="radio" id="Excellent" name="Review" value="Excellent" class="form-check-input">
+                    <label class="form-check-label" for="Excellent">Excellent</label>
+                </div>
+
+                <div class="form-check"><input type="radio" name="Review" value="VeryGood" class="form-check-input"
+                        id="VeryGood" ngModel>
+                    <label for="VeryGood" class="form-check-label">
+                        Very Good
+                    </label>
+                </div>
+
+                <div class="form-check"><input type="radio" class="form-check-input" id="good" name="Review"
+                        value="Good" ngModel>
+                    <label for="good" class="form-check-label">
+                        Good
+                    </label>
+                </div>
+
+                <div class="form-check"><input type="radio" class="form-check-input" id="average" name="Review" ngModel
+                        value="Average">
+                    <label for="average" class="form-check-label">
+                        Average
+                    </label>
+
+                </div>
+
+                <div class="form-check"><input type="radio" value="Poor" name="Review" class="form-check-input"
+                        id="poor" ngModel>
+                    <label for="poor" class="form-check-label">Poor</label>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <div class="row mx-3 my-5">
+            <div class="col-md-1 offset-1">
+                <button class="btn btn-outline-primary" type="button" (click)="onBack()">Cancel</button>
+            </div>
+            <div class="col-md-1 offset-8">
+                <button class="btn btn-primary" type="submit" style="position: absolute; right: 5%;"
+                    [disabled]="!f.valid">Score</button>
+            </div>
+        </div>
+    </form>
+</div>

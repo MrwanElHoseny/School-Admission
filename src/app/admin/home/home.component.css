@@ -1,8 +1,0 @@
-.home-panel {
-  transition: 0.7s;
-  border-radius: 15px;
-}
-
-.home-panel:hover {
-  background-color: #d6eaff;
-}

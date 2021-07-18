@@ -15,6 +15,6 @@ export class SignInComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.router.navigate(['home'], { relativeTo: this.route })
+    this.router.navigate(['admissionManagement'], { relativeTo: this.route })
   }
 }

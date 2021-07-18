@@ -1,0 +1,10 @@
+h3 {
+  font-size: 15px;
+}
+
+.data {
+  font-size: 25px;
+}
+input.ng-invalid.ng-touched {
+  border-color: brown;
+}

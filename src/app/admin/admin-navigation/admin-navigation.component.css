@@ -1,0 +1,27 @@
+.nav-main {
+  /* background-color: #796eff; */
+  background-color: #636364;
+}
+
+.navbar-text {
+  color: white;
+  font-size: 20px;
+  font-weight: 400;
+
+  padding-top: 3px;
+  padding-bottom: 4px;
+}
+
+.navbar-text:hover,
+.active {
+  background-color: #343a40;
+}
+
+a {
+  color: white;
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: none;
+}
