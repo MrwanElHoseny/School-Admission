@@ -22,6 +22,7 @@ export class CreditComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    this.submission.submit();
     this.router.navigate(['../', 'applicationReport'], { relativeTo: this.route })
   }
 

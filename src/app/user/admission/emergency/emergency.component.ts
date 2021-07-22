@@ -46,11 +46,6 @@ export class EmergencyComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.http.post('https://admission-b38fe-default-rtdb.firebaseio.com/emergency.json', this.submission.emergency).subscribe(
-      response => {
-        console.log(response)
-      }
-    )
     this.router.navigate(['../', 'siblings'], { relativeTo: this.route })
   }
 

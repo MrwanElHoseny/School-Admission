@@ -20,11 +20,6 @@ export class AdmissoinDetailsComponent implements OnInit {
   }
 
   ngOnsubmit(form: NgForm) {
-    this.http.post('https://admission-b38fe-default-rtdb.firebaseio.com/admissoinDetails.json', form.value).subscribe(
-      response => {
-        console.log(response)
-      }
-    )
     this.router.navigate(['../', 'emergency'], { relativeTo: this.route })
   }
 

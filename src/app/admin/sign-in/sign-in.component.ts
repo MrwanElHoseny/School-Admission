@@ -1,3 +1,5 @@
+import { adminAuth } from './../../services/admin-auth.service';
+
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -9,12 +11,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignInComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router,
+    private auth: adminAuth) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(form: NgForm) {
-    this.router.navigate(['admissionManagement'], { relativeTo: this.route })
+    this.auth.logIn().then(
+      (logged) => {
+        this.auth.authChecked = true;
+        this.auth.loggedIn = logged;
+        this.router.navigate(['/admin'])
+      }
+    )
   }
 }

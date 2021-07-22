@@ -55,15 +55,18 @@ export class DocumentsComponent implements OnInit {
       this.alertsHidden[docNum] = false;
     }
     else {
-      this.submission.formDocs.push(Document)
-      this.submission.docIndexes.push(docNum)
-      console.log(this.submission.formDocs, this.submission.docIndexes)
+      if (!this.submission.docIndexes.includes(docNum)) {
+        this.submission.formDocs.push(Document)
+        this.submission.docIndexes.push(docNum)
+      }
+      else {
+        this.submission.formDocs[this.submission.docIndexes.indexOf(docNum)] = Document;
+      }
     }
     this.valid = this.alertsHidden.every((value) => value);
   }
 
   onSubmit() {
-
     this.router.navigate(['../', 'payment'], { relativeTo: this.route })
   }
 

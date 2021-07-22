@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-parents',
@@ -15,18 +16,15 @@ export class ParentsComponent implements OnInit {
   constructor(private router: Router,
     private route: ActivatedRoute,
     private http: HttpClient,
-    public submission: submission) { }
+    public submission: submission,
+    public scroller: ViewportScroller) { }
 
   ngOnInit(): void {
 
   }
 
   onSubmit(form: NgForm) {
-    this.http.post('https://admission-b38fe-default-rtdb.firebaseio.com/parents.json', form.value).subscribe(
-      response => {
-        console.log(response)
-      }
-    )
+
     this.router.navigate(['../', 'admissionDetails'], { relativeTo: this.route })
   }
 

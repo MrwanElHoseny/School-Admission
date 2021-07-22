@@ -12,6 +12,7 @@ export class AdminHeaderComponent implements OnInit {
   adminName = 'Marwan';
 
   ngOnInit(): void {
+    console.log(this.router.url)
   }
 
   logout() {

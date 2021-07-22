@@ -10,6 +10,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OpenAdmissionComponent implements OnInit {
 
+  periodOpened: boolean;
+
   today = new Date();
   dd = String(this.today.getDate()).padStart(2, '0');
   mm = String(this.today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -22,6 +24,9 @@ export class OpenAdmissionComponent implements OnInit {
   }
   constructor(private router: Router,
     private route: ActivatedRoute) {
+    //send request to period opened api
+    //if opened then true else false
+    this.periodOpened = true;
 
   }
 

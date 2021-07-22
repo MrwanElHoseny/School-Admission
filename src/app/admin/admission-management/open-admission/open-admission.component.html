@@ -1,52 +1,63 @@
 <div class="container-fluid">
-    <form class="border m-5 p-5" (ngSubmit)="onSubmit(f)" #f="ngForm">
-        <div class="h2 text-center my-4" style="font-family: Arial, Helvetica, sans-serif; color: #1d3557;">
-            Open Admission Period</div>
-        <div class="row mx-3 my-5">
-            <div class="col-md-4 offset-1">
-                <label for="startDate">Start Date: </label>
-                <input type="text" name="StartDate" id="startDate" class="form-control" ngModel required ngbDatepicker
-                    [minDate]="todayObj" #d="ngbDatepicker" (click)="d.toggle()" #startDate="ngModel">
-                <p style="color: brown; font-size: 15px;" [hidden]=" !startDate.touched || startDate.valid ">*Choose a
-                    start date
-                </p>
-            </div>
-            <div class="col-md-4 offset-2">
-                <label for="startTime">Start Time</label>
-                <input type="time" name="StartTime" class="form-control" id="startTime" ngModel required
-                    #startTime="ngModel">
-                <p style="color: brown; font-size: 15px;" [hidden]=" !startTime.touched || startTime.valid ">*Choose a
-                    start time
-                </p>
-            </div>
-        </div>
+    <fieldset [disabled]="this.periodOpened">
+        <form class="border m-5 p-5" (ngSubmit)="onSubmit(f)" #f="ngForm">
+            <div class="h2 text-center my-4" style="font-family: Arial, Helvetica, sans-serif; color: #1d3557;">
+                Open Admission Period</div>
+            <div *ngIf="this.periodOpened" class="h2 text-center my-4"
+                style="font-family: Arial, Helvetica, sans-serif; color: brown; font-size: 15px;">
+                *An admission period already exists</div>
+            <div class="row mx-3 my-5">
 
-        <div class="row mx-3 my-5">
-            <div class="col-md-4 offset-1">
-                <label for="endDate">End Date: </label>
-                <input type="text" name="EndDate" id="endDate" class="form-control" ngModel required ngbDatepicker
-                    [minDate]="todayObj" #ed="ngbDatepicker" (click)="ed.toggle()" #endDate="ngModel">
-                <p style="color: brown; font-size: 15px;" [hidden]=" !endDate.touched || endDate.valid ">*Choose an end
-                    date
-                </p>
+                <div class="col-md-4 offset-1">
+                    <label for="startDate">Start Date: </label>
+                    <input type="text" name="StartDate" id="startDate" class="form-control" ngModel required
+                        ngbDatepicker [minDate]="todayObj" #d="ngbDatepicker" (click)="d.toggle()" #startDate="ngModel">
+                    <p style="color: brown; font-size: 15px;" [hidden]=" !startDate.touched || startDate.valid ">*Choose
+                        a
+                        start date
+                    </p>
+                </div>
+                <div class="col-md-4 offset-2">
+                    <label for="startTime">Start Time</label>
+                    <input type="time" name="StartTime" class="form-control" id="startTime" ngModel required
+                        #startTime="ngModel">
+                    <p style="color: brown; font-size: 15px;" [hidden]=" !startTime.touched || startTime.valid ">*Choose
+                        a
+                        start time
+                    </p>
+                </div>
             </div>
-            <div class="col-md-4 offset-2">
-                <label for="endTime">end Time</label>
-                <input type="time" name="EndTime" class="form-control" id="endTime" ngModel required #endTime="ngModel">
-                <p style="color: brown; font-size: 15px;" [hidden]=" !endTime.touched || endTime.valid ">*Choose an end
-                    time
-                </p>
-            </div>
-        </div>
 
-        <div class="row mx-3 my-5">
-            <div class="col-md-4">
-                <button class="btn btn-outline-primary" type="button" (click)="onBack()">Cancel</button>
+            <div class="row mx-3 my-5">
+                <div class="col-md-4 offset-1">
+                    <label for="endDate">End Date: </label>
+                    <input type="text" name="EndDate" id="endDate" class="form-control" ngModel required ngbDatepicker
+                        [minDate]="todayObj" #ed="ngbDatepicker" (click)="ed.toggle()" #endDate="ngModel">
+                    <p style="color: brown; font-size: 15px;" [hidden]=" !endDate.touched || endDate.valid ">*Choose an
+                        end
+                        date
+                    </p>
+                </div>
+                <div class="col-md-4 offset-2">
+                    <label for="endTime">end Time</label>
+                    <input type="time" name="EndTime" class="form-control" id="endTime" ngModel required
+                        #endTime="ngModel">
+                    <p style="color: brown; font-size: 15px;" [hidden]=" !endTime.touched || endTime.valid ">*Choose an
+                        end
+                        time
+                    </p>
+                </div>
             </div>
-            <div class="col-md-4 offset-md-4 ">
-                <button class="btn btn-primary" type="submit" style="position: absolute; right: 5%;"
-                    [disabled]="!f.valid">Open</button>
+
+            <div class="row mx-3 my-5">
+                <div class="col-md-4">
+                    <button class="btn btn-outline-primary" type="button" (click)="onBack()">Cancel</button>
+                </div>
+                <div class="col-md-4 offset-md-4 ">
+                    <button class="btn btn-primary" type="submit" style="position: absolute; right: 5%;"
+                        [disabled]="!f.valid">Open</button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </fieldset>
 </div>

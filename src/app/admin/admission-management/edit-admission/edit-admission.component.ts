@@ -1,6 +1,5 @@
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,16 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-admission.component.css']
 })
 export class EditAdmissionComponent implements OnInit {
-  today = new Date();
-  dd = String(this.today.getDate()).padStart(2, '0');
-  mm = String(this.today.getMonth() + 1).padStart(2, '0'); //January is 0!
-  yyyy = this.today.getFullYear();
 
-  todayObj = {
-    day: +this.dd,
-    month: +this.mm,
-    year: this.yyyy
-  }
+  requestString = '';
   constructor(private router: Router,
     private route: ActivatedRoute) {
 
@@ -32,6 +23,8 @@ export class EditAdmissionComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    this.requestString = form.value.ExtendedEndDate + '/' + form.value.ExtendedEndTime;
+    console.log(this.requestString)
     this.router.navigate(['../'], { relativeTo: this.route })
   }
 

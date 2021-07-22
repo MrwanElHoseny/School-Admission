@@ -1,3 +1,4 @@
+import { submission } from './../../../../services/submission.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class FawryComponent implements OnInit {
 
   orderNum = 915;
-  constructor() { }
+  constructor(public submission: submission) { }
 
   ngOnInit(): void {
   }

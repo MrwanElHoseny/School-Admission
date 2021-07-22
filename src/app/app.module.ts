@@ -1,3 +1,6 @@
+import { adminGuard } from './services/admin-guard.service';
+import { adminAuth } from './services/admin-auth.service';
+import { AdminHeaderComponent } from './admin/admin-header/admin-header.component';
 import { submission } from './services/submission.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -5,13 +8,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
-import { NavigationComponent } from './navigation/navigation.component';
+import { HeaderComponent } from './user/header/header.component';
+import { NavigationComponent } from './user/navigation/navigation.component';
 import { UserComponent } from './user/user.component';
 import { AdminComponent } from './admin/admin.component';
 import { WelcomeComponent } from './user/welcome/welcome.component';
 import { AdmissionComponent } from './user/admission/admission.component';
-import { NgbAlertModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlertModule, NgbCarouselModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { StudentComponent } from './user/admission/student/student.component';
 import { BarComponent } from './user/admission/bar/bar.component';
 import { FormsModule } from '@angular/forms';
@@ -27,15 +30,19 @@ import { FawryComponent } from './user/admission/payment/fawry/fawry.component';
 import { NbeComponent } from './user/admission/payment/nbe/nbe.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SignInComponent } from './admin/sign-in/sign-in.component';
-import { HomeComponent } from './admin/home/home.component';
 import { AdmissionManagementComponent } from './admin/admission-management/admission-management.component';
 import { ViewApplicantsComponent } from './admin/view-applicants/view-applicants.component';
 import { InterviewCriteriaComponent } from './admin/interview-criteria/interview-criteria.component';
 import { ApplicantsInterviewComponent } from './admin/applicants-interview/applicants-interview.component';
 import { OpenAdmissionComponent } from './admin/admission-management/open-admission/open-admission.component';
 import { EditAdmissionComponent } from './admin/admission-management/edit-admission/edit-admission.component';
-import { SetDocumentsComponent } from './admin/admission-management/set-documents/set-documents.component'
-
+import { SetDocumentsComponent } from './admin/admission-management/set-documents/set-documents.component';
+import { ApplicantViewPipe } from './pipes/applicant-view.pipe';
+import { ApplicantReportComponent } from './applicant-report/applicant-report.component';
+import { AdminNavigationComponent } from './admin/admin-navigation/admin-navigation.component';
+import { ScoreComponent } from './admin/score/score.component';
+import { UserSigninComponent } from './user/user-signin/user-signin.component';
+import { UploadService } from './services/uploadFile.service';
 
 
 
@@ -62,7 +69,6 @@ import { SetDocumentsComponent } from './admin/admission-management/set-document
     FawryComponent,
     NbeComponent,
     SignInComponent,
-    HomeComponent,
     AdmissionManagementComponent,
     ViewApplicantsComponent,
     InterviewCriteriaComponent,
@@ -70,16 +76,28 @@ import { SetDocumentsComponent } from './admin/admission-management/set-document
     OpenAdmissionComponent,
     EditAdmissionComponent,
     SetDocumentsComponent,
+    ApplicantViewPipe,
+    ApplicantReportComponent,
+    AdminNavigationComponent,
+    AdminHeaderComponent,
+    ScoreComponent,
+    UserSigninComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    NgbModule,
+    NgbDatepickerModule,
+    NgbAlertModule,
+    NgbCarouselModule,
     HttpClientModule
   ],
   providers: [
-    submission
+    submission,
+    ApplicantViewPipe,
+    adminAuth,
+    adminGuard,
+    UploadService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,3 +1,7 @@
+import { adminGuard } from './services/admin-guard.service';
+import { UserSigninComponent } from './user/user-signin/user-signin.component';
+import { ScoreComponent } from './admin/score/score.component';
+import { ApplicantReportComponent } from './applicant-report/applicant-report.component';
 import { SetDocumentsComponent } from './admin/admission-management/set-documents/set-documents.component';
 import { EditAdmissionComponent } from './admin/admission-management/edit-admission/edit-admission.component';
 import { OpenAdmissionComponent } from './admin/admission-management/open-admission/open-admission.component';
@@ -5,7 +9,6 @@ import { ApplicantsInterviewComponent } from './admin/applicants-interview/appli
 import { InterviewCriteriaComponent } from './admin/interview-criteria/interview-criteria.component';
 import { ViewApplicantsComponent } from './admin/view-applicants/view-applicants.component';
 import { AdmissionManagementComponent } from './admin/admission-management/admission-management.component';
-import { HomeComponent } from './admin/home/home.component';
 import { SignInComponent } from './admin/sign-in/sign-in.component';
 import { NbeComponent } from './user/admission/payment/nbe/nbe.component';
 import { FawryComponent } from './user/admission/payment/fawry/fawry.component';
@@ -44,22 +47,27 @@ const routes: Routes = [
           { path: 'fawry', component: FawryComponent },
           { path: 'nbe', component: NbeComponent }
         ]
-      }
+      },
+      { path: 'signIn', component: UserSigninComponent },
+      { path: 'admission/applicationReport', component: ApplicantReportComponent }
     ]
   },
-
   {
-    path: "admin", component: AdminComponent, children: [
-      { path: '', component: SignInComponent, pathMatch: 'full' },
-      { path: 'home', component: HomeComponent },
+    path: "admin", canActivateChild: [adminGuard], component: AdminComponent, children: [
+      { path: '', redirectTo: 'admissionManagement', pathMatch: 'full' },
       { path: 'admissionManagement', component: AdmissionManagementComponent },
       { path: 'admissionManagement/openAdmission', component: OpenAdmissionComponent },
       { path: 'admissionManagement/editAdmission', component: EditAdmissionComponent },
       { path: 'admissionManagement/setDocuments', component: SetDocumentsComponent },
       { path: 'viewApplicants', component: ViewApplicantsComponent },
       { path: 'interviewCriteria', component: InterviewCriteriaComponent },
-      { path: 'applicantsInterview', component: ApplicantsInterviewComponent }
+      { path: 'applicantsInterview', component: ApplicantsInterviewComponent },
+      { path: 'viewApplicants/applicant/:id', component: ApplicantReportComponent },
+      { path: 'applicantsInterview/score/:id', component: ScoreComponent }
     ]
+  },
+  {
+    path: "admin/signin", component: SignInComponent
   }
 ];
 

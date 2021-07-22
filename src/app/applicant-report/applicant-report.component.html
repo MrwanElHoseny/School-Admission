@@ -1,0 +1,460 @@
+<div class="container-fluid mt-5 mx-0 ">
+    <div class="row mx-3 my-5 py-4 px-3 border">
+        <div class="col-md-4">
+            <h3>Name: </h3>
+            <p class="data">
+
+                {{this.submission.studentData.FirstName + ' ' + this.submission.studentData.SecondName
+                + ' ' + this.submission.studentData.LastName}}
+            </p>
+            <h3>
+                Application ID:
+            </h3>
+            <p class="data">
+                {{this.route.snapshot.params['id']}}
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h3>
+                Status: *To be added*
+            </h3>
+            <p class="data">
+                Waiting
+            </p>
+            <h3>
+                Admission Data: *To be added*
+            </h3>
+            <p class="data">
+                19/7/2020
+            </p>
+        </div>
+        <div class="col-md-4 pr-0">
+            <img src="/assets/student.jpg" alt="" style="width: 100%; height: auto;">
+        </div>
+    </div>
+    <div class="accordion" id="accordion">
+
+        <div class="card " id="studentDetails">
+            <div class="card-header py-0 collapsed" id="headingOne" type="button" data-toggle="collapse"
+                data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                <p class="collapse-title">
+                    Student
+                </p>
+            </div>
+
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body pl-5 border">
+
+                    <div class="row mx-3 my-3">
+                        <div class="col-md-4">
+                            <h3>Applicant Full Name:</h3>
+                            <p class="data">{{this.submission.studentData.FirstName + ' ' +
+                                this.submission.studentData.SecondName
+                                + ' ' + this.submission.studentData.LastName}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h3>Birth Date: </h3>
+                            <p class="data">
+                                {{this.submission.studentData.DateOfBirth}}
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <h3>Nationality: </h3>
+                            <p class="data">
+                                {{this.submission.studentData.Nationality}}
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row mx-3 my-3">
+                        <div class="col-md-4">
+                            <h3>Address: </h3>
+                            <p class="data">
+                                {{this.submission.familyStatus.GuardianAddress}}
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <h3>Gender: </h3>
+                            <p class="data">
+                                sd {{this.submission.studentData.Gender}}
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <h3>Religion: </h3>
+                            <p class="data">{{this.submission.studentData.Religion}}</p>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row mx-3 my-3">
+                        <div class="col-md-4">
+                            <h3>Section: </h3>
+                            <p class="data">
+                                {{this.submission.admissionDetails.Section}}
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <h3>Stage: </h3>
+                            <p class="data">{{this.submission.admissionDetails.Stage}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h3>Grade: </h3>
+                            <p class="data">
+                                {{this.submission.admissionDetails.Grade}}
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row mx-3 my-3">
+                        <div class="col-md-4">
+                            <h3>Mother Language: </h3>
+                            <p class="data">
+                                {{this.submission.studentData.SpokenLanguage}}
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <h3>Parents Marital Status: </h3>
+                            <p class="data">
+                                {{this.submission.familyStatus.MaritalStatus}}
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <h3>Mobile Number: </h3>
+                            <p class="data">
+                                {{this.submission.studentData.Mobile}}
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row mx-3 my-3">
+                        <div class="col-md-2">
+                            <H3>Student Photo: </H3>
+                            <a class="material-icons" style="cursor: pointer;" [href]="'#'">file_download</a>
+                        </div>
+                        <div class="col-md-2">
+                            <h3>Birth Certificate: </h3>
+                            <a class="material-icons" style="cursor: pointer;" [href]="'#'">file_download</a>
+                        </div>
+                        <div class="col-md-2">
+                            <h3>Parents' ID: </h3>
+                            <a class="material-icons" style="cursor: pointer;" [href]="'#'">file_download</a>
+                        </div>
+                        <div class="col-md-2">
+                            <h3>Immunization Record: </h3>
+                            <a class="material-icons" style="cursor: pointer;" [href]="'#'">file_download</a>
+                        </div>
+                        <div class="col-md-2">
+                            <h3>General Health Report: </h3>
+                            <a class="material-icons" style="cursor: pointer;" [href]="'#'">file_download</a>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="card" id="parentsDetails">
+            <div class="card-header py-0 collapsed" id="headingTwo" type="button" data-toggle="collapse"
+                data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <p class="collapse-title">
+                    Parents
+                </p>
+            </div>
+
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body pl-5 border">
+                    <div class="row mx-3 my-3">
+                        <div class="col-md-6 text-center">
+                            <h2>Father</h2>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <h2>
+                                Mother
+                            </h2>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row mx-3 my-3">
+                        <div class="col-md-6">
+                            <h3>Full Name: </h3>
+                            <p class="data">
+                                {{this.submission.parentsData[0].FirstName + ' ' +
+                                this.submission.parentsData[0].SecondName +
+                                ' ' + this.submission.parentsData[0].LastName}}
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h3>Full Name: </h3>
+                            <p class="data">
+                                {{this.submission.parentsData[1].FirstName + ' ' +
+                                this.submission.parentsData[1].SecondName +
+                                ' ' + this.submission.parentsData[1].LastName}}
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row mx-3 my-3">
+                        <div class="col-md-6">
+                            <h3>Birth Date: </h3>
+                            <p class="date">
+                                {{this.submission.parentsData[0].DateOfBirth}}
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h3>Birth Date: </h3>
+                            <p class="date">
+                                {{this.submission.parentsData[1].DateOfBirth}}
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row mx-3 my-3">
+                        <div class="col-md-6">
+                            <h3>Nationality: </h3>
+                            <p class="data">
+                                {{this.submission.parentsData[0].Nationality}}
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h3>Nationality: </h3>
+                            <p class="data">
+                                {{this.submission.parentsData[1].Nationality}}
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row mx-3 my-3">
+                        <div class="col-md-6">
+                            <h3>Indetification No:</h3>
+                            <p class="data">
+                                {{this.submission.parentsData[0].IdentificationNumber}}
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h3>Indetification No:</h3>
+                            <p class="data">
+                                {{this.submission.parentsData[1].IdentificationNumber}}
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row mx-3 my-3">
+                        <div class="col-md-6">
+                            <h3>Occupation: </h3>
+                            <p class="data">
+                                {{this.submission.parentsData[0].Occupation}}
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h3>Occupation: </h3>
+                            <p class="data">
+                                {{this.submission.parentsData[1].Occupation}}
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row mx-3 my-3">
+                        <div class="col-md-6">
+                            <h3>
+                                Religion:
+                            </h3>
+                            <p class="data">
+                                {{this.submission.parentsData[0].Religion}}
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h3>
+                                Religion:
+                            </h3>
+                            <p class="data">
+                                {{this.submission.parentsData[1].Religion}}
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row mx-3 my-3">
+                        <div class="col-md-6">
+                            <h3>Email: </h3>
+                            <p class="data">
+                                {{this.submission.parentsData[0].Email}}
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h3>Email: </h3>
+                            <p class="data">
+                                {{this.submission.parentsData[1].Email}}
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row mx-3 my-3">
+                        <div class="col-md-6">
+                            <h3>Mobile: </h3>
+                            <p class="data">
+                                {{this.submission.parentsData[0].Mobile}}
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h3>Mobile: </h3>
+                            <p class="data">
+                                {{this.submission.parentsData[1].Mobile}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" id="siblings">
+            <div class="card-header py-0 collapsed" id="headingThree" type="button" data-toggle="collapse"
+                data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <p class="collapse-title">
+                    Siblings
+                </p>
+            </div>
+
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body pl-5 border">
+                    <div class="row mx-3 my-3">
+
+                        <table class="table table-striped table-hover mr-5 ml-5 mb-5 mt-3"
+                            style="position: relative; left: 1%; width: 1250px;">
+                            <thead class="">
+                                <th scope="col" style="width: 15%;">Relationship</th>
+                                <th scope="col" style="width: 20%;">Full Name</th>
+                                <th scope="col" style="width: 15%;">Age</th>
+                                <th scope="col" style="width: 15%;">School Branch</th>
+                            </thead>
+                            <tbody #tableBody>
+                                <tr *ngFor="let row of this.submission.siblings">
+                                    <td>
+                                        {{row.Relationship}}
+                                    </td>
+                                    <td>
+                                        {{row.FullName}}
+                                    </td>
+                                    <td>
+                                        {{row.Age}}
+                                    </td>
+                                    <td>
+                                        {{row.SchoolBranch}}
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" id="emergency">
+            <div class="card-header py-0 collapsed" id="headingFour" type="button" data-toggle="collapse"
+                data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                <p class="collapse-title">
+                    Emergency Contacts
+                </p>
+            </div>
+
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                <div class="card-body pl-5 border">
+                    <div class="row mx-3 my-3">
+
+                        <table class="table table-striped table-hover mr-5 ml-5 mb-5 mt-3"
+                            style="position: relative; left: 1%; width: 1250px;">
+                            <thead>
+                                <th scope="col" style="width: 15%;">Relationship</th>
+                                <th scope="col" style="width: 20%;">Full Name</th>
+                                <th scope="col" style="width: 15%;">Mobile Number</th>
+                                <th scope="col" style="width: 15%;">Home Number</th>
+                            </thead>
+                            <tbody #tableBody>
+                                <tr *ngFor="let row of this.submission.emergency">
+                                    <td>
+                                        {{row.Relationship}}
+                                    </td>
+                                    <td>
+                                        {{row.FullName}}
+                                    </td>
+                                    <td>
+                                        {{row.MobileNumber}}
+                                    </td>
+                                    <td>
+                                        {{row.HomeNumber}}
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" id="parentsDetails">
+            <div class="card-header py-0 collapsed" id="headingFive" type="button" data-toggle="collapse"
+                data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                <p class="collapse-title">
+                    Medical Information
+                </p>
+            </div>
+
+            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                <div class="card-body pl-5 border">
+                    <div class="row mx-3 my-3">
+                        <div class="col-md-6">
+                            <h3>Wearing Glasses: </h3>
+                            <p class="data">
+                                {{this.submission.medical.Glass}}
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h3>Hearing Aids</h3>
+                            <p class="data">
+                                {{this.submission.medical.Hearing}}
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row mx-3 my-3">
+                        <div class="col-md-6">
+                            <h3>Medical Conditions: </h3>
+                            <p class="data">
+                                {{this.submission.medical.MedicalConditions}}
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h3>Have any physical, psycological or language needs?</h3>
+                            <p class="data">
+                                {{this.submission.medical.PhysiologicalNeed}}
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row mx-3 my-3">
+                        <div class="col-md-6">
+                            <h3>Assessed by an educational psychologist?</h3>
+                            <p class="data">
+                                {{this.submission.medical.PhysiologicalConditions}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

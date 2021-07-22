@@ -1,0 +1,30 @@
+h3 {
+  font-size: 15px;
+}
+
+.data {
+  font-size: 25px;
+}
+
+.card-header {
+  opacity: 0.7;
+  transition: 0.5s;
+  background-color: #d6eaff;
+}
+.card-header:hover {
+  opacity: 1;
+}
+.card {
+  border: 2px black;
+  border-radius: 0%;
+}
+
+.collapse-title {
+  font-size: 20px;
+  padding: 5px 10px 7px 10px;
+  margin-bottom: 0%;
+}
+
+.card-header:not(.collapsed) {
+  opacity: 1;
+}

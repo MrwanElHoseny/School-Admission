@@ -31,3 +31,6 @@ div.ng-invalid.ng-touched > .collapsed {
   border: 2px black;
   border-radius: 0%;
 }
+html {
+  scroll-behavior: smooth;
+}

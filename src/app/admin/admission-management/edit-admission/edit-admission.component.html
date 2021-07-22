@@ -4,21 +4,19 @@
             Open Admission Period</div>
         <div class="row mx-3 my-5">
             <div class="col-md-4 offset-1">
-                <label for="extendedEndDate">Extended end date: </label>
-                <input type="text" name="ExtendedEndDate" id="extendedEndDate" class="form-control" ngModel required
-                    ngbDatepicker [minDate]="todayObj" #d="ngbDatepicker" (click)="d.toggle()"
+                <label for="extendedEndDate">Extended Days: </label>
+                <input type="number" name="ExtendedEndDate" id="extendedEndDate" class="form-control" ngModel required
                     #extendedEndDate="ngModel">
                 <p style="color: brown; font-size: 15px;"
-                    [hidden]=" !extendedEndDate.touched || extendedEndDate.valid ">*Choose an
-                    end date
+                    [hidden]=" !extendedEndDate.touched || extendedEndDate.valid ">*Choose a number of days to extend
                 </p>
             </div>
             <div class="col-md-4 offset-2">
-                <label for="extendedEndTime">Extended end time</label>
-                <input type="time" name="ExtendedEndTime" class="form-control" id="extendedEndTime" ngModel required
+                <label for="extendedEndTime">Extended Hours: </label>
+                <input type="number" name="ExtendedEndTime" class="form-control" id="extendedEndTime" ngModel required
                     #extendedEndTime="ngModel">
                 <p style="color: brown; font-size: 15px;"
-                    [hidden]=" !extendedEndTime.touched || extendedEndTime.valid ">*Choose an end time
+                    [hidden]=" !extendedEndTime.touched || extendedEndTime.valid ">*Choose an extended end time
                 </p>
             </div>
         </div>

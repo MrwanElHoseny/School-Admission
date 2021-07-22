@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <div class="row" style="margin: 130px;">
+        <div class="col-md-12" [align]="'center'">
+            <form class="border p-4" style="width: 50%; border-radius: 15px;" (ngSubmit)="onSubmit(f)" #f="ngForm">
+                <label
+                    style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 40px; color: #1d3557;">Sign
+                    In
+                </label>
+                <div class="row mx-2 mt-5 pr-4 pl-3">
+                    <div class="col-md-2 pr-5 pt-1 pl-2">
+                        <label style="font-size: 17px;" for="username">Username: </label>
+                    </div>
+                    <div class="col-md-9">
+                        <input name="username" id="username" type="text" class="form-control" ngModel required>
+                    </div>
+                </div>
+                <div class="row mx-2 my-4 pr-4 pl-3">
+                    <div class="col-md-2 pr-5 pt-1">
+                        <label style="font-size: 17px;" for="password">Password: </label>
+                    </div>
+                    <div class="col-md-9">
+                        <input name="password" id="password" type="password" class="form-control" ngModel required>
+                    </div>
+                </div>
+                <div class="row mx-2 mt-5 mb-3">
+                    <div class="col-md-3 offset-9 pl-5 pr-0">
+                        <button class="btn btn-primary" [disabled]="!f.valid">Continue</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

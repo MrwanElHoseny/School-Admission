@@ -19,18 +19,20 @@
             <p style="color: brown; font-size: 15px;" [hidden]=" !secondName.touched || secondName.valid ">*Required</p>
         </div>
         <div class="col-md-4">
-            <label for="thirdName">Third Name:</label>
-            <input type="text" name="thirdName" class="form-control" id="thirdName" ngModel required
-                #thirdName="ngModel">
+            <label for="thirdName">Last Name:</label>
+            <input type="text" name="thirdName" class="form-control" id="thirdName"
+                [(ngModel)]="this.submission.studentData.LastName" required #thirdName="ngModel">
             <p style="color: brown; font-size: 15px;" [hidden]=" !thirdName.touched || thirdName.valid ">*Required</p>
         </div>
     </div>
     <div class="row mx-3 my-5">
         <div class="col-md-4">
-            <label for="lastName">Last Name:</label>
+            <label for="lastName">Email: </label>
             <input type="text" name="lastName" class="form-control" id="lastName"
-                [(ngModel)]="this.submission.studentData.LastName" required #lastName="ngModel">
-            <p style="color: brown; font-size: 15px;" [hidden]=" !lastName.touched || lastName.valid ">*Required</p>
+                [(ngModel)]="this.submission.studentData.Email" required email #email="ngModel">
+            <p style="color: brown; font-size: 15px;" [hidden]=" !email.touched || email.valid ">*Please enter a valid
+                email
+            </p>
         </div>
         <div class="col-md-4">
             <label for="pob">Place of birth:</label>

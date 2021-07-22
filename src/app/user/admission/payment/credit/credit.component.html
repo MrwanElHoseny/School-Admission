@@ -51,7 +51,8 @@
             </p>
         </div>
         <div class="col-md-2  pr-0 pl-5 pt-5">
-            <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Confirm</button>
+            <button class="btn btn-primary" type="submit" [disabled]="!f.valid"
+                [routerLink]="['../../','applicationReport', this.submission.applicantID ]">Confirm</button>
         </div>
     </div>
 </form>
