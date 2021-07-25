@@ -10,7 +10,9 @@
 
     <div class="row mt-5">
         <div class="col-md-2 offset-md-10 pl-5">
-            <button type="button" class="btn add-button" (click)="addSibling();">Add</button>
+            <span style="font-size: 40px; cursor: pointer" (click)="addSibling();" class="material-icons add-button">
+                add_circle
+            </span>
         </div>
     </div>
     <table class="table table-striped table-hover mr-5 ml-5 mb-5 mt-3"
@@ -27,25 +29,29 @@
             <tr *ngFor="let row of this.submission.SiblingsRows">
                 <ng-container [ngModelGroup]="'EmergencyContact'+row">
                     <td>
-                        {{row}}
+                        {{row+1}}
                     </td>
                     <td>
-                        <input class="form-control" type='text' name="Relationship"
+                        <input [patchTable]="this.submission.patch" [rowIndex]="row" class="form-control" type='text'
+                            name="Relationship"
                             [(ngModel)]="this.submission.siblings[this.submission.SiblingsRows.indexOf(row)].Relationship"
                             required>
                     </td>
                     <td>
-                        <input class="form-control" type='text' name="FullName"
-                            [(ngModel)]="this.submission.siblings[this.submission.SiblingsRows.indexOf(row)].FullName"
+                        <input [patchTable]="this.submission.patch" [rowIndex]="row" class="form-control" type='text'
+                            name="SiblingName"
+                            [(ngModel)]="this.submission.siblings[this.submission.SiblingsRows.indexOf(row)].SiblingName"
                             required>
                     </td>
                     <td>
-                        <input class="form-control" type='number' name="Age"
+                        <input [patchTable]="this.submission.patch" [rowIndex]="row" class="form-control" type='number'
+                            name="Age"
                             [(ngModel)]="this.submission.siblings[this.submission.SiblingsRows.indexOf(row)].Age"
                             required>
                     </td>
                     <td>
-                        <input class="form-control" type='text' name="SchoolBranch"
+                        <input [patchTable]="this.submission.patch" [rowIndex]="row" class="form-control" type='text'
+                            name="SchoolBranch"
                             [(ngModel)]="this.submission.siblings[this.submission.SiblingsRows.indexOf(row)].SchoolBranch"
                             required>
                     </td>

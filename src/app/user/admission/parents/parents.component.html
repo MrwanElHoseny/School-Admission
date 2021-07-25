@@ -25,7 +25,8 @@
                     <div class="row mx-3 my-5">
                         <div class="col-md-4">
                             <label for="fatherFirstName">First Name:</label>
-                            <input type="text" name="FatherFirstName" class="form-control" id="fatherFirstName"
+                            <input [patchParent]="this.submission.patch" [father]="true" type="text" name="FirstName"
+                                class="form-control" id="fatherFirstName"
                                 [(ngModel)]="this.submission.parentsData[0].FirstName" required
                                 #fatherFirstName="ngModel">
                             <p style="color: brown; font-size: 15px;"
@@ -33,7 +34,8 @@
                         </div>
                         <div class="col-md-4">
                             <label for="fatherSecondName">Second Name:</label>
-                            <input type="text" name="FatherSecondName" class="form-control" id="fatherSecondName"
+                            <input [patchParent]="this.submission.patch" [father]="true" type="text" name="SecondName"
+                                class="form-control" id="fatherSecondName"
                                 [(ngModel)]="this.submission.parentsData[0].SecondName" required
                                 #fatherSecondName="ngModel">
                             <p style="color: brown; font-size: 15px;"
@@ -41,7 +43,8 @@
                         </div>
                         <div class="col-md-4">
                             <label for="fatherThirdName">Third Name:</label>
-                            <input type="text" name="FatherThirdName" class="form-control" id="fatherThirdName"
+                            <input [patchParent]="this.submission.patch" [father]="true" type="text" name="ThirdName"
+                                class="form-control" id="fatherThirdName"
                                 [(ngModel)]="this.submission.parentsData[0].LastName" required
                                 #fatherThirdName="ngModel">
                             <p style="color: brown; font-size: 15px;"
@@ -52,7 +55,8 @@
                     <div class="row mx-3 my-5">
                         <div class="col-md-4">
                             <label for="fatherIdType">ID Type:</label>
-                            <select name="FatherIdType" id="fatherIdType" class="form-control"
+                            <select [patchParent]="this.submission.patch" [father]="true" name="IdentificationType"
+                                id="fatherIdType" class="form-control"
                                 [(ngModel)]="this.submission.parentsData[0].IdentificationType" #fatherIdType="ngModel"
                                 required>
                                 <option value="national">National ID</option>
@@ -64,7 +68,8 @@
                         </div>
                         <div class="col-md-4">
                             <label for="fatherIdNum">ID Number:</label>
-                            <input type="number" id="fatherIdNum" name="FatherIdNum" class="form-control"
+                            <input [patchParent]="this.submission.patch" [father]="true" type="text" id="fatherIdNum"
+                                name="IdentificationNumber" class="form-control"
                                 [(ngModel)]="this.submission.parentsData[0].IdentificationNumber" #fatherIdNum="ngModel"
                                 required>
                             <p style="color: brown; font-size: 15px;"
@@ -73,20 +78,24 @@
                         </div>
                         <div class="col-md-4">
                             <label for="fatherDob">Date of birth:</label>
-                            <input type="text" name="FatherDateOfBirth" class="form-control" id="fatherDob"
-                                ngbDatepicker [minDate]="{year: 1950, month:1, day: 1}"
-                                #fatherDatePicker="ngbDatepicker" (click)="fatherDatePicker.toggle()"
-                                [(ngModel)]="this.submission.fatherDateOfBirth" required #fatherDob="ngModel">
-                            <p style="color: brown; font-size: 15px;"
-                                [hidden]=" !fatherDob.touched || fatherDob.valid ">*Required
-                            </p>
+                            <input *ngIf="!this.submission.patch; else patch" type="text" name="DateOfBirth"
+                                class="form-control" id="fatherDob" ngbDatepicker
+                                [minDate]="{year: 1950, month:1, day: 1}" #d="ngbDatepicker" (click)="d.toggle()"
+                                [(ngModel)]="this.submission.fatherDateOfBirth" required>
+
+                            <ng-template #patch>
+                                <input [patchParent]="this.submission.patch" [father]='true' type="date"
+                                    class="form-control" name="DateOfBirth"
+                                    [(ngModel)]="this.submission.parentsData[0].DateOfBirth">
+                            </ng-template>
                         </div>
                     </div>
 
                     <div class="row mx-3 my-5">
                         <div class="col-md-4">
                             <label for="fatherProfession">Profession:</label>
-                            <input type="text" name="FatherOccupation" class="form-control" id="fatherProfession"
+                            <input [patchParent]="this.submission.patch" [father]="true" type="text" name="Occupation"
+                                class="form-control" id="fatherProfession"
                                 [(ngModel)]="this.submission.parentsData[0].Occupation" required
                                 #fatherProfession="ngModel">
                             <p style="color: brown; font-size: 15px;"
@@ -94,13 +103,15 @@
                         </div>
                         <div class="col-md-4">
                             <label for="fatherCompany">Company:</label>
-                            <input type="text" name="FatherCompany" class="form-control" id="fatherCompany"
+                            <input [patchParent]="this.submission.patch" [father]="true" type="text" name="CompanyName"
+                                class="form-control" id="fatherCompany"
                                 [(ngModel)]="this.submission.parentsData[0].CompanyName">
                             <p style=" font-size: 12px;">*Optional</p>
                         </div>
                         <div class="col-md-4">
                             <label for="fatherMobile">Mobile number:</label>
-                            <input class="form-control" type="number" name="FatherMobile" id="fatherMobile"
+                            <input [patchParent]="this.submission.patch" [father]="true" class="form-control"
+                                type="text" name="Mobile" id="fatherMobile"
                                 [(ngModel)]="this.submission.parentsData[0].Mobile" required #fatherMobile="ngModel">
                             <p style="color: brown; font-size: 15px;"
                                 [hidden]=" !fatherMobile.touched || fatherMobile.valid ">
@@ -111,17 +122,18 @@
                     <div class="row mx-3 my-5">
                         <div class="col-md-4">
                             <label for="fatherEmail">Email:</label>
-                            <input type="text" name="FatherEmail" id="fatherEmail" class="form-control"
-                                [(ngModel)]="this.submission.parentsData[0].Email" #fatherEmail="ngModel" required
-                                email>
+                            <input [patchParent]="this.submission.patch" [father]="true" type="text" name="Email"
+                                id="fatherEmail" class="form-control" [(ngModel)]="this.submission.parentsData[0].Email"
+                                #fatherEmail="ngModel" required email>
                             <p style="color: brown; font-size: 15px;"
                                 [hidden]=" !fatherEmail.touched || fatherEmail.valid ">
                                 *Enter a valid email</p>
                         </div>
                         <div class="col-md-4">
                             <label for="religion">Religion:</label>
-                            <input type="text" name="FatherReligion" class="form-control" id="fatherReligion"
-                                [(ngModel)]="this.submission.parentsData[0].Religion" required
+                            <input [patchParent]="this.submission.patch" [father]="true" type="text" name="Relegion"
+                                class="form-control" id="fatherReligion"
+                                [(ngModel)]="this.submission.parentsData[0].Relegion" required
                                 #fatherReligion="ngModel">
                             <p style="color: brown; font-size: 15px;"
                                 [hidden]=" !fatherReligion.touched || fatherReligion.valid ">
@@ -129,7 +141,8 @@
                         </div>
                         <div class="col-md-4">
                             <label for="fatherNationality">Nationality:</label>
-                            <input type="text" name="FatherNationality" class="form-control" id="fatherNationality"
+                            <input [patchParent]="this.submission.patch" [father]="true" type="text" name="Nationality"
+                                class="form-control" id="fatherNationality"
                                 [(ngModel)]="this.submission.parentsData[0].Nationality" required
                                 #fatherNationality="ngModel">
                             <p style="color: brown; font-size: 15px;"
@@ -156,21 +169,24 @@
                     <div class="row mx-3 my-5">
                         <div class="col-md-4">
                             <label for="firstName">First Name:</label>
-                            <input type="text" name="MotherFirstName" class="form-control" id="firstName"
+                            <input [patchParent]="this.submission.patch" [father]="false" type="text" name="FirstName"
+                                class="form-control" id="firstName"
                                 [(ngModel)]="this.submission.parentsData[1].FirstName" required #firstName="ngModel">
                             <p style="color: brown; font-size: 15px;"
                                 [hidden]=" !firstName.touched || firstName.valid ">*Required</p>
                         </div>
                         <div class="col-md-4">
                             <label for="secondName">Second Name:</label>
-                            <input type="text" name="MotherSecondName" class="form-control" id="secondName"
+                            <input [patchParent]="this.submission.patch" [father]="false" type="text" name="SecondName"
+                                class="form-control" id="secondName"
                                 [(ngModel)]="this.submission.parentsData[1].SecondName" required #secondName="ngModel">
                             <p style="color: brown; font-size: 15px;"
                                 [hidden]=" !secondName.touched || secondName.valid ">*Required</p>
                         </div>
                         <div class="col-md-4">
                             <label for="thirdName">Third Name:</label>
-                            <input type="text" name="MotherThirdName" class="form-control" id="thirdName"
+                            <input [patchParent]="this.submission.patch" [father]="false" type="text" name="ThirdName"
+                                class="form-control" id="thirdName"
                                 [(ngModel)]="this.submission.parentsData[1].LastName" required #thirdName="ngModel">
                             <p style="color: brown; font-size: 15px;"
                                 [hidden]=" !thirdName.touched || thirdName.valid ">*Required</p>
@@ -180,7 +196,8 @@
                     <div class="row mx-3 my-5">
                         <div class="col-md-4">
                             <label for="idType">ID Type:</label>
-                            <select name="MotherIdType" id="idType" class="form-control"
+                            <select [patchParent]="this.submission.patch" [father]="false" name="IdentificationType"
+                                id="idType" class="form-control"
                                 [(ngModel)]="this.submission.parentsData[1].IdentificationType" #idType="ngModel"
                                 required>
                                 <option value="national">National ID</option>
@@ -191,7 +208,8 @@
                         </div>
                         <div class="col-md-4">
                             <label for="idNum">ID Number:</label>
-                            <input type="number" id="idNum" name="MotherIdNum" class="form-control"
+                            <input [patchParent]="this.submission.patch" [father]="false" type="text"
+                                id="identificationNumber" name="MotherIdNum" class="form-control"
                                 [(ngModel)]="this.submission.parentsData[1].IdentificationNumber" #idNum="ngModel"
                                 required>
                             <p style="color: brown; font-size: 15px;" [hidden]=" !idNum.touched || idNum.valid ">*Enter
@@ -199,20 +217,24 @@
                         </div>
                         <div class="col-md-4">
                             <label for="motherDob">Date of birth:</label>
-                            <input type="text" name="MotherDateOfBirth" class="form-control" id="motherDob"
-                                ngbDatepicker [minDate]="{year: 1950, month:1, day: 1}" #motherdob="ngbDatepicker"
-                                (click)="motherdob.toggle()" [(ngModel)]="this.submission.motherDateOfBirth" required
-                                #motherDob="ngModel">
-                            <p style="color: brown; font-size: 15px;"
-                                [hidden]=" !motherDob.touched || motherDob.valid ">*Required
-                            </p>
+                            <input *ngIf="!this.submission.patch; else patch" type="text" name="DateOfBirth"
+                                class="form-control" id="motherDob" ngbDatepicker
+                                [minDate]="{year: 1950, month:1, day: 1}" #d="ngbDatepicker" (click)="d.toggle()"
+                                [(ngModel)]="this.submission.motherDateOfBirth" required>
+
+                            <ng-template #patch>
+                                <input [patchParent]="this.submission.patch" [father]='false' type="date"
+                                    class="form-control" name="DateOfBirth"
+                                    [(ngModel)]="this.submission.parentsData[1].DateOfBirth">
+                            </ng-template>
                         </div>
                     </div>
 
                     <div class="row mx-3 my-5">
                         <div class="col-md-4">
                             <label for="profession">Profession:</label>
-                            <input type="text" name="MotherOccupation" class="form-control" id="profession"
+                            <input [patchParent]="this.submission.patch" [father]="false" type="text" name="Occupation"
+                                class="form-control" id="profession"
                                 [(ngModel)]="this.submission.parentsData[1].Occupation" required #profession="ngModel">
                             <p style="color: brown; font-size: 15px;"
                                 [hidden]=" !profession.touched || profession.valid ">*Enter profession
@@ -220,13 +242,15 @@
                         </div>
                         <div class="col-md-4">
                             <label for="company">Company:</label>
-                            <input type="text" name="MotherCompany" class="form-control" id="company"
+                            <input [patchParent]="this.submission.patch" [father]="false" type="text" name="CompanyName"
+                                class="form-control" id="company"
                                 [(ngModel)]="this.submission.parentsData[1].CompanyName">
                             <p style=" font-size: 12px;">*Optional</p>
                         </div>
                         <div class="col-md-4">
                             <label for="mobile">Mobile number:</label>
-                            <input class="form-control" type="number" name="MotherMobile" id="mobile"
+                            <input [patchParent]="this.submission.patch" [father]="false" class="form-control"
+                                type="text" name="Mobile" id="mobile"
                                 [(ngModel)]="this.submission.parentsData[1].Mobile" required #mobile="ngModel">
                             <p style="color: brown; font-size: 15px;" [hidden]=" !mobile.touched || mobile.valid ">
                                 *Enter mobile number</p>
@@ -236,21 +260,24 @@
                     <div class="row mx-3 my-5">
                         <div class="col-md-4">
                             <label for="email">Email:</label>
-                            <input type="text" name="MotherEmail" id="email" class="form-control"
-                                [(ngModel)]="this.submission.parentsData[1].Email" #email="ngModel" required email>
+                            <input [patchParent]="this.submission.patch" [father]="false" type="text" name="Email"
+                                id="email" class="form-control" [(ngModel)]="this.submission.parentsData[1].Email"
+                                #email="ngModel" required email>
                             <p style="color: brown; font-size: 15px;" [hidden]=" !email.touched || email.valid ">
                                 *Enter a valid email</p>
                         </div>
                         <div class="col-md-4">
                             <label for="religion">Religion:</label>
-                            <input type="text" name="MotherReligion" class="form-control" id="religion"
-                                [(ngModel)]="this.submission.parentsData[1].Religion" required #religion="ngModel">
+                            <input [patchParent]="this.submission.patch" [father]="false" type="text" name="Relegion"
+                                class="form-control" id="religion" [(ngModel)]="this.submission.parentsData[1].Relegion"
+                                required #religion="ngModel">
                             <p style="color: brown; font-size: 15px;" [hidden]=" !religion.touched || religion.valid ">
                                 *Required</p>
                         </div>
                         <div class="col-md-4">
                             <label for="nationality">Nationality:</label>
-                            <input type="text" name="MotherNationality" class="form-control" id="nationality"
+                            <input [patchParent]="this.submission.patch" [father]="false" type="text" name="Nationality"
+                                class="form-control" id="nationality"
                                 [(ngModel)]="this.submission.parentsData[1].Nationality" required
                                 #nationality="ngModel">
                             <p style="color: brown; font-size: 15px;"
@@ -280,33 +307,37 @@
                         <div class="col-md-1 pl-0 ml-2">
 
                             <div class="form-check mr-2">
-                                <input type="radio" class="form-check-input" id="married" name="MaritalStatus"
-                                    value="married" [(ngModel)]="this.submission.familyStatus.MaritalStatus"
-                                    #maritalStatus="ngModel" required>
+                                <input [patchValue]="this.submission.patch" type="radio" class="form-check-input"
+                                    id="married" name="MaritalStatus" value="married"
+                                    [(ngModel)]="this.submission.familyStatus.MaritalStatus" #maritalStatus="ngModel"
+                                    required>
                                 <label for="married">Married</label>
                             </div>
                         </div>
                         <div class="col-md-1">
                             <div class="form-check mr-2 pl-0">
-                                <input type="radio" class="form-check-input" id="seperated" name="MaritalStatus"
-                                    value="seperated" [(ngModel)]="this.submission.familyStatus.MaritalStatus"
-                                    #maritalStatus="ngModel" required>
+                                <input [patchValue]="this.submission.patch" type="radio" class="form-check-input"
+                                    id="seperated" name="MaritalStatus" value="seperated"
+                                    [(ngModel)]="this.submission.familyStatus.MaritalStatus" #maritalStatus="ngModel"
+                                    required>
                                 <label for="seperated">Seperated</label>
                             </div>
                         </div>
                         <div class="col-md-1">
                             <div class="form-check mr-2 pl-0">
-                                <input type="radio" name="MaritalStatus" class="form-check-input" id="divorced"
-                                    value="divorced" [(ngModel)]="this.submission.familyStatus.MaritalStatus"
-                                    #maritalStatus="ngModel" required>
+                                <input [patchValue]="this.submission.patch" type="radio" name="MaritalStatus"
+                                    class="form-check-input" id="divorced" value="divorced"
+                                    [(ngModel)]="this.submission.familyStatus.MaritalStatus" #maritalStatus="ngModel"
+                                    required>
                                 <label for="divorced">Divorced</label>
                             </div>
                         </div>
                         <div class="col-md-1">
                             <div class="form-check mr-2 pl-0">
-                                <input type="radio" name="MaritalStatus" class="form-check-input" id="other"
-                                    value="other" [(ngModel)]="this.submission.familyStatus.MaritalStatus"
-                                    #maritalStatus="ngModel" required>
+                                <input [patchValue]="this.submission.patch" type="radio" name="MaritalStatus"
+                                    class="form-check-input" id="other" value="other"
+                                    [(ngModel)]="this.submission.familyStatus.MaritalStatus" #maritalStatus="ngModel"
+                                    required>
                                 <label for="other">Other</label>
                             </div>
                         </div>
@@ -320,21 +351,24 @@
                         </div>
                         <div class="col-md-1">
                             <div class="form-check">
-                                <input type="radio" name="Guardian" value="father" class="form-check-input" id="father"
+                                <input [patchValue]="this.submission.patch" type="radio" name="Guardian" value="father"
+                                    class="form-check-input" id="father"
                                     [(ngModel)]="this.submission.familyStatus.Guardian" #guardian="ngModel" required>
                                 <label for="father">Father</label>
                             </div>
                         </div>
                         <div class="col-md-1">
                             <div class="form-check">
-                                <input type="radio" value="mother" name="Guardian" class="form-check-input" id="mother"
+                                <input [patchValue]="this.submission.patch" type="radio" value="mother" name="Guardian"
+                                    class="form-check-input" id="mother"
                                     [(ngModel)]="this.submission.familyStatus.Guardian" #guardian="ngModel" required>
                                 <label for="mother">Mother</label>
                             </div>
                         </div>
                         <div class="col-md-1">
                             <div class="form-check">
-                                <input type="radio" value="other" name="Guardian" class="form-check-input" id="other"
+                                <input [patchValue]="this.submission.patch" type="radio" value="other" name="Guardian"
+                                    class="form-check-input" id="other"
                                     [(ngModel)]="this.submission.familyStatus.Guardian" #guardian="ngModel" required>
                                 <label for="other">Other</label>
                             </div>
@@ -347,7 +381,8 @@
                             <label for="LangSpoken">What language(s) are spoken at home: </label>
                         </div>
                         <div class="col-md-5 ">
-                            <textarea name="LanguageSpoken" id="LangSpoken" cols="1" rows="1" class="form-control"
+                            <textarea [patchValue]="this.submission.patch" name="LanguageSpoken" id="LangSpoken"
+                                cols="1" rows="1" class="form-control"
                                 [(ngModel)]="this.submission.familyStatus.LanguageSpoken" #LanguagesSpoken="ngModel"
                                 required></textarea>
                             <p style="color: brown; font-size: 15px;"
@@ -361,8 +396,9 @@
                             <label for="GuardianAddress">Guardian's address:</label>
                         </div>
                         <div class="col-md-5">
-                            <textarea name="GuardianAddress" id="GuardianAddress" cols="1" rows="1" class="form-control"
-                                required [(ngModel)]="this.submission.familyStatus.GuardianAddress"
+                            <textarea [patchValue]="this.submission.patch" name="GuardianAddress" id="GuardianAddress"
+                                cols="1" rows="1" class="form-control" required
+                                [(ngModel)]="this.submission.familyStatus.GuardianAddress"
                                 #GuardianAddress="ngModel"></textarea>
                             <p style="color: brown; font-size: 15px;"
                                 [hidden]=" !GuardianAddress.touched || GuardianAddress.valid ">*Required

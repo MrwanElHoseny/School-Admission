@@ -1,10 +1,11 @@
+import { admin } from './services/admin.service';
+import { submitPatch } from './services/submit-patch.service';
 import { adminGuard } from './services/admin-guard.service';
 import { adminAuth } from './services/admin-auth.service';
 import { AdminHeaderComponent } from './admin/admin-header/admin-header.component';
 import { submission } from './services/submission.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
@@ -43,6 +44,9 @@ import { AdminNavigationComponent } from './admin/admin-navigation/admin-navigat
 import { ScoreComponent } from './admin/score/score.component';
 import { UserSigninComponent } from './user/user-signin/user-signin.component';
 import { UploadService } from './services/uploadFile.service';
+import { PatchValueDirective } from './directives/patch-value.directive';
+import { PatchTableDirective } from './directives/patch-table.directive';
+import { PatchParentDirective } from './directives/patch-parent.directive';
 
 
 
@@ -81,7 +85,10 @@ import { UploadService } from './services/uploadFile.service';
     AdminNavigationComponent,
     AdminHeaderComponent,
     ScoreComponent,
-    UserSigninComponent
+    UserSigninComponent,
+    PatchValueDirective,
+    PatchTableDirective,
+    PatchParentDirective
   ],
   imports: [
     BrowserModule,
@@ -97,7 +104,9 @@ import { UploadService } from './services/uploadFile.service';
     ApplicantViewPipe,
     adminAuth,
     adminGuard,
-    UploadService
+    UploadService,
+    submitPatch,
+    admin
   ],
   bootstrap: [AppComponent]
 })

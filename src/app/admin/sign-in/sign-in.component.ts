@@ -18,12 +18,6 @@ export class SignInComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.auth.logIn().then(
-      (logged) => {
-        this.auth.authChecked = true;
-        this.auth.loggedIn = logged;
-        this.router.navigate(['/admin'])
-      }
-    )
+    this.auth.logIn(form.value)
   }
 }

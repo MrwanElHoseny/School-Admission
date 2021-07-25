@@ -52,33 +52,34 @@
     <br>
     <div class="row">
         <div class="col-md-12">
-            <table class="table table-striped table-hover table-bordered">
-                <thead class="thead-dark">
-                    <th style="color: #ffffff; width: 14%;">Applicant Num</th>
-                    <th style="color: #ffffff;">Applicant Name</th>
-                    <th style="color: #ffffff; width: 14%;">Admission Date</th>
-                    <th style="color: #ffffff; width: 14%;">Status</th>
-                    <th style="color: #ffffff; width: 8%;">Score</th>
-                </thead>
-                <tbody>
-                    <tr
-                        *ngFor="let applicant of applicantsCopy.slice((this.pageIndex - 1) * 14, this.pageIndex * 14); let i = index">
-                        <ng-container
-                            *ngIf='(applicant.ApplicantName.includes(searchTerm) || searchTerm == "" || applicant.ApplicantNumber.includes(searchTerm)) && i < 14'>
-                            <td>{{applicant.ApplicantNumber}}</td>
-                            <td>{{applicant.ApplicantName}}</td>
-                            <td>{{applicant.AdmissionDate}}</td>
-                            <td>{{applicant.Status}}</td>
-                            <td class="pl-4" [routerLink]="'score/' + applicant.ApplicantNumber">
-                                <i class="material-icons" style="cursor: pointer; color: #1d3557;">
-                                    checklist
-                                </i>
-                            </td>
-                        </ng-container>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="row">
+            <div class="body-scroll">
+                <table class="table table-striped table-hover table-bordered">
+                    <thead class="thead-dark">
+                        <th style="color: #ffffff; width: 14%;">Applicant Num</th>
+                        <th style="color: #ffffff;">Applicant Name</th>
+                        <th style="color: #ffffff; width: 14%;">Admission Date</th>
+                        <th style="color: #ffffff; width: 14%;">Status</th>
+                        <th style="color: #ffffff; width: 8%;">Score</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let applicant of applicantsCopy">
+                            <ng-container
+                                *ngIf='(applicant.ApplicantName.includes(searchTerm) || searchTerm == "" || applicant.ApplicantId.includes(searchTerm))'>
+                                <td>{{applicant.ApplicantId}}</td>
+                                <td>{{applicant.ApplicantName}}</td>
+                                <td>{{applicant.AdmissionDate}}</td>
+                                <td>{{applicant.Status}}</td>
+                                <td class="pl-4" [routerLink]="'score/' + applicant.ApplicantId">
+                                    <i class="material-icons" style="cursor: pointer; color: #1d3557;">
+                                        checklist
+                                    </i>
+                                </td>
+                            </ng-container>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- <div class="row">
                 <div class="col-md-1">
                     <button class="btn btn-outline-secondary" (click)="onBackPage()">Back</button>
 
@@ -87,7 +88,7 @@
                     <button class="btn btn-primary" [disabled]="pageIndex==numOfPages" (click)="onNextPage()"
                         style="color: white; background-color: #343a40;">Next</button>
                 </div>
-            </div>
+            </div> -->
 
 
         </div>

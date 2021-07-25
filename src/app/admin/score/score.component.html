@@ -13,7 +13,7 @@
         <div class="col-md-4 offset-4">
             <h3>Applicant ID: </h3>
             <p class="data">
-                {{this.route.snapshot.params['id']}}
+                {{this.submission.applicantID}}
             </p>
         </div>
     </div>
@@ -38,41 +38,41 @@
         <br>
         <div class="row mx-3 my-3">
             <div class="col-md-3">
-                <label for="review">Overall review of the applicant: </label>
+                <label for="review">Overall ScoreGrade of the applicant: </label>
 
             </div>
         </div>
         <div class="row mx-3 my-3">
             <div class="col-md-12">
                 <div class="form-check">
-                    <input type="radio" id="Excellent" name="Review" value="Excellent" class="form-check-input" ngModel
-                        required>
+                    <input type="radio" id="Excellent" name="ScoreGrade" value="Excellent" class="form-check-input"
+                        ngModel required>
                     <label class="form-check-label" for="Excellent">Excellent</label>
                 </div>
 
-                <div class="form-check"><input type="radio" name="Review" value="VeryGood" class="form-check-input"
+                <div class="form-check"><input type="radio" name="ScoreGrade" value="VeryGood" class="form-check-input"
                         id="VeryGood" ngModel required>
                     <label for="VeryGood" class="form-check-label">
                         Very Good
                     </label>
                 </div>
 
-                <div class="form-check"><input type="radio" class="form-check-input" id="good" name="Review"
+                <div class="form-check"><input type="radio" class="form-check-input" id="good" name="ScoreGrade"
                         value="Good" ngModel required>
                     <label for="good" class="form-check-label">
                         Good
                     </label>
                 </div>
 
-                <div class="form-check"><input type="radio" class="form-check-input" id="average" name="Review" ngModel
-                        value="Average" required>
+                <div class="form-check"><input type="radio" class="form-check-input" id="average" name="ScoreGrade"
+                        ngModel value="Average" required>
                     <label for="average" class="form-check-label">
                         Average
                     </label>
 
                 </div>
 
-                <div class="form-check"><input type="radio" value="Poor" name="Review" class="form-check-input"
+                <div class="form-check"><input type="radio" value="Poor" name="ScoreGrade" class="form-check-input"
                         id="poor" ngModel required>
                     <label for="poor" class="form-check-label">Poor</label>
                 </div>

@@ -1,6 +1,9 @@
 export interface applicant {
-    ApplicantNumber: string,
-    ApplicantName: string,
+    ApplicantId: string,
+    FirstName: string,
+    SecondName: string,
+    LastName: string,
     Status: string,
-    AdmissionDate: string
+    AdmissionDate: string,
+    ApplicantName: string
 }

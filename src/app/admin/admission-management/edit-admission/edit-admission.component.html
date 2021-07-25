@@ -2,10 +2,12 @@
     <form class="border m-5 p-5" (ngSubmit)="onSubmit(f)" #f="ngForm">
         <div class="h2 text-center my-4" style="font-family: Arial, Helvetica, sans-serif; color: #1d3557;">
             Open Admission Period</div>
+        <hr>
+        {{timeLeft}}
         <div class="row mx-3 my-5">
             <div class="col-md-4 offset-1">
                 <label for="extendedEndDate">Extended Days: </label>
-                <input type="number" name="ExtendedEndDate" id="extendedEndDate" class="form-control" ngModel required
+                <input type="number" name="Days" id="extendedEndDate" class="form-control" ngModel required
                     #extendedEndDate="ngModel">
                 <p style="color: brown; font-size: 15px;"
                     [hidden]=" !extendedEndDate.touched || extendedEndDate.valid ">*Choose a number of days to extend
@@ -13,7 +15,7 @@
             </div>
             <div class="col-md-4 offset-2">
                 <label for="extendedEndTime">Extended Hours: </label>
-                <input type="number" name="ExtendedEndTime" class="form-control" id="extendedEndTime" ngModel required
+                <input type="number" name="Hours" class="form-control" id="extendedEndTime" ngModel required
                     #extendedEndTime="ngModel">
                 <p style="color: brown; font-size: 15px;"
                     [hidden]=" !extendedEndTime.touched || extendedEndTime.valid ">*Choose an extended end time

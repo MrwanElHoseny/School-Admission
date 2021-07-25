@@ -17,7 +17,8 @@ export class StudentComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private http: HttpClient,
-    public submission: submission) { }
+    public submission: submission) {
+  }
 
   ngOnInit(): void {
   }

@@ -1,3 +1,5 @@
+import { admin } from './../../services/admin.service';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ApplicantViewPipe } from './../../pipes/applicant-view.pipe';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -9,10 +11,6 @@ import { applicant } from '../../interface/applicant';
 })
 export class ApplicantsInterviewComponent implements OnInit {
 
-  constructor(private router: Router,
-    private route: ActivatedRoute,
-    private filter: ApplicantViewPipe) { }
-
   applicants: applicant[] = []
   applicantsCopy: applicant[] = [];
 
@@ -20,133 +18,36 @@ export class ApplicantsInterviewComponent implements OnInit {
 
   pageIndex = 1;
   numOfPages = NaN;
-  ngOnInit(): void {
+
+  constructor(private router: Router,
+    private route: ActivatedRoute,
+    private filter: ApplicantViewPipe,
+    private http: HttpClient,
+    private admin: admin) {
     // getApplicant'sData
+    this.http.get<applicant[]>(this.admin.baseUrl + '/Admin/AdmissionApplicants', { observe: 'response' }).subscribe(
+      res => {
+        if (res.ok) {
+          console.log('Applicants retrieved successfully');
+          this.applicants = res.body;
+          this.applicantsCopy = this.applicants.slice(0);
+          this.numOfPages = Math.ceil(this.applicants.length / 14);
 
-    this.applicants = [
-      {
-        ApplicantName: 'marwan',
-        ApplicantNumber: '234235',
-        AdmissionDate: '19/7/2020',
-        Status: 'Interviewed'
-      },
-      {
-        ApplicantName: 'mostafa',
-        ApplicantNumber: '234125',
-        AdmissionDate: '19/7/2020',
-        Status: 'Waiting'
-      },
-      {
-        ApplicantName: 'ahmed',
-        ApplicantNumber: '234115',
-        AdmissionDate: '19/7/2020',
-        Status: 'Waiting'
-      },
-      {
-        ApplicantName: 'hossam',
-        ApplicantNumber: '234265',
-        AdmissionDate: '19/7/2020',
-        Status: 'Halted'
-      },
-      {
-        ApplicantName: 'mohamed',
-        ApplicantNumber: '2342122',
-        AdmissionDate: '19/7/2020',
-        Status: 'Paid'
-      },
-      {
-        ApplicantName: 'marwan',
-        ApplicantNumber: '234225',
-        AdmissionDate: '19/7/2020',
-        Status: 'Waiting'
-      },
-      {
-        ApplicantName: 'marwan',
-        ApplicantNumber: '2102335',
-        AdmissionDate: '19/7/2020',
-        Status: 'Waiting'
-      },
-
-      {
-        ApplicantName: 'mostafa',
-        ApplicantNumber: '234125',
-        AdmissionDate: '19/7/2020',
-        Status: 'Waiting'
-      },
-
-      {
-        ApplicantName: 'mostafa',
-        ApplicantNumber: '234125',
-        AdmissionDate: '19/7/2020',
-        Status: 'Waiting'
-      },
-
-      {
-        ApplicantName: 'mostafa',
-        ApplicantNumber: '234125',
-        AdmissionDate: '19/7/2020',
-        Status: 'Waiting'
-      },
-
-      {
-        ApplicantName: 'mostafa',
-        ApplicantNumber: '234125',
-        AdmissionDate: '19/7/2020',
-        Status: 'Waiting'
-      },
-
-      {
-        ApplicantName: 'mostafa',
-        ApplicantNumber: '234125',
-        AdmissionDate: '19/7/2020',
-        Status: 'Waiting'
-      },
-
-      {
-        ApplicantName: 'mostafa',
-        ApplicantNumber: '234125',
-        AdmissionDate: '19/7/2020',
-        Status: 'Waiting'
-      },
-
-      {
-        ApplicantName: 'mostafa',
-        ApplicantNumber: '234125',
-        AdmissionDate: '19/7/2020',
-        Status: 'Waiting'
-      },
-
-      {
-        ApplicantName: 'mostafa',
-        ApplicantNumber: '234125',
-        AdmissionDate: '19/7/2020',
-        Status: 'Waiting'
-      },
-
-      {
-        ApplicantName: 'mostafa',
-        ApplicantNumber: '234125',
-        AdmissionDate: '19/7/2020',
-        Status: 'Waiting'
-      },
-
-      {
-        ApplicantName: 'mostafa',
-        ApplicantNumber: '234125',
-        AdmissionDate: '19/7/2020',
-        Status: 'Waiting'
-      },
-
-      {
-        ApplicantName: 'mostafa',
-        ApplicantNumber: '234125',
-        AdmissionDate: '19/7/2020',
-        Status: 'Waiting'
+          this.applicants.forEach(
+            applicant => {
+              applicant.ApplicantName = applicant.FirstName + ' ' + applicant.SecondName + ' ' + applicant.LastName
+            }
+          )
+        } else {
+          console.log("error retrieving applicants");
+        }
       }
-    ];
-    this.applicantsCopy = this.applicants.slice(0);
+    )
 
-    this.numOfPages = Math.ceil(this.applicants.length / 14);
+  }
+
+  ngOnInit(): void {
+
 
   }
 

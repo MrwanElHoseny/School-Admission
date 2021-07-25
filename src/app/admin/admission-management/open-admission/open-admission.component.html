@@ -13,8 +13,7 @@
                     <input type="text" name="StartDate" id="startDate" class="form-control" ngModel required
                         ngbDatepicker [minDate]="todayObj" #d="ngbDatepicker" (click)="d.toggle()" #startDate="ngModel">
                     <p style="color: brown; font-size: 15px;" [hidden]=" !startDate.touched || startDate.valid ">*Choose
-                        a
-                        start date
+                        a start date
                     </p>
                 </div>
                 <div class="col-md-4 offset-2">

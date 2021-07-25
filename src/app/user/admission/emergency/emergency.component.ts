@@ -25,27 +25,26 @@ export class EmergencyComponent implements OnInit {
 
   addContact() {
     this.submission.emergencyRows.push(Math.max.apply(Math, this.submission.emergencyRows) + 1);
-    this.submission.numOfEmergencyRows++;
 
     this.submission.emergency.push({
       FullName: '',
-      HomeNumber: NaN,
-      MobileNumber: NaN,
+      HomeNumber: '',
+      MobileNumber: '',
       Relationship: ''
     })
   }
 
   deleteContact(row: number) {
-    if (this.submission.numOfEmergencyRows > 1) {
+    if (this.submission.emergencyRows.length > 1) {
 
       let index = (this.submission.emergencyRows.indexOf(row));
       this.submission.emergencyRows.splice(index, 1);
       this.submission.emergency.splice(index, 1)
-      this.submission.numOfEmergencyRows--;
     }
   }
 
   onSubmit(form: NgForm) {
+    console.log(this.submission.emergency)
     this.router.navigate(['../', 'siblings'], { relativeTo: this.route })
   }
 

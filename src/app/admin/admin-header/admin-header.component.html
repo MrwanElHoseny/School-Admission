@@ -7,7 +7,7 @@
         </div>
         <div *ngIf="this.router.url != '/admin/signin'" class="col-md-2 offset-8 pl-5">
             <p class="user-name">
-                {{adminName}}
+                {{this.adminService.adminName}}
             </p>
             <i class="material-icons" style="position: absolute; top: 40%; left: 53%; font-size: 45px; color: white;">
                 account_circle</i>

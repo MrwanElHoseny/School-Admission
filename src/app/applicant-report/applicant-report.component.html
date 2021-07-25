@@ -3,7 +3,6 @@
         <div class="col-md-4">
             <h3>Name: </h3>
             <p class="data">
-
                 {{this.submission.studentData.FirstName + ' ' + this.submission.studentData.SecondName
                 + ' ' + this.submission.studentData.LastName}}
             </p>
@@ -16,16 +15,16 @@
         </div>
         <div class="col-md-4">
             <h3>
-                Status: *To be added*
+                Status:
             </h3>
             <p class="data">
-                Waiting
+                {{this.submission.studentData.Status}}
             </p>
             <h3>
-                Admission Data: *To be added*
+                Admission Data:
             </h3>
             <p class="data">
-                19/7/2020
+                {{this.submission.studentData.AdmissionDate}}
             </p>
         </div>
         <div class="col-md-4 pr-0">
@@ -77,7 +76,7 @@
                         <div class="col-md-4">
                             <h3>Gender: </h3>
                             <p class="data">
-                                sd {{this.submission.studentData.Gender}}
+                                {{this.submission.studentData.Gender}}
                             </p>
                         </div>
                         <div class="col-md-4">
@@ -132,23 +131,24 @@
                     <div class="row mx-3 my-3">
                         <div class="col-md-2">
                             <H3>Student Photo: </H3>
-                            <a class="material-icons" style="cursor: pointer;" [href]="'#'">file_download</a>
+                            <a class="material-icons" style="cursor: pointer;" [href]="studentPhoto">file_download</a>
                         </div>
                         <div class="col-md-2">
                             <h3>Birth Certificate: </h3>
-                            <a class="material-icons" style="cursor: pointer;" [href]="'#'">file_download</a>
+                            <a class="material-icons" style="cursor: pointer;"
+                                [href]="birthCertificate">file_download</a>
                         </div>
                         <div class="col-md-2">
                             <h3>Parents' ID: </h3>
-                            <a class="material-icons" style="cursor: pointer;" [href]="'#'">file_download</a>
+                            <a class="material-icons" style="cursor: pointer;" [href]="parentID">file_download</a>
                         </div>
                         <div class="col-md-2">
                             <h3>Immunization Record: </h3>
-                            <a class="material-icons" style="cursor: pointer;" [href]="'#'">file_download</a>
+                            <a class="material-icons" style="cursor: pointer;" [href]="IR">file_download</a>
                         </div>
                         <div class="col-md-2">
                             <h3>General Health Report: </h3>
-                            <a class="material-icons" style="cursor: pointer;" [href]="'#'">file_download</a>
+                            <a class="material-icons" style="cursor: pointer;" [href]="healthReport">file_download</a>
                         </div>
                         <div class="col-md-2"></div>
                     </div>
@@ -269,7 +269,7 @@
                                 Religion:
                             </h3>
                             <p class="data">
-                                {{this.submission.parentsData[0].Religion}}
+                                {{this.submission.parentsData[0].Relegion}}
                             </p>
                         </div>
                         <div class="col-md-6">
@@ -277,7 +277,7 @@
                                 Religion:
                             </h3>
                             <p class="data">
-                                {{this.submission.parentsData[1].Religion}}
+                                {{this.submission.parentsData[1].Relegion}}
                             </p>
                         </div>
                     </div>
@@ -343,7 +343,7 @@
                                         {{row.Relationship}}
                                     </td>
                                     <td>
-                                        {{row.FullName}}
+                                        {{row.SiblingName}}
                                     </td>
                                     <td>
                                         {{row.Age}}
@@ -456,5 +456,23 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div *ngIf="this.admin.isLogged()" class="row mx-3 my-5">
+        <div class="col-md-1">
+            <button class="btn btn-success" type="button"
+                (click)="accept(this.route.snapshot.params['id'])">Accept</button>
+        </div>
+
+        <div class="col-md-1">
+            <button class="btn btn-primary" type="button" (click)="setInterview()">Set Interview</button>
+        </div>
+
+        <form (ngSubmit)="Decline(f)" #f='ngForm'>
+            <div class="col-md-1 pl-4">
+                <button class="btn btn-danger" type="submit">Decline</button>
+            </div>
+            <input type="text" class="form-control" name="reason" placeholder="Reason" ngModel required>
+        </form>
     </div>
 </div>

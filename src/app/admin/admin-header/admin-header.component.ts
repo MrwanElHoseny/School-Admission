@@ -1,3 +1,5 @@
+import { admin } from './../../services/admin.service';
+import { adminAuth } from './../../services/admin-auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,15 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminHeaderComponent implements OnInit {
 
-  constructor(public router: Router) { }
-  adminName = 'Marwan';
+  constructor(public router: Router,
+    private admin: adminAuth,
+    public adminService: admin) {
+
+  }
 
   ngOnInit(): void {
-    console.log(this.router.url)
   }
 
   logout() {
-
+    this.admin.logOut();
   }
 
 }

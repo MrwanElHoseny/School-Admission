@@ -2,3 +2,9 @@ th {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }
+
+.body-scroll {
+  display: block;
+  max-height: 1500px;
+  overflow-y: scroll;
+}

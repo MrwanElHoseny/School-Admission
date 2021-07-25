@@ -1,3 +1,5 @@
+import { admin } from './../../services/admin.service';
+import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { submission } from './../../services/submission.service';
@@ -15,20 +17,30 @@ export class ScoreComponent implements OnInit {
 
   constructor(public submission: submission,
     public route: ActivatedRoute,
-    private router: Router) {
-
+    private router: Router,
+    private http: HttpClient,
+    private admin: admin) {
+    this.submission.applicantID = route.snapshot.params['id'];
+    this.submission.getApplicantData(this.submission.applicantID);
   }
 
+
   ngOnInit(): void {
-    this.submission.studentData.DateOfBirth = '';
-    this.submission.studentData.FirstName = 'First';
-    this.submission.studentData.SecondName = 'Second';
-    this.submission.studentData.LastName = 'Last';
 
   }
 
   onSubmit(form: NgForm) {
-
+    let studentScore = form.value;
+    this.http.post(this.admin.baseUrl + '/Admin/' + this.submission.applicantID + '/AddInterviewScore', studentScore, { observe: 'response' }).subscribe(
+      res => {
+        if (res.ok) {
+          window.alert("Student Scored Successfully")
+          this.router.navigate(['Admin', 'AdmissionManagement'])
+        } else {
+          window.alert("Error scoring student")
+        }
+      }
+    )
   }
   onBack() {
     this.router.navigate(['../../', 'applicantsInterview'], { relativeTo: this.route })

@@ -1,3 +1,4 @@
+import { UploadService } from './../../../services/uploadFile.service';
 import { submission } from './../../../services/submission.service';
 import { NgbAlert, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { element } from 'protractor';
@@ -19,10 +20,6 @@ interface Alert {
 
 export class DocumentsComponent implements OnInit {
 
-
-
-
-
   alertsHidden: boolean[] = [
     null,
     null,
@@ -38,7 +35,8 @@ export class DocumentsComponent implements OnInit {
   constructor(private router: Router,
     private route: ActivatedRoute,
     private http: HttpClient,
-    public submission: submission) {
+    public submission: submission,
+    private upload: UploadService) {
   }
 
   ngOnInit(): void {
