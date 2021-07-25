@@ -13,7 +13,8 @@ export class UploadService {
         console.log(file);
 
         let formData = new FormData();
-        formData.append(name, file, filename);
+        formData.append(name, file);
+        formData.append('DocumentName', filename);
 
         let params = new HttpParams();
         const headers = new HttpHeaders();

@@ -2,7 +2,7 @@ import { UploadService } from './../../../services/uploadFile.service';
 import { submission } from './../../../services/submission.service';
 import { NgbAlert, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { element } from 'protractor';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { Form } from '@angular/forms';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -19,6 +19,9 @@ interface Alert {
 })
 
 export class DocumentsComponent implements OnInit {
+
+
+
 
   alertsHidden: boolean[] = [
     null,

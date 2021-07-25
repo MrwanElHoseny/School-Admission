@@ -35,7 +35,7 @@ export class ScoreComponent implements OnInit {
       res => {
         if (res.ok) {
           window.alert("Student Scored Successfully")
-          this.router.navigate(['Admin', 'AdmissionManagement'])
+          this.router.navigate(['Admin', 'admissionManagement'])
         } else {
           window.alert("Error scoring student")
         }

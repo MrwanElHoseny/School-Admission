@@ -128,7 +128,7 @@
                     </div>
                     <hr>
 
-                    <div class="row mx-3 my-3">
+                    <div class="row mx-3 my-3" hidden=true>
                         <div class="col-md-2">
                             <H3>Student Photo: </H3>
                             <a class="material-icons" style="cursor: pointer;" [href]="studentPhoto">file_download</a>
@@ -464,15 +464,18 @@
                 (click)="accept(this.route.snapshot.params['id'])">Accept</button>
         </div>
 
-        <div class="col-md-1">
+        <div class="col-md-2 offset-4 pl-5">
             <button class="btn btn-primary" type="button" (click)="setInterview()">Set Interview</button>
         </div>
 
-        <form (ngSubmit)="Decline(f)" #f='ngForm'>
-            <div class="col-md-1 pl-4">
-                <button class="btn btn-danger" type="submit">Decline</button>
-            </div>
-            <input type="text" class="form-control" name="reason" placeholder="Reason" ngModel required>
-        </form>
+        <div class="col-md-3 offset-2">
+            <form (ngSubmit)="Decline(f)" #f='ngForm'>
+                <button class="btn btn-danger" type="submit" style="position: absolute; right: 0%;">Decline</button>
+                <input type="text" class="form-control mr-2" name="reason" placeholder="Reason" ngModel required
+                    #reason="ngModel">
+            </form>
+            <p style="color: brown; font-size: 15px;" [hidden]=" !reason.touched || reason.valid ">*Choose a
+                reason</p>
+        </div>
     </div>
 </div>

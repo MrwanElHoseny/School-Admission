@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { submission } from './../../services/submission.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(public submission: submission,
+    private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  logout() {
+    this.submission.username = '';
+    localStorage.removeItem('user_Token')
+    localStorage.removeItem('user_Exp')
+    this.router.navigate(['']);
   }
 
 }

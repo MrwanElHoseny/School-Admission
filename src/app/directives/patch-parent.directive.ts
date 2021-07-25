@@ -23,7 +23,7 @@ export class PatchParentDirective {
           url: this.submission.baseUrl + this.patch.mapUrl(this.router.url, (event as HTMLElement).getAttribute('name')) +
             this.submission.parentsData[this.submission.parentsData.findIndex(
               parent => {
-                return parent.Gender == 'Male';
+                return parent.Gender == 'Male' || parent.Gender == 'male';
               }
             )].Id,
           patch: {
@@ -37,7 +37,7 @@ export class PatchParentDirective {
           url: this.submission.baseUrl + this.patch.mapUrl(this.router.url, (event as HTMLElement).getAttribute('name')) +
             this.submission.parentsData[this.submission.parentsData.findIndex(
               parent => {
-                return parent.Gender == 'Female';
+                return parent.Gender == 'Female' || parent.Gender == 'female';
               }
             )].Id,
           patch: {

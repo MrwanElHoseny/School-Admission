@@ -35,6 +35,44 @@ export class ApplicantReportComponent implements OnInit {
   ) {
     this.submission.applicantID = this.route.snapshot.params['id'];
     this.submission.getApplicantData(this.submission.applicantID);
+
+    this.http.get<{ DocumentName: string, Copy: string }[]>(this.submission.baseUrl + '/Admin/' + this.applicantID + '/Documents', { observe: 'response' }).subscribe(
+      res => {
+        if (res.ok) {
+          this.studentPhoto = res.body[res.body.findIndex(
+            obj => {
+              return obj.DocumentName == 'StudentPhoto'
+            }
+          )];
+
+          this.birthCertificate = res.body[res.body.findIndex(
+            obj => {
+              return obj.DocumentName == 'BC'
+            }
+          )];
+
+          this.parentID = res.body[res.body.findIndex(
+            obj => {
+              return obj.DocumentName == 'ParentsID'
+            }
+          )];
+
+          this.IR = res.body[res.body.findIndex(
+            obj => {
+              return obj.DocumentName == 'IR'
+            }
+          )];
+
+          this.healthReport = res.body[res.body.findIndex(
+            obj => {
+              return obj.DocumentName == 'DR'
+            }
+          )];
+        } else {
+          console.log("Error retreiving document links")
+        }
+      }
+    )
   }
 
   ngOnInit(): void {

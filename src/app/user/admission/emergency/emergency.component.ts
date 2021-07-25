@@ -1,7 +1,7 @@
 import { submission } from './../../../services/submission.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { conditionallyCreateMapObjectLiteral } from '@angular/compiler/src/render3/view/util';
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnChanges, OnInit } from '@angular/core';
 import { Form, NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
@@ -11,6 +11,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./emergency.component.css']
 })
 export class EmergencyComponent implements OnInit {
+
+
 
   constructor(private router: Router,
     private route: ActivatedRoute,

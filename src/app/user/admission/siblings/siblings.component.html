@@ -9,7 +9,7 @@
     </div>
 
     <div class="row mt-5">
-        <div class="col-md-2 offset-md-10 pl-5">
+        <div class="col-md-2 offset-md-10 pl-5" *ngIf="!this.submission.patch">
             <span style="font-size: 40px; cursor: pointer" (click)="addSibling();" class="material-icons add-button">
                 add_circle
             </span>

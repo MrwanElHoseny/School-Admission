@@ -1,9 +1,12 @@
 <div class="container-fluid my-5">
     <div class="row mx-3 my-3">
         <div class="col-md-12 text-center">
+
             <h3>
-                Number Of Applicants: {{this.numOfApplicants}}
+                {{this.numOfApplicants}}
             </h3>
+            <hr style="width: 100px;">
+            Number Of Applicants
         </div>
     </div>
     <div *ngIf="this.criteriaExists" class="h2 text-center my-4"
@@ -15,7 +18,7 @@
             <br>
             <div class="row mx-3 my-3">
                 <div class="col-md-2">
-                    <label for="interviewees">Number of interviewees: </label>
+                    <label for="interviewees">Number of interviewers: </label>
                     <input id="interviewees" name="NumberOfInterviewers" min="1" type="number" class="form-control"
                         ngModel required #interviewees="ngModel">
                     <p style="color: brown; font-size: 15px;" [hidden]=" !interviewees.touched || interviewees.valid ">
@@ -90,7 +93,7 @@
             </div>
             <br>
             <div class="row mx-3 my-5">
-                <div class="col-md-1 offset-8">
+                <div class="col-md-1 offset-10">
                     <button class="btn btn-primary" type="submit" style="position: absolute; right: 5%;"
                         [disabled]="!f.valid">Add</button>
                 </div>

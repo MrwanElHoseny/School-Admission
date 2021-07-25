@@ -1,3 +1,4 @@
+import { submission } from './../../../services/submission.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { rendererTypeName } from '@angular/compiler';
@@ -14,7 +15,10 @@ export class PaymentComponent implements OnInit {
 
 
 
-  constructor(private router: Router, private route: ActivatedRoute, private renderer: Renderer2) { }
+  constructor(public router: Router, private route: ActivatedRoute, private renderer: Renderer2,
+    public submission: submission) {
+    console.log(router.url)
+  }
 
   ngOnInit(): void {
   }

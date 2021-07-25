@@ -50,7 +50,7 @@ const routes: Routes = [
         ]
       },
       { path: 'signIn', component: UserSigninComponent },
-      { path: 'admission/applicationReport', component: ApplicantReportComponent }
+      { path: 'admission/applicationReport/:id', component: ApplicantReportComponent }
     ]
   },
   {

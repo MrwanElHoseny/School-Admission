@@ -45,31 +45,36 @@ export class submitPatch {
     submitAll() {
         this.patches.forEach(
             (patch, index) => {
-                this.http.patch(patch.url, [patch.patch], { observe: 'response' }).subscribe(
+                if (patch.url != "/applicant/" + this.submission.applicantID + "/FamilyStatus") {
+                    this.http.patch(patch.url, [patch.patch], { observe: 'response' }).subscribe(
 
 
-                    res => {
-                        if (res.ok) {
-                            console.log("Patch successfull")
-                            if (this.router.url == '/applicant/admission/payment/credit' && index == this.patches.length - 1) {
-                                console.log('redirecting to payment url')
-                                this.http.get(this.submission.baseUrl + '/Applicant/Payment', { observe: 'response', responseType: 'text' }).subscribe(
-                                    res => {
-                                        if (res.ok) {
-                                            window.open(res.body);
+                        res => {
+                            if (res.ok) {
+                                console.log("Patch successfull")
+                                if (this.router.url == '/applicant/admission/payment/credit' && index == this.patches.length - 1) {
+                                    console.log('redirecting to payment url')
+                                    this.http.get(this.submission.baseUrl + '/Applicant/Payment', { observe: 'response', responseType: 'text' }).subscribe(
+                                        res => {
+                                            if (res.ok) {
+
+                                                window.open(res.body);
+                                                this.submission.getApplicantData(this.submission.applicantID);
+                                                this.router.navigate(['applicant', 'admission', 'applicationReport'])
+                                            }
+                                            else {
+                                                console.log('Error retrieving credit payment url')
+                                            }
                                         }
-                                        else {
-                                            console.log('Error retrieving credit payment url')
-                                        }
-                                    }
-                                );
+                                    );
+                                }
+                            }
+                            else {
+                                console.log("Patch error")
                             }
                         }
-                        else {
-                            console.log("Patch error")
-                        }
-                    }
-                )
+                    )
+                }
             }
         )
 

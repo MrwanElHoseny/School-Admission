@@ -34,8 +34,12 @@
     <router-outlet></router-outlet>
 
     <div class="row mx-3 my-5">
-        <div class="col-md-4">
+        <div class="col-md-1">
             <button class="btn btn-outline-primary" type="button" (click)="onBack()">Back</button>
+        </div>
+        <div class="col-md-1 offset-10">
+            <button *ngIf="this.router.url != '/applicant/admission/payment'" class="btn btn-primary"
+                [routerLink]="'./../applicationReport/'+this.submission.applicantID">Finish</button>
         </div>
     </div>
 

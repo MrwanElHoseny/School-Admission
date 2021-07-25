@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { submitPatch } from './../../../../services/submit-patch.service';
 import { submission } from './../../../../services/submission.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,7 +11,8 @@ import { Component, OnInit } from '@angular/core';
 export class FawryComponent implements OnInit {
 
   orderNum = 915;
-  constructor(public submission: submission, public patch: submitPatch) { }
+  constructor(public submission: submission, public patch: submitPatch,
+    public router: Router) { }
 
   ngOnInit(): void {
   }

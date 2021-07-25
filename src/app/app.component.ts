@@ -12,5 +12,8 @@ export class AppComponent {
 
   title = 'Admission';
 
-  constructor() { }
+  constructor() {
+
+
+  }
 }

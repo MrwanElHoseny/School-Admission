@@ -84,28 +84,16 @@ export class submission {
         private router: Router,
     ) {
         if (this.patch) {
-            this.applicantID = '1b33e4dd-0a85-4ff4-8e9c-08d94ef08c78'
+            console.log("patch active")
             this.getApplicantData(this.applicantID);
         }
-        this.emergency = [{
-            FullName: 'b',
-            HomeNumber: '',
-            MobileNumber: '',
-            Relationship: ''
-        },
-        {
-            FullName: 'a',
-            HomeNumber: '',
-            MobileNumber: '',
-            Relationship: ''
-        }
-        ]
 
     }
 
     baseUrl = 'https://localhost:44363/api'
-    patch = true;
+    patch = false;
     applicantID = '';
+    username = '';
 
     studentDateOfBirth = {
         day: NaN,
@@ -288,6 +276,7 @@ export class submission {
                     this.medical = res.body.MedicalHistory;
 
                     this.emergencyRows = []
+                    this.SiblingsRows = [];
 
                     this.siblings.forEach(
                         (row, index) => {
@@ -478,16 +467,19 @@ export class submission {
                                 )
 
                                 /// Payment
-                                this.http.get(this.baseUrl + '/Applicant/Payment', { observe: 'response', responseType: 'text' }).subscribe(
-                                    res => {
-                                        if (res.ok) {
-                                            window.open(res.body);
+                                if (this.router.url == '/applicant/admission/payment/credit') {
+
+                                    this.http.get(this.baseUrl + '/Applicant/Payment', { observe: 'response', responseType: 'text' }).subscribe(
+                                        res => {
+                                            if (res.ok) {
+                                                window.open(res.body);
+                                            }
+                                            else {
+                                                console.log("Error getting payment url")
+                                            }
                                         }
-                                        else {
-                                            console.log("Error getting payment url")
-                                        }
-                                    }
-                                )
+                                    )
+                                }
                             }
                             else {
                                 console.log('Error while obtaining current id');

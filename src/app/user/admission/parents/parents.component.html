@@ -43,7 +43,7 @@
                         </div>
                         <div class="col-md-4">
                             <label for="fatherThirdName">Third Name:</label>
-                            <input [patchParent]="this.submission.patch" [father]="true" type="text" name="ThirdName"
+                            <input [patchParent]="this.submission.patch" [father]="true" type="text" name="LastName"
                                 class="form-control" id="fatherThirdName"
                                 [(ngModel)]="this.submission.parentsData[0].LastName" required
                                 #fatherThirdName="ngModel">
@@ -185,7 +185,7 @@
                         </div>
                         <div class="col-md-4">
                             <label for="thirdName">Third Name:</label>
-                            <input [patchParent]="this.submission.patch" [father]="false" type="text" name="ThirdName"
+                            <input [patchParent]="this.submission.patch" [father]="false" type="text" name="LastName"
                                 class="form-control" id="thirdName"
                                 [(ngModel)]="this.submission.parentsData[1].LastName" required #thirdName="ngModel">
                             <p style="color: brown; font-size: 15px;"
@@ -209,7 +209,7 @@
                         <div class="col-md-4">
                             <label for="idNum">ID Number:</label>
                             <input [patchParent]="this.submission.patch" [father]="false" type="text"
-                                id="identificationNumber" name="MotherIdNum" class="form-control"
+                                id="identificationNumber" name="IdentificationNumber" class="form-control"
                                 [(ngModel)]="this.submission.parentsData[1].IdentificationNumber" #idNum="ngModel"
                                 required>
                             <p style="color: brown; font-size: 15px;" [hidden]=" !idNum.touched || idNum.valid ">*Enter
