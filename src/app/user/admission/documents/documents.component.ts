@@ -1,3 +1,4 @@
+import { documentObj } from './../../../interface/document';
 import { UploadService } from './../../../services/uploadFile.service';
 import { submission } from './../../../services/submission.service';
 import { NgbAlert, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
@@ -21,25 +22,45 @@ interface Alert {
 export class DocumentsComponent implements OnInit {
 
 
-  documents = ['Student Photo',
-    'ParentsID',
-    'Immunization Record'];
+  documentList: documentObj[] = [];
 
-  alertsHidden: boolean[] = [
-    null,
-    null,
-    null,
-    null,
-    null
-  ]
+  alertsHidden: boolean[] = []
+  docIndexes: number[] = []
 
-  valid = false;
+  submitDisabled: boolean;
+  docCount = 0;
+  loading = false;
 
   constructor(private router: Router,
     private route: ActivatedRoute,
     private http: HttpClient,
     public submission: submission,
     private upload: UploadService) {
+
+    if (this.submission.patch) {
+      this.submitDisabled = false;
+    } else {
+      this.submitDisabled = true;
+    }
+
+    this.loading = true;
+    this.http.get<documentObj[]>(this.submission.baseUrl + '/Admin/DocumentCriteria', { observe: 'response' }).subscribe(
+      res => {
+        this.loading = false;
+        console.log('Document Criteria obtained successfully')
+
+        this.documentList = res.body;
+        this.documentList.forEach(
+          doc => {
+            this.alertsHidden.push(null);
+          }
+        )
+      }, err => {
+        this.loading = false;
+        console.log("Can't reach end point")
+      }
+    )
+
   }
 
   ngOnInit(): void {
@@ -52,19 +73,23 @@ export class DocumentsComponent implements OnInit {
     let Document = documents[0];
     this.alertsHidden[docNum] = true;
 
-    if ((Document.size / 1000000) > 3) {
+    if ((Document.size / 1000000) > +this.documentList[docNum].Size) {
       this.alertsHidden[docNum] = false;
     }
     else {
-      if (!this.submission.docIndexes.includes(docNum)) {
-        this.submission.formDocs.push(Document)
-        this.submission.docIndexes.push(docNum)
+      this.docCount++;
+      if (this.docCount == this.documentList.length) {
+        this.submitDisabled = false;
+      }
+
+      if (!this.docIndexes.includes(docNum)) {
+        this.submission.formDocs.push({ file: Document, name: this.documentList[docNum].Name })
+        this.docIndexes.push(docNum);
       }
       else {
-        this.submission.formDocs[this.submission.docIndexes.indexOf(docNum)] = Document;
+        this.submission.formDocs[this.docIndexes.indexOf(docNum)] = { file: Document, name: this.documentList[docNum].Name };
       }
     }
-    this.valid = this.alertsHidden.every((value) => value);
   }
 
   onSubmit() {

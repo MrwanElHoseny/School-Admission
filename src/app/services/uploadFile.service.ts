@@ -10,8 +10,6 @@ export class UploadService {
     // file from event.target.files[0]
     uploadFile(url: string, file: File, name: string, filename: string): Observable<HttpResponse<object>> {
 
-        console.log(file);
-
         let formData = new FormData();
         formData.append(name, file);
         formData.append('DocumentName', filename);

@@ -89,6 +89,8 @@ export class submission {
             this.getApplicantData(this.applicantID);
         }
 
+
+
     }
 
     baseUrl = 'https://localhost:44363/api'
@@ -244,24 +246,13 @@ export class submission {
     }
 
 
-    formDocs: File[] = [];
-    docIndexes: number[] = []
+    formDocs: { file: File, name: string }[] = [];
 
 
     creditPayment = {
         CVV: NaN,
         ExpiryDate: '',
         CardNumber: NaN
-    }
-
-
-    docNamesMap = {
-        0: 'StudentPhoto',
-        1: 'BC',
-        2: 'ParentsID',
-        3: 'IR',
-        4: 'DR'
-
     }
 
     getApplicantData(id: string) {
@@ -337,22 +328,24 @@ export class submission {
                                 //medical
                                 let medical = this.http.post(this.baseUrl + '/applicant/' + this.applicantID + '/Medical', this.medical, { observe: 'response' })
 
+                                //data join
+                                const dataJoin = [parents, familyStatus, details, emergency, siblings, medical]
+
+
                                 //documents
-                                let StudentPhoto = this.upload.uploadFile(this.baseUrl + '/applicant/' + this.applicantID + '/Document', this.formDocs[this.docIndexes.indexOf(0)], 'Copy', this.docNamesMap[0])
-                                let BC = this.upload.uploadFile(this.baseUrl + '/applicant/' + this.applicantID + '/Document', this.formDocs[this.docIndexes.indexOf(1)], 'Copy', this.docNamesMap[1])
-                                let parentsID = this.upload.uploadFile(this.baseUrl + '/applicant/' + this.applicantID + '/Document', this.formDocs[this.docIndexes.indexOf(2)], 'Copy', this.docNamesMap[2])
-                                let IR = this.upload.uploadFile(this.baseUrl + '/applicant/' + this.applicantID + '/Document', this.formDocs[this.docIndexes.indexOf(3)], 'Copy', this.docNamesMap[3])
-                                let DR = this.upload.uploadFile(this.baseUrl + '/applicant/' + this.applicantID + '/Document', this.formDocs[this.docIndexes.indexOf(4)], 'Copy', this.docNamesMap[4])
+                                this.formDocs.forEach(
+                                    (file) => {
+                                        dataJoin.push(
+                                            this.upload.uploadFile(this.baseUrl + '/applicant/' + this.applicantID + '/Document', file.file, 'Copy', file.name)
+                                        )
+                                    }
+                                )
 
 
-
-                                const dataJoin = [parents, familyStatus, details, emergency, siblings, medical, StudentPhoto, BC, parentsID, IR, DR]
 
                                 let multicall = forkJoin(dataJoin);
                                 multicall.subscribe(
                                     res => {
-
-                                        // this.loading = false;
                                         console.log("Joined data submitted");
 
                                         /// Payment
@@ -366,6 +359,7 @@ export class submission {
                                                     }
                                                     else {
                                                         console.log("Error getting payment url")
+                                                        this.router.navigate(['applicant', 'admission', 'applicationReport'])
                                                     }
                                                 }
                                             )

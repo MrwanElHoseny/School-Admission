@@ -1,0 +1,78 @@
+<form class="border m-5" (ngSubmit)="onSubmit()" #f="ngForm">
+
+    <br>
+    <div class="h2 text-center my-4" style="font-family: Arial, Helvetica, sans-serif; color: #1d3557;">
+        Set Required Documents
+    </div>
+    <br *ngIf="this.loading">
+
+    <div *ngIf="!this.loading">
+        <div class="row mt-5 mb-4">
+            <div class="col-md-2 offset-10 pl-5">
+                <span style="font-size: 40px; cursor: pointer" (click)="addDoc();" class="material-icons add-button">
+                    add_circle
+                </span>
+
+            </div>
+        </div>
+        <table class="table table-striped table-hover mr-5 ml-5 mb-5 mt-3"
+            style="position: relative; left: 2.5%; width: 1250px;">
+            <thead class="">
+                <th scope="col" style="width: 5%;">#</th>
+                <th scope="col" style="width: 20%;">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col" style="width: 15%;">Max. Size(MB)</th>
+                <th scope="col" style="width: 5%;"></th>
+            </thead>
+            <tbody #tableBody>
+                <tr *ngFor="let doc of this.documentList;let index = index;">
+                    <td>
+                        {{index+1}}
+                    </td>
+                    <td>
+                        <input [ngModelOptions]="{standalone: true}" class="form-control" type='text' name="Name"
+                            [(ngModel)]='this.documentList[index].Name' required>
+                    </td>
+                    <td>
+                        <input [ngModelOptions]="{standalone: true}" class="form-control" type='text' name="Description"
+                            [(ngModel)]="this.documentList[index].Description" placeholder="*Optional">
+                    </td>
+                    <td>
+                        <input [ngModelOptions]="{standalone: true}" class="form-control" type='text' name="Size"
+                            [(ngModel)]="this.documentList[index].Size" required>
+                    </td>
+                    <td><button class="btn" type="button" (click)="deleteDoc(index)"><i class="material-icons"
+                                style="font-size: 20px;">delete</i></button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="this.loading" class="row">
+
+
+        <div class="col-md-12" [align]="'center'">
+            <div class="spinner-border text-secondary" style="width: 6rem; height: 6rem; color: #1d3557 !important;"
+                role="status" #loading>
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row mx-3 my-5 px-5">
+        <div class="col-md-4">
+            <button class="btn btn-outline-primary" type="button" (click)="onBack()">Back</button>
+        </div>
+        <div class="col-md-1 offset-md-7 text-right">
+            <button *ngIf="!this.submitLoading" class="btn btn-primary" type="submit"
+                style="position: absolute; right: 5%;" [disabled]="!f.valid">
+                Set
+            </button>
+            <div *ngIf="this.submitLoading" class="spinner-border text-secondary" style="width: 3rem; height: 3rem;"
+                role="status" #loading>
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </div>
+</form>

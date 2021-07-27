@@ -1,0 +1,96 @@
+<div class="border mx-5 my-5">
+    <br>
+    <br>
+    <div class="row px-5 text-center">
+        <div class="col-md-6">
+            <h4>Student's Status</h4>
+            <hr style="width: 50%;">
+        </div>
+        <div class="col-md-6">
+            <h4>
+                Students' Payment
+            </h4>
+            <hr style="width: 50%;">
+        </div>
+    </div>
+    <div class="row px-5 text-center">
+        <div class="col-md-6 text-center">
+            <ngx-charts-bar-horizontal xAxisLabel="Count" yAxisLabel="Status" [view]="[550, 200]" [xAxis]="true"
+                [yAxis]="true" [showXAxisLabel]="true" [showYAxisLabel]="true" [results]="this.statusData"
+                [gradient]="false" [showDataLabel]='true'
+                [scheme]="{domain: ['#616161', '#5781ff', '#008726', '#ff4040' ]}">
+
+            </ngx-charts-bar-horizontal>
+
+        </div>
+        <div class="col-md-5 offset-1 pl-0">
+            <ngx-charts-pie-chart [doughnut]="true" [results]="this.paymentStatus" [view]="[550, 200]" [legend]="true"
+                [scheme]="{domain: ['#616161', '#008726']}">
+
+            </ngx-charts-pie-chart>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <div class="row px-5 text-center">
+        <div class="col-md-6">
+            <h4>Districts</h4>
+            <hr style="width: 50%;">
+        </div>
+        <div class="col-md-6">
+            <h4>
+                Applicant's History
+            </h4>
+            <hr style="width: 50%;">
+        </div>
+    </div>
+    <div class="row px-5">
+        <div class="col-md-6 pl-5">
+            <ngx-charts-pie-chart [results]="this.districts" [view]="[550, 300]" [labels]="true"
+                [scheme]="{domain: ['#616161', '#4287f5', '#1f0063', '#42f590', '#5c5c5e']}">
+
+            </ngx-charts-pie-chart>
+        </div>
+        <div class="col-md-5 offset-1 pl-5 pr-0 pt-4">
+            <ngx-charts-bar-vertical xAxisLabel="" yAxisLabel="Count" [view]="[250, 300]" [xAxis]="true" [yAxis]="true"
+                [showXAxisLabel]="true" [showYAxisLabel]="true" [results]="this.history" [gradient]="false"
+                [showDataLabel]='true' [scheme]="{domain: ['#616161', '#5781ff' ]}">
+
+            </ngx-charts-bar-vertical>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <div class="row px-5 text-center">
+        <div class="col-md-6">
+            <h4>
+                Siblings
+            </h4>
+            <hr style="width: 50%;">
+        </div>
+        <div class="col-md-6">
+            <h4>
+                Revenue
+            </h4>
+            <hr style="width: 50%;">
+        </div>
+    </div>
+    <div class="row px-5">
+        <div class="col-md-5 offset-1">
+            <ngx-charts-gauge [view]="[450, 450]" [results]="this.siblings" [legend]="true"
+                [scheme]="{domain: ['#616161', '#4287f5', '#1f0063', '#42f590', '#5c5c5e']}">
+
+            </ngx-charts-gauge>
+        </div>
+        <div class="col-md-5 offset-1 pt-5 pl-5 pr-0">
+            <ngx-charts-number-card [results]="this.paymentMethods" [view]="[300, 300]"
+                [scheme]="{domain: ['#ffdd00']}">
+
+            </ngx-charts-number-card>
+        </div>
+    </div>
+
+
+</div>

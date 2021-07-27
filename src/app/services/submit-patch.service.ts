@@ -1,3 +1,4 @@
+import { UploadService } from './uploadFile.service';
 import { Router } from '@angular/router';
 import { submission } from './submission.service';
 import { HttpClient, HttpResponse } from '@angular/common/http';
@@ -19,7 +20,8 @@ export class submitPatch {
 
     constructor(private http: HttpClient,
         private submission: submission,
-        private router: Router) {
+        private router: Router,
+        private upload: UploadService) {
     }
 
     urls = {
@@ -50,13 +52,14 @@ export class submitPatch {
                 dataJoin.push(this.http.patch(patch.url, [patch.patch], { observe: 'response' }))
             }
         )
-        console.log(dataJoin)
 
-        // this.submission.docIndexes.forEach(
-        //     (docNumber, index) => {
-        //         dataJoin.push()
-        //     }
-        // )
+        this.submission.formDocs.forEach(
+            (file) => {
+                dataJoin.push(
+                    this.upload.uploadFile(this.submission.baseUrl + '/applicant/' + this.submission.applicantID + '/Document', file.file, 'Copy', file.name)
+                )
+            }
+        )
 
         let multiCall = forkJoin(dataJoin);
         multiCall.subscribe(

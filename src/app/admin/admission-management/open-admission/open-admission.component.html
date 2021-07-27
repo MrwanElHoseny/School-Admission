@@ -48,14 +48,19 @@
                 </div>
             </div>
 
-            <div class="row mx-3 my-5">
+            <div class="row mx-3 my-5 px-5">
                 <div class="col-md-4">
                     <button class="btn btn-outline-primary" type="button" (click)="onBack()">Cancel</button>
                 </div>
-                <div class="col-md-4 offset-md-4 ">
-                    <button class="btn btn-primary" type="submit" style="position: absolute; right: 5%;"
-                        [disabled]="!f.valid">Open</button>
+                <div class="col-md-4 offset-md-4  text-right">
+                    <button *ngIf="!this.loading" class="btn btn-primary" type="submit"
+                        style="position: absolute; right: 5%;" [disabled]="!f.valid">Open</button>
+                    <div *ngIf="this.loading" class="spinner-border text-secondary" style="width: 3rem; height: 3rem;"
+                        role="status" #loading>
+                        <span class="sr-only">Loading...</span>
+                    </div>
                 </div>
+
             </div>
         </form>
     </fieldset>

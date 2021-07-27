@@ -6,159 +6,59 @@
     <div class="h2 text-center my-4" style="font-family: Arial, Helvetica, sans-serif; color: #1d3557;">
         Required Documents
     </div>
+    <br>
+    <br>
 
-    <div class="row mx-3 mt-5 mb-2">
-        <div class="col-md-3">
-            <label>Photo of the student: </label>
+
+
+    <div *ngIf="!this.loading">
+        <div *ngIf="this.documentList.length==0" class="h5 text-center my-4"
+            style="font-family: Arial, Helvetica, sans-serif; color: brown;">
+            *No Document's Are Currently Required
         </div>
 
-        <input class="file-input" type="file" (change)="studentUpload($any($event.target).files, 0)" #photo>
+        <div *ngFor="let document of this.documentList; let i = index;">
 
-        <div class="col-md-1 pr-0 text-right">
-            <button type="button" class="upload-btn" (click)="photo.click()"><i
-                    class="material-icons">account_circle</i></button>
-        </div>
-
-        <div class="col-md-2 pl-0">
-            <div class="form-control" (click)="photo.click()">
-                <p *ngIf="this.submission.docIndexes.includes(0); else else0">
-                    {{this.submission.formDocs[this.submission.docIndexes.indexOf(0)].name }}
-                </p>
-                <ng-template #else0>
-                    <p>Choose file..</p>
-                </ng-template>
+            <div class="row mx-3 my-4 align-items-center">
+                <div class="col-md-2">
+                    <label>{{document.Name}}: </label>
+                </div>
+                <div class="col-md-1 text-right pr-0">
+                    <div class="file btn btn-secondary px-2 pb-1 pt-2" style="background-color: #1d3557 !important;">
+                        <span class="material-icons" style="font-size: 20px; ">
+                            upload
+                        </span>
+                        <input class="file-input" type="file" (change)="studentUpload($any($event.target).files, i)">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-control">
+                        <p *ngIf="this.docIndexes.includes(i); else else4">
+                            {{this.submission.formDocs[this.docIndexes.indexOf(i)].file.name }}
+                        </p>
+                        <ng-template #else4>
+                            <p>Choose file..</p>
+                        </ng-template>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="row mx-3 mb-3">
-        <div class="col-md-4">
-            <div [hidden]="alertsHidden[0] != false" class="">
-                <ngb-alert [dismissible]="false">Photo size must be 3 megabytes maximum.</ngb-alert>
-            </div>
-        </div>
-    </div>
 
-
-    <div class="row mx-3 mt-5 mb-2">
-        <div class="col-md-3 pr-0">
-            <label>Original Copy of the student's birth certificate: </label>
-        </div>
-
-        <input class="file-input" type="file" (change)="studentUpload($any($event.target).files, 1)" #BC>
-
-        <div class="col-md-1 pr-0 text-right">
-            <button type="button" class="upload-btn" (click)="BC.click()"><i
-                    class="material-icons">folder_shared</i></button>
-        </div>
-
-        <div class="col-md-2 pl-0">
-            <div class="form-control" (click)="BC.click()">
-                <p *ngIf="this.submission.docIndexes.includes(1); else else1">
-                    {{this.submission.formDocs[this.submission.docIndexes.indexOf(1)].name }}
-                </p>
-                <ng-template #else1>
-                    <p>Choose file..</p>
-                </ng-template>
-            </div>
-        </div>
-    </div>
-    <div class="row mx-3 mb-3">
-        <div class="col-md-4">
-            <div [hidden]="alertsHidden[1] != false" class="">
-                <ngb-alert [dismissible]="false">Certificate size must be 3 megabytes maximum.</ngb-alert>
+            <div class="row mx-3 mb-3">
+                <div class="col-md-4">
+                    <div [hidden]="alertsHidden[i] != false" class="">
+                        <ngb-alert [dismissible]="false">{{document.Name}} must be {{document.Size}} megabytes maximum.
+                        </ngb-alert>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="row mx-3 mt-5 mb-2">
-        <div class="col-md-3">
-            <label>Copy of parents ID: </label>
-        </div>
-
-        <input class="file-input" type="file" (change)="studentUpload($any($event.target).files, 2)" #PID>
-
-        <div class="col-md-1 pr-0 text-right">
-            <button type="button" class="upload-btn" (click)="PID.click()"><i
-                    class="material-icons">supervisor_account</i></button>
-        </div>
-
-        <div class="col-md-2 pl-0">
-            <div class="form-control" (click)="PID.click()">
-                <p *ngIf="this.submission.docIndexes.includes(2); else else2">
-                    {{this.submission.formDocs[this.submission.docIndexes.indexOf(2)].name }}
-                </p>
-                <ng-template #else2>
-                    <p>Choose file..</p>
-                </ng-template>
-            </div>
-        </div>
-    </div>
-    <div class="row mx-3 mb-3">
-        <div class="col-md-4">
-            <div [hidden]="alertsHidden[2] != false" class="">
-                <ngb-alert [dismissible]="false">Image size must be 3 megabytes maximum.</ngb-alert>
-            </div>
-        </div>
-    </div>
-
-    <div class="row mx-3 mt-5 mb-2">
-        <div class="col-md-3">
-            <label>Copy of the student's immunization record: </label>
-        </div>
-
-        <input class="file-input" type="file" (change)="studentUpload($any($event.target).files, 3)" #IR>
-
-        <div class="col-md-1 pr-0 text-right">
-            <button type="button" class="upload-btn" (click)="IR.click()"><i
-                    class="material-icons">recent_actors</i></button>
-        </div>
-
-        <div class="col-md-2 pl-0">
-            <div class="form-control" (click)="IR.click()">
-                <p *ngIf="this.submission.docIndexes.includes(3); else else3">
-                    {{this.submission.formDocs[this.submission.docIndexes.indexOf(3)].name }}
-                </p>
-                <ng-template #else3>
-                    <p>Choose file..</p>
-                </ng-template>
-            </div>
-        </div>
-    </div>
-    <div class="row mx-3 mb-3">
-        <div class="col-md-4">
-            <div [hidden]="alertsHidden[3] != false" class="">
-                <ngb-alert [dismissible]="false">Record size must be 3 megabytes maximum.</ngb-alert>
-            </div>
-        </div>
-    </div>
-
-    <div class="row mx-3 mt-5 mb-2">
-        <div class="col-md-3">
-            <label>A doctor's report on the general health of the student: </label>
-        </div>
-
-        <input class="file-input" type="file" (change)="studentUpload($any($event.target).files, 4)" #DR>
-
-        <div class="col-md-1 pr-0 text-right">
-            <button type="button" class="upload-btn" (click)="DR.click()"><i
-                    class="material-icons">content_paste</i></button>
-        </div>
-
-        <div class="col-md-2 pl-0">
-            <div class="form-control" (click)="DR.click()">
-                <p *ngIf="this.submission.docIndexes.includes(4); else else4">
-                    {{this.submission.formDocs[this.submission.docIndexes.indexOf(4)].name }}
-                </p>
-                <ng-template #else4>
-                    <p>Choose file..</p>
-                </ng-template>
-            </div>
-        </div>
-    </div>
-    <div class="row mx-3 mb-3">
-        <div class="col-md-4">
-            <div [hidden]="alertsHidden[4] != false" class="">
-                <ngb-alert [dismissible]="false">Doctor's report size must be 3 megabytes maximum.</ngb-alert>
+    <div *ngIf="this.loading" class="row">
+        <div class="col-md-12" [align]="'center'">
+            <div class="spinner-border text-secondary" style="width: 6rem; height: 6rem; color: #1d3557 !important;"
+                role="status" #loading>
+                <span class="sr-only">Loading...</span>
             </div>
         </div>
     </div>
@@ -169,8 +69,8 @@
             <button type="button" class="btn btn-outline-primary" (click)="onBack()">Back</button>
         </div>
         <div class="col-md-4 offset-md-4 ">
-            <button class="btn btn-primary" type="submit" style="position: absolute; right: 5%;"
-                (click)="onSubmit()">Next</button>
+            <button [disabled]='this.submitDisabled' class="btn btn-primary" type="submit"
+                style="position: absolute; right: 5%;" (click)="onSubmit()">Next</button>
         </div>
     </div>
 </form>

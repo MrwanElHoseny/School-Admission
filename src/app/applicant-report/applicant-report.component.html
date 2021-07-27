@@ -4,13 +4,7 @@
             <h3>Name: </h3>
             <p class="data">
                 {{this.submission.studentData.FirstName + ' ' + this.submission.studentData.SecondName
-                + ' ' + this.submission.studentData.LastName}}
-            </p>
-            <h3>
-                Application ID:
-            </h3>
-            <p class="data">
-                {{this.route.snapshot.params['id']}}
+                + ' ' + this.submission.studentData.LastName}}Marwan
             </p>
 
         </div>
@@ -28,8 +22,8 @@
                 {{this.submission.studentData.AdmissionDate}}
             </p>
         </div>
-        <div class="col-md-4 pr-0">
-            <img src="/assets/student.jpg" alt="" style="width: 100%; height: auto;">
+        <div class="col-md-4 pr-0" #photoPlaceholder>
+
         </div>
     </div>
     <div class="accordion" id="accordion">
@@ -43,7 +37,7 @@
             </div>
 
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="card-body pl-5 border">
+                <div class="card-body pl-5 border" style="height: 700px;">
 
                     <div class="row mx-3 my-3">
                         <div class="col-md-4">
@@ -131,27 +125,32 @@
 
                     <div class="row mx-3 my-3">
                         <div class="col-md-2">
-                            <H3>Student Photo: </H3>
-                            <a class="material-icons" style="cursor: pointer;" (click)="openSP()">file_download</a>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle close-class" type="button"
+                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false" #ddb>
+                                    Documents
+                                </button>
+                                <div class="dropdown-menu p-3" style="width: 500px; height: auto;"
+                                    aria-labelledby="dropdownMenuButton" (click)="$event.stopPropagation()">
+                                    <div class="row pl-4">
+                                        <label for="name">Name:</label>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-9 pl-4">
+                                            <select (change)="docChoosen($event)" id="name" class="form-control">
+                                                <option *ngFor="let doc of this.documentList" [value]="doc.Name">
+                                                    {{doc.Name}}</option>
+                                            </select>
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <br>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-2">
-                            <h3>Birth Certificate: </h3>
-                            <a class="material-icons" style="cursor: pointer;"
-                                [href]="birthCertificate">file_download</a>
-                        </div>
-                        <div class="col-md-2">
-                            <h3>Parents' ID: </h3>
-                            <a class="material-icons" style="cursor: pointer;" [href]="parentID">file_download</a>
-                        </div>
-                        <div class="col-md-2">
-                            <h3>Immunization Record: </h3>
-                            <a class="material-icons" style="cursor: pointer;" [href]="IR">file_download</a>
-                        </div>
-                        <div class="col-md-2">
-                            <h3>General Health Report: </h3>
-                            <a class="material-icons" style="cursor: pointer;" [href]="healthReport">file_download</a>
-                        </div>
-                        <div class="col-md-2"></div>
                     </div>
 
                 </div>
@@ -459,7 +458,7 @@
         </div>
     </div>
 
-    <div *ngIf="this.adminPage" class="row mx-3 my-5">
+    <div *ngIf="this.adminPage && this.submission.studentData.Status == 'New'" class="row mx-3 my-5">
         <div class="col-md-1">
             <button class="btn btn-success" type="button"
                 (click)="accept(this.route.snapshot.params['id'])">Accept</button>

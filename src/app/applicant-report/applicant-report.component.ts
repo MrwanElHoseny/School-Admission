@@ -1,9 +1,10 @@
+import { documentObj } from './../interface/document';
 import { admin } from './../services/admin.service';
 import { NgForm } from '@angular/forms';
 import { adminAuth } from './../services/admin-auth.service';
 import { HttpClient } from '@angular/common/http';
 import { submission, applicantData } from './../services/submission.service';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ThrowStmt } from '@angular/compiler';
 
@@ -15,14 +16,36 @@ import { ThrowStmt } from '@angular/compiler';
 })
 export class ApplicantReportComponent implements OnInit {
 
-  studentPhoto;
-  birthCertificate;
-  parentID;
-  IR;
-  healthReport;
-  applicantID;
 
   adminPage: boolean;
+
+  documentList: documentObj[] = [
+    {
+      Name: 'photo',
+      Size: '3',
+      Description: 'ay 7aga'
+    }, {
+      Name: 'ID',
+      Size: '3',
+      Description: 'ay 7aga'
+    },
+    {
+      Name: 'IR',
+      Size: '3',
+      Description: 'ay 7aga'
+    },
+    {
+      Name: 'DR',
+      Size: '3',
+      Description: 'ay 7aga'
+    }
+
+  ]
+  documentBlobs: {
+    DocumentName: string,
+    Copy: string
+  }[] = [];
+
 
   constructor(public router: Router,
     public route: ActivatedRoute,
@@ -38,41 +61,36 @@ export class ApplicantReportComponent implements OnInit {
       this.submission.applicantID = this.route.snapshot.params['id'];
       this.submission.getApplicantData(this.submission.applicantID);
     }
+    /////
+
+    this.http.get<documentObj[]>(this.adminService.baseUrl + '/Admin/DocumentCriteria', { observe: 'response' }).subscribe(
+      res => {
+        console.log("Required documents obtained successfully")
+        this.documentList = res.body;
+
+        //get blobs
+        this.http.get<{ DocumentName: string, Copy: string }[]>(this.submission.baseUrl + '/Admin/' + this.submission.applicantID + '/Documents', { observe: 'response' }).subscribe(
+          res => {
+            if (res.ok) {
+              this.documentBlobs = res.body;
+            } else {
+              console.log("Error retreiving document links")
+            }
+          }, err => {
+            console.log("Can't reach end point")
+          }
+        )
+
+      }, err => {
+        console.log("Can't reach end point")
+      }
+    )
 
     this.http.get<{ DocumentName: string, Copy: string }[]>(this.submission.baseUrl + '/Admin/' + this.submission.applicantID + '/Documents', { observe: 'response' }).subscribe(
       res => {
         if (res.ok) {
           console.log(res.body);
 
-          this.studentPhoto = res.body[res.body.findIndex(
-            obj => {
-              return obj.DocumentName == 'StudentPhoto'
-            }
-          )].Copy;
-
-          this.birthCertificate = res.body[res.body.findIndex(
-            obj => {
-              return obj.DocumentName == 'BC'
-            }
-          )].Copy;
-
-          this.parentID = res.body[res.body.findIndex(
-            obj => {
-              return obj.DocumentName == 'ParentsID'
-            }
-          )].Copy;
-
-          this.IR = res.body[res.body.findIndex(
-            obj => {
-              return obj.DocumentName == 'IR'
-            }
-          )].Copy;
-
-          this.healthReport = res.body[res.body.findIndex(
-            obj => {
-              return obj.DocumentName == 'DR'
-            }
-          )].Copy;
         } else {
           console.log("Error retreiving document links")
         }
@@ -125,11 +143,25 @@ export class ApplicantReportComponent implements OnInit {
     )
   }
 
-  openSP() {
+  openSP(blob: string) {
     var image = new Image();
-    image.src = this.studentPhoto;
-    var w = window.open("")
 
+
+
+
+  }
+
+  docChoosen(event: Event) {
+    let choosenName = (event.target as HTMLInputElement).value
+
+    var image = new Image();
+
+    image.src = this.documentBlobs[this.documentBlobs.findIndex(
+      _blob => {
+        return _blob.DocumentName == choosenName;
+      }
+    )].Copy;
+    var w = window.open("")
     w.document.write(image.outerHTML)
   }
 

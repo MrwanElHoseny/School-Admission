@@ -66,7 +66,7 @@
                     <tbody *ngIf="!this.loading">
                         <tr *ngFor="let applicant of applicantsCopy">
                             <ng-container
-                                *ngIf='(applicant.ApplicantName.includes(searchTerm) || searchTerm == "" || applicant.ApplicantId.includes(searchTerm))'>
+                                *ngIf='((applicant.ApplicantName.includes(searchTerm) || searchTerm == "" || applicant.ApplicantId.includes(searchTerm)) && applicant.Status == "Waiting For Interview")'>
                                 <td>{{applicant.ApplicantId}}</td>
                                 <td>{{applicant.ApplicantName}}</td>
                                 <td>{{applicant.AdmissionDate}}</td>

@@ -13,6 +13,7 @@ import { Component, OnInit } from '@angular/core';
 export class OpenAdmissionComponent implements OnInit {
 
   periodOpened = false;
+  loading = false;
 
   today = new Date();
   dd = String(this.today.getDate()).padStart(2, '0');
@@ -28,14 +29,11 @@ export class OpenAdmissionComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient,
     private admin: admin) {
-    //send request to period opened api
-    //if opened then true else false
 
     http.get<boolean>(admin.baseUrl + '/Admin/CheakAdmissionPeriod', { observe: 'response' }).subscribe(
       res => {
         if (res.ok) {
           console.log('check admission succesfull');
-
           this.periodOpened = res.body;
         } else {
           console.log('check admission period failed')
@@ -53,20 +51,24 @@ export class OpenAdmissionComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    // 
+
+    this.loading = true;
     let newCriteria = form.value;
     newCriteria.StartDate = this.admin.formatDate(newCriteria.StartDate);
     newCriteria.EndDate = this.admin.formatDate(newCriteria.EndDate);
 
-    console.log(newCriteria);
     this.http.post(this.admin.baseUrl + '/Admin/AdmissionPeriod', newCriteria, { observe: 'response' }).subscribe(
       res => {
+        this.loading = false;
         if (res.ok) {
           console.log("new criteria posted succesfully");
           this.router.navigate(['../'], { relativeTo: this.route });
         } else {
           console.log('error posting new criteria');
         }
+      }, err => {
+        this.loading = false;
+        console.log("Can't reach end point")
       }
     )
   }

@@ -47,6 +47,8 @@ import { UploadService } from './services/uploadFile.service';
 import { PatchValueDirective } from './directives/patch-value.directive';
 import { PatchTableDirective } from './directives/patch-table.directive';
 import { PatchParentDirective } from './directives/patch-parent.directive';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 
@@ -88,7 +90,8 @@ import { PatchParentDirective } from './directives/patch-parent.directive';
     UserSigninComponent,
     PatchValueDirective,
     PatchTableDirective,
-    PatchParentDirective
+    PatchParentDirective,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -97,7 +100,8 @@ import { PatchParentDirective } from './directives/patch-parent.directive';
     NgbDatepickerModule,
     NgbAlertModule,
     NgbCarouselModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxChartsModule
   ],
   providers: [
     submission,

@@ -1,4 +1,4 @@
-import { adminAuth } from './services/admin-auth.service';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { adminGuard } from './services/admin-guard.service';
 import { UserSigninComponent } from './user/user-signin/user-signin.component';
 import { ScoreComponent } from './admin/score/score.component';
@@ -64,7 +64,8 @@ const routes: Routes = [
       { path: 'interviewCriteria', component: InterviewCriteriaComponent },
       { path: 'applicantsInterview', component: ApplicantsInterviewComponent },
       { path: 'viewApplicants/applicant/:id', component: ApplicantReportComponent },
-      { path: 'applicantsInterview/score/:id', component: ScoreComponent }
+      { path: 'applicantsInterview/score/:id', component: ScoreComponent },
+      { path: 'dashboard', component: DashboardComponent }
     ]
   },
   {
