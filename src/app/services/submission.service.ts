@@ -3,6 +3,7 @@ import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstra
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { forkJoin } from 'rxjs';
 
 export interface applicantData {
     Applicant: {
@@ -92,6 +93,7 @@ export class submission {
 
     baseUrl = 'https://localhost:44363/api'
     patch = false;
+    loading = false;
     applicantID = '';
     username = '';
 
@@ -298,7 +300,8 @@ export class submission {
     }
 
 
-    submit(): boolean {
+    submit() {
+        this.loading = true;
         this.studentData.DateOfBirth = String(this.studentDateOfBirth.year) + '/' + String(this.studentDateOfBirth.month) + '/' + String(this.studentDateOfBirth.day);
         this.parentsData[0].DateOfBirth = String(this.fatherDateOfBirth.year) + '/' + String(this.fatherDateOfBirth.month) + '/' + String(this.fatherDateOfBirth.day);
         this.parentsData[1].DateOfBirth = String(this.motherDateOfBirth.year) + '/' + String(this.motherDateOfBirth.month) + '/' + String(this.motherDateOfBirth.day);
@@ -317,171 +320,74 @@ export class submission {
                                 this.applicantID = res.body
 
                                 //parents
-                                this.http.post(this.baseUrl + '/applicant/' + this.applicantID + '/ParentInfo', this.parentsData, { observe: 'response' }).subscribe(
-                                    res => {
-                                        if (res.ok) {
-                                            console.log('parents data added')
-                                        }
-                                        else {
-                                            console.log('Error while adding parents data')
-                                            console.log(res)
-                                            validSubmission = false;
-                                        }
-                                    }
-                                )
+                                let parents = this.http.post(this.baseUrl + '/applicant/' + this.applicantID + '/ParentInfo', this.parentsData, { observe: 'response' })
 
                                 //family status
-                                this.http.post(this.baseUrl + '/applicant/' + this.applicantID + '/FamilyStatus', this.familyStatus, { observe: 'response' }).subscribe(
-                                    res => {
-                                        if (res.ok) {
-                                            console.log('Family Status data added')
-                                        }
-                                        else {
-                                            console.log('Error while adding family status data')
-                                            console.log(res)
-                                            validSubmission = false;
-                                        }
-                                    }
-                                )
+                                let familyStatus = this.http.post(this.baseUrl + '/applicant/' + this.applicantID + '/FamilyStatus', this.familyStatus, { observe: 'response' })
 
                                 //admission details
-                                this.http.post(this.baseUrl + '/applicant/' + this.applicantID + '/AdmissionDetails', this.admissionDetails, { observe: 'response' }).subscribe(
-                                    res => {
-                                        if (res.ok) {
-                                            console.log('admission details data added')
-                                        }
-                                        else {
-                                            console.log('Error while adding admission details')
-                                            console.log(res)
-                                            validSubmission = false;
-                                        }
-                                    }
-                                )
+                                let details = this.http.post(this.baseUrl + '/applicant/' + this.applicantID + '/AdmissionDetails', this.admissionDetails, { observe: 'response' })
 
                                 //Emergency Contacts
-                                this.http.post(this.baseUrl + '/applicant/' + this.applicantID + '/EmergencyContacts', this.emergency, { observe: 'response' }).subscribe(
-                                    res => {
-                                        if (res.ok) {
-                                            console.log('Emergency contacts data added')
-                                        }
-                                        else {
-                                            console.log('Error while adding emergency contacts')
-                                            console.log(res)
-                                            validSubmission = false;
-                                        }
-                                    }
-                                )
+                                let emergency = this.http.post(this.baseUrl + '/applicant/' + this.applicantID + '/EmergencyContacts', this.emergency, { observe: 'response' })
 
                                 //siblings
-                                this.http.post(this.baseUrl + '/applicant/' + this.applicantID + '/Siblings', this.siblings, { observe: 'response' }).subscribe(
-                                    res => {
-                                        if (res.ok) {
-                                            console.log('Siblings data added')
-                                        }
-                                        else {
-                                            console.log('Error while adding siblings')
-                                            console.log(res)
-                                            validSubmission = false;
-                                        }
-                                    }
-                                )
+                                let siblings = this.http.post(this.baseUrl + '/applicant/' + this.applicantID + '/Siblings', this.siblings, { observe: 'response' })
 
                                 //medical
-                                this.http.post(this.baseUrl + '/applicant/' + this.applicantID + '/Medical', this.medical, { observe: 'response' }).subscribe(
-                                    res => {
-                                        if (res.ok) {
-                                            console.log('Medical data added')
-                                        }
-                                        else {
-                                            console.log('Error while adding medical data')
-                                            console.log(res)
-                                            validSubmission = false;
-                                        }
-                                    }
-                                )
+                                let medical = this.http.post(this.baseUrl + '/applicant/' + this.applicantID + '/Medical', this.medical, { observe: 'response' })
 
                                 //documents
-                                this.upload.uploadFile(this.baseUrl + '/applicant/' + this.applicantID + '/Document', this.formDocs[this.docIndexes.indexOf(0)], 'Copy', this.docNamesMap[0]).subscribe(
+                                let StudentPhoto = this.upload.uploadFile(this.baseUrl + '/applicant/' + this.applicantID + '/Document', this.formDocs[this.docIndexes.indexOf(0)], 'Copy', this.docNamesMap[0])
+                                let BC = this.upload.uploadFile(this.baseUrl + '/applicant/' + this.applicantID + '/Document', this.formDocs[this.docIndexes.indexOf(1)], 'Copy', this.docNamesMap[1])
+                                let parentsID = this.upload.uploadFile(this.baseUrl + '/applicant/' + this.applicantID + '/Document', this.formDocs[this.docIndexes.indexOf(2)], 'Copy', this.docNamesMap[2])
+                                let IR = this.upload.uploadFile(this.baseUrl + '/applicant/' + this.applicantID + '/Document', this.formDocs[this.docIndexes.indexOf(3)], 'Copy', this.docNamesMap[3])
+                                let DR = this.upload.uploadFile(this.baseUrl + '/applicant/' + this.applicantID + '/Document', this.formDocs[this.docIndexes.indexOf(4)], 'Copy', this.docNamesMap[4])
+
+
+
+                                const dataJoin = [parents, familyStatus, details, emergency, siblings, medical, StudentPhoto, BC, parentsID, IR, DR]
+
+                                let multicall = forkJoin(dataJoin);
+                                multicall.subscribe(
                                     res => {
-                                        if (res.ok) {
-                                            console.log("Student photo uploaded succesfully.")
-                                            if (validSubmission) {
-                                            }
+
+                                        // this.loading = false;
+                                        console.log("Joined data submitted");
+
+                                        /// Payment
+                                        if (this.router.url == '/applicant/admission/payment/credit') {
+
+                                            this.http.get(this.baseUrl + '/Applicant/Payment', { observe: 'response', responseType: 'text' }).subscribe(
+                                                res => {
+                                                    if (res.ok) {
+                                                        window.open(res.body);
+                                                        this.router.navigate(['applicant', 'admission', 'applicationReport'])
+                                                    }
+                                                    else {
+                                                        console.log("Error getting payment url")
+                                                    }
+                                                }
+                                            )
+                                        } else {
+
+                                            this.loading = false;
+                                            this.router.navigate(['applicant', 'admission', 'applicationReport'])
                                         }
-                                        else {
-                                            console.log("Failed to upload student photo");
-                                        }
+
+                                    },
+                                    err => {
+
+                                        this.loading = false;
+                                        console.log('Error posting joined data'),
+                                            console.log(err);
                                     }
                                 )
 
-                                this.upload.uploadFile(this.baseUrl + '/applicant/' + this.applicantID + '/Document', this.formDocs[this.docIndexes.indexOf(1)], 'Copy', this.docNamesMap[1]).subscribe(
-                                    res => {
-                                        if (res.ok) {
-                                            console.log("Birth Certificate uploaded succesfully.")
-                                            if (validSubmission) {
-                                            }
-                                        }
-                                        else {
-                                            console.log("Failed to upload birth certificate");
-                                        }
-                                    }
-                                )
-
-                                this.upload.uploadFile(this.baseUrl + '/applicant/' + this.applicantID + '/Document', this.formDocs[this.docIndexes.indexOf(2)], 'Copy', this.docNamesMap[2]).subscribe(
-                                    res => {
-                                        if (res.ok) {
-                                            console.log("Parents ID uploaded succesfully.")
-                                            if (validSubmission) {
-                                            }
-                                        }
-                                        else {
-                                            console.log("Failed to upload Parents ID");
-                                        }
-                                    }
-                                )
-
-                                this.upload.uploadFile(this.baseUrl + '/applicant/' + this.applicantID + '/Document', this.formDocs[this.docIndexes.indexOf(3)], 'Copy', this.docNamesMap[3]).subscribe(
-                                    res => {
-                                        if (res.ok) {
-                                            console.log("Immunization record uploaded succesfully.")
-                                            if (validSubmission) {
-                                            }
-                                        }
-                                        else {
-                                            console.log("Failed to upload Immunization Record");
-                                        }
-                                    }
-                                )
-
-                                this.upload.uploadFile(this.baseUrl + '/applicant/' + this.applicantID + '/Document', this.formDocs[this.docIndexes.indexOf(4)], 'Copy', this.docNamesMap[4]).subscribe(
-                                    res => {
-                                        if (res.ok) {
-                                            console.log("Dr report uploaded succesfully.")
-                                            if (validSubmission) {
-                                            }
-                                        }
-                                        else {
-                                            console.log("Failed to upload dr report");
-                                        }
-                                    }
-                                )
-
-                                /// Payment
-                                if (this.router.url == '/applicant/admission/payment/credit') {
-
-                                    this.http.get(this.baseUrl + '/Applicant/Payment', { observe: 'response', responseType: 'text' }).subscribe(
-                                        res => {
-                                            if (res.ok) {
-                                                window.open(res.body);
-                                            }
-                                            else {
-                                                console.log("Error getting payment url")
-                                            }
-                                        }
-                                    )
-                                }
                             }
                             else {
+
+                                this.loading = false;
                                 console.log('Error while obtaining current id');
                                 validSubmission = false;
                             }
@@ -490,14 +396,19 @@ export class submission {
 
 
                 } else {
-                    console.log("Error at student data")
+
+                    this.loading = false;
+                    console.log("Error submitting student data")
                     console.log(res)
                     validSubmission = false;
                 }
+            },
+            err => {
+                console.log("Can't reach submission end point")
+                this.loading = false
             }
         )
 
-        return validSubmission;
     }
 
 }

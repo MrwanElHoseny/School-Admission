@@ -17,14 +17,19 @@ import { applicant } from '../../interface/applicant';
 
 export class ViewApplicantsComponent implements OnInit {
 
+  loading = false;
+
   constructor(private router: Router,
     private route: ActivatedRoute,
     private filter: ApplicantViewPipe,
     private http: HttpClient,
     private admin: admin) {
+
     // getApplicant'sData
+    this.loading = true;
     this.http.get<applicant[]>(this.admin.baseUrl + '/Admin/AdmissionApplicants', { observe: 'response' }).subscribe(
       res => {
+        this.loading = false;
         if (res.ok) {
           console.log('Applicants retrieved successfully');
           this.applicants = res.body;
@@ -39,6 +44,10 @@ export class ViewApplicantsComponent implements OnInit {
         } else {
           console.log("error retrieving applicants");
         }
+      },
+      err => {
+        this.loading = false;
+        console.log("Can't reach end point")
       }
     )
 

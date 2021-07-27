@@ -46,7 +46,6 @@ export class EmergencyComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log(this.submission.emergency)
     this.router.navigate(['../', 'siblings'], { relativeTo: this.route })
   }
 

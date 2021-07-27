@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { submission } from './submission.service';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { forkJoin } from 'rxjs';
 
 @Injectable()
 export class submitPatch {
@@ -19,8 +20,6 @@ export class submitPatch {
     constructor(private http: HttpClient,
         private submission: submission,
         private router: Router) {
-
-
     }
 
     urls = {
@@ -43,44 +42,32 @@ export class submitPatch {
     }
 
     submitAll() {
+        this.submission.loading = true;
+        let dataJoin = [];
+
         this.patches.forEach(
-            (patch, index) => {
-                if (patch.url != "/applicant/" + this.submission.applicantID + "/FamilyStatus") {
-                    this.http.patch(patch.url, [patch.patch], { observe: 'response' }).subscribe(
-
-
-                        res => {
-                            if (res.ok) {
-                                console.log("Patch successfull")
-                                if (this.router.url == '/applicant/admission/payment/credit' && index == this.patches.length - 1) {
-                                    console.log('redirecting to payment url')
-                                    this.http.get(this.submission.baseUrl + '/Applicant/Payment', { observe: 'response', responseType: 'text' }).subscribe(
-                                        res => {
-                                            if (res.ok) {
-
-                                                window.open(res.body);
-                                                this.submission.getApplicantData(this.submission.applicantID);
-                                                this.router.navigate(['applicant', 'admission', 'applicationReport'])
-                                            }
-                                            else {
-                                                console.log('Error retrieving credit payment url')
-                                            }
-                                        }
-                                    );
-                                }
-                            }
-                            else {
-                                console.log("Patch error")
-                            }
-                        }
-                    )
-                }
+            (patch) => {
+                dataJoin.push(this.http.patch(patch.url, [patch.patch], { observe: 'response' }))
             }
         )
+        console.log(dataJoin)
 
-        this.submission.docIndexes.forEach(
-            (docNumber, index) => {
+        // this.submission.docIndexes.forEach(
+        //     (docNumber, index) => {
+        //         dataJoin.push()
+        //     }
+        // )
 
+        let multiCall = forkJoin(dataJoin);
+        multiCall.subscribe(
+            res => {
+                console.log('all patches successfull');
+                this.router.navigate(['applicant', 'admission', 'applicationReport']);
+                this.submission.loading = false;
+            },
+            err => {
+                this.submission.loading = false;
+                console.log('Error patching');
             }
         )
 

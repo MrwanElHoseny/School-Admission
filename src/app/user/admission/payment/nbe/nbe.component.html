@@ -23,9 +23,14 @@
 
     <div class="row mb-5  px-3">
         <div class="col-md-2 offset-9  pr-0 pl-5 pt-5">
-            <button class="btn btn-primary" type="submit"
-                [routerLink]="['../../', 'applicationReport', this.submission.applicantID]"
-                (click)="this.submission.patch?this.patch.submitAll():this.submission.submit();">Submit</button>
+            <button *ngIf="!this.submission.loading;" class="btn btn-primary" type="submit"
+                (click)="this.submission.patch?this.patch.submitAll():this.submission.submit();">
+                Submit
+            </button>
+            <div *ngIf="this.submission.loading;" class="spinner-border text-primary" style="width: 3rem; height: 3rem;"
+                role="status" #loading>
+                <span class="sr-only">Loading...</span>
+            </div>
         </div>
     </div>
 </div>

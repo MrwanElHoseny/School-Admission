@@ -12,9 +12,6 @@ import { ThrowStmt } from '@angular/compiler';
   selector: 'app-applicant-report',
   templateUrl: './applicant-report.component.html',
   styleUrls: ['./applicant-report.component.css'],
-  providers: [
-    submission
-  ]
 })
 export class ApplicantReportComponent implements OnInit {
 
@@ -25,6 +22,8 @@ export class ApplicantReportComponent implements OnInit {
   healthReport;
   applicantID;
 
+  adminPage: boolean;
+
   constructor(public router: Router,
     public route: ActivatedRoute,
     public submission: submission,
@@ -33,41 +32,47 @@ export class ApplicantReportComponent implements OnInit {
     private adminService: admin,
     private changeDetector: ChangeDetectorRef
   ) {
-    this.submission.applicantID = this.route.snapshot.params['id'];
-    this.submission.getApplicantData(this.submission.applicantID);
+    this.adminPage = (this.router.url.slice(0, 6) == '/admin')
 
-    this.http.get<{ DocumentName: string, Copy: string }[]>(this.submission.baseUrl + '/Admin/' + this.applicantID + '/Documents', { observe: 'response' }).subscribe(
+    if (this.adminPage) {
+      this.submission.applicantID = this.route.snapshot.params['id'];
+      this.submission.getApplicantData(this.submission.applicantID);
+    }
+
+    this.http.get<{ DocumentName: string, Copy: string }[]>(this.submission.baseUrl + '/Admin/' + this.submission.applicantID + '/Documents', { observe: 'response' }).subscribe(
       res => {
         if (res.ok) {
+          console.log(res.body);
+
           this.studentPhoto = res.body[res.body.findIndex(
             obj => {
               return obj.DocumentName == 'StudentPhoto'
             }
-          )];
+          )].Copy;
 
           this.birthCertificate = res.body[res.body.findIndex(
             obj => {
               return obj.DocumentName == 'BC'
             }
-          )];
+          )].Copy;
 
           this.parentID = res.body[res.body.findIndex(
             obj => {
               return obj.DocumentName == 'ParentsID'
             }
-          )];
+          )].Copy;
 
           this.IR = res.body[res.body.findIndex(
             obj => {
               return obj.DocumentName == 'IR'
             }
-          )];
+          )].Copy;
 
           this.healthReport = res.body[res.body.findIndex(
             obj => {
               return obj.DocumentName == 'DR'
             }
-          )];
+          )].Copy;
         } else {
           console.log("Error retreiving document links")
         }
@@ -79,7 +84,7 @@ export class ApplicantReportComponent implements OnInit {
   }
 
   accept(id: string) {
-    this.http.get(this.adminService.baseUrl + '/Admin/' + this.applicantID + '/ApplicantAcception', { observe: 'response' }).subscribe(
+    this.http.get(this.adminService.baseUrl + '/Admin/' + this.submission.applicantID + '/ApplicantAcception', { observe: 'response' }).subscribe(
       res => {
         if (res.ok) {
           window.alert("Applicant Accepted")
@@ -90,9 +95,13 @@ export class ApplicantReportComponent implements OnInit {
       }
     )
   }
+
   Decline(form: NgForm) {
-    console.log(form.value.reason)
-    this.http.post(this.adminService.baseUrl + '/Admin/' + this.applicantID + '/ApplicantDeclination', form.value.reason, { observe: 'response' }).subscribe(
+    let obj = {
+      Reason: form.value.reason
+    }
+
+    this.http.post(this.adminService.baseUrl + '/Admin/' + this.submission.applicantID + '/ApplicantDeclination', obj, { observe: 'response', }).subscribe(
       res => {
         if (res.ok) {
           console.log('applicant declined successfully');
@@ -106,14 +115,22 @@ export class ApplicantReportComponent implements OnInit {
   }
 
   setInterview() {
-    this.http.get(this.adminService.baseUrl + '/Admin/' + this.applicantID + '/ApplicantInterviewSetting', { observe: 'response' }).subscribe(
+    this.http.get(this.adminService.baseUrl + '/Admin/' + this.submission.applicantID + '/ApplicantInterviewSetting', { observe: 'response' }).subscribe(
       res => {
         if (res.ok) {
           window.alert('Applicant interview set')
-          this.router.navigate(['Admin', 'admissionManagement'])
+          this.router.navigate(['admin', 'admissionManagement'])
         }
       }
     )
+  }
+
+  openSP() {
+    var image = new Image();
+    image.src = this.studentPhoto;
+    var w = window.open("")
+
+    w.document.write(image.outerHTML)
   }
 
 }

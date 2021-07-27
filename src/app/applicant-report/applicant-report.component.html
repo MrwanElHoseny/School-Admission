@@ -12,6 +12,7 @@
             <p class="data">
                 {{this.route.snapshot.params['id']}}
             </p>
+
         </div>
         <div class="col-md-4">
             <h3>
@@ -128,10 +129,10 @@
                     </div>
                     <hr>
 
-                    <div class="row mx-3 my-3" hidden=true>
+                    <div class="row mx-3 my-3">
                         <div class="col-md-2">
                             <H3>Student Photo: </H3>
-                            <a class="material-icons" style="cursor: pointer;" [href]="studentPhoto">file_download</a>
+                            <a class="material-icons" style="cursor: pointer;" (click)="openSP()">file_download</a>
                         </div>
                         <div class="col-md-2">
                             <h3>Birth Certificate: </h3>
@@ -458,7 +459,7 @@
         </div>
     </div>
 
-    <div *ngIf="this.admin.isLogged()" class="row mx-3 my-5">
+    <div *ngIf="this.adminPage" class="row mx-3 my-5">
         <div class="col-md-1">
             <button class="btn btn-success" type="button"
                 (click)="accept(this.route.snapshot.params['id'])">Accept</button>

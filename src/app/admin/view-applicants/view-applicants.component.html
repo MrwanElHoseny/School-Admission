@@ -64,7 +64,7 @@
                         <th style="color: #ffffff; width: 14%; display: table-cell;">Status</th>
                         <th style="color: #ffffff; width: 8%; display: table-cell;">View</th>
                     </thead>
-                    <tbody>
+                    <tbody *ngIf="!this.loading">
                         <tr *ngFor="let applicant of applicantsCopy">
                             <ng-container
                                 *ngIf='((applicant.ApplicantName.includes(searchTerm) || searchTerm == "" || applicant.ApplicantId.includes(searchTerm)) && applicant)'>
@@ -80,19 +80,20 @@
                         </tr>
                     </tbody>
                 </table>
+
             </div>
-            <!-- <div class="row">
-                <div class="col-md-1">
-                    <button class="btn btn-outline-secondary" (click)="onBackPage()">Back</button>
-
-                </div>
-                <div class="col-md-1 offset-10 pr-0 pl-4">
-                    <button class="btn btn-primary" [disabled]="pageIndex==numOfPages" (click)="onNextPage()"
-                        style="color: white; background-color: #343a40;">Next</button>
-                </div>
-            </div> -->
 
 
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <div *ngIf="this.loading" class="row">
+        <div class="col-md-12" [align]="'center'">
+            <div class="spinner-border text-secondary" style="width: 6rem; height: 6rem;" role="status" #loading>
+                <span class="sr-only">Loading...</span>
+            </div>
         </div>
     </div>
 </div>

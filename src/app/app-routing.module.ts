@@ -50,11 +50,11 @@ const routes: Routes = [
         ]
       },
       { path: 'signIn', component: UserSigninComponent },
-      { path: 'admission/applicationReport/:id', component: ApplicantReportComponent }
+      { path: 'admission/applicationReport', component: ApplicantReportComponent }
     ]
   },
   {
-    path: "admin", canActivateChild: [adminGuard], component: AdminComponent, children: [
+    path: "admin", canActivateChild: [], component: AdminComponent, children: [
       { path: '', redirectTo: 'admissionManagement', pathMatch: 'full' },
       { path: 'admissionManagement', component: AdmissionManagementComponent },
       { path: 'admissionManagement/openAdmission', component: OpenAdmissionComponent },

@@ -1,5 +1,3 @@
-import { Router } from '@angular/router';
-import { Route } from '@angular/compiler/src/core';
 import { Component } from '@angular/core';
 
 @Component({
@@ -13,7 +11,6 @@ export class AppComponent {
   title = 'Admission';
 
   constructor() {
-
-
   }
+
 }

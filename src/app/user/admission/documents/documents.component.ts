@@ -21,7 +21,9 @@ interface Alert {
 export class DocumentsComponent implements OnInit {
 
 
-
+  documents = ['Student Photo',
+    'ParentsID',
+    'Immunization Record'];
 
   alertsHidden: boolean[] = [
     null,
@@ -32,8 +34,6 @@ export class DocumentsComponent implements OnInit {
   ]
 
   valid = false;
-
-
 
   constructor(private router: Router,
     private route: ActivatedRoute,

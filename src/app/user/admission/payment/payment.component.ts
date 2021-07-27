@@ -17,7 +17,6 @@ export class PaymentComponent implements OnInit {
 
   constructor(public router: Router, private route: ActivatedRoute, private renderer: Renderer2,
     public submission: submission) {
-    console.log(router.url)
   }
 
   ngOnInit(): void {

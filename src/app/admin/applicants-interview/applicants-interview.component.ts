@@ -19,14 +19,20 @@ export class ApplicantsInterviewComponent implements OnInit {
   pageIndex = 1;
   numOfPages = NaN;
 
+  loading = false;
+
   constructor(private router: Router,
     private route: ActivatedRoute,
     private filter: ApplicantViewPipe,
     private http: HttpClient,
     private admin: admin) {
+
+    this.loading = true;
     // getApplicant'sData
     this.http.get<applicant[]>(this.admin.baseUrl + '/Admin/AdmissionApplicants', { observe: 'response' }).subscribe(
       res => {
+
+        this.loading = false;
         if (res.ok) {
           console.log('Applicants retrieved successfully');
           this.applicants = res.body;
@@ -41,6 +47,10 @@ export class ApplicantsInterviewComponent implements OnInit {
         } else {
           console.log("error retrieving applicants");
         }
+      },
+      err => {
+        this.loading = false;
+        console.log("Can't reach end point")
       }
     )
 
